@@ -64,10 +64,10 @@ jobs:
           version: '2023-05-27'
           github-token: ${{ secrets.GITHUB_TOKEN }}
    
-    #- name: Fetch user project, update caravel configuration
-    #  run: python ./tt/configure.py --clone-all --fetch-gds --update-caravel
-    #  env:
-    #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Fetch user project, update caravel configuration
+      run: python ./tt/configure.py --clone-all --fetch-gds --update-caravel
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - uses: cachix/install-nix-action@v20
       
@@ -81,8 +81,8 @@ jobs:
         pip3 install volare
         volare enable --pdk sky130 ${{ env.SKY130_PDK_VERSION }}
 
-    - name: uncompress gds files
-      run: gunzip -v gds/*.gds.gz
+#    - name: uncompress gds files
+#      run: gunzip -v gds/*.gds.gz
 
     - name: Generate sources from user macro configuration
       run: make gen-module-placement
