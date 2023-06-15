@@ -1,0 +1,5 @@
+modules:
+  - name: "test"
+  - name: "test"
+    x: 5
+    y: 3

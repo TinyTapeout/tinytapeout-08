@@ -1,0 +1,12 @@
+diff --git a/openlane/scripts/openroad/common/set_global_connections.tcl b/openlane/scripts/openroad/common/set_global_connections.tcl
+index fb89219..cf53d98 100644
+--- a/openlane/scripts/openroad/common/set_global_connections.tcl
++++ b/openlane/scripts/openroad/common/set_global_connections.tcl
+@@ -47,6 +47,7 @@ proc set_global_connections {} {
+             set ground_net [lindex $pdn_hook 2]
+             set power_pin [lindex $pdn_hook 3]
+             set ground_pin [lindex $pdn_hook 4]
++            set instance_name top_I.*tt_um_I
+ 
+             if { $power_pin == "" || $ground_pin == "" } {
+                 puts "PDN_MACRO_CONNECTIONS missing power and ground pin names"

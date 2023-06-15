@@ -1,0 +1,7 @@
+__pycache__
+results.xml
+sim_build
+sim_build_gates
+*vcd
+*hex
+*hexe

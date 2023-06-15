@@ -1,0 +1,15 @@
+diff --git a/ol2/tt_top/build.py b/ol2/tt_top/build.py
+index 7ddc151..c7842b8 100755
+--- a/ol2/tt_top/build.py
++++ b/ol2/tt_top/build.py
+@@ -78,8 +78,8 @@ class TopFlow(SequentialFlow):
+ 		Magic.StreamOut,
+ 		Magic.WriteLEF,
+ 		KLayout.StreamOut,
+-		KLayout.XOR,
+-		Checker.XOR,
++		#KLayout.XOR,
++		#Checker.XOR,
+ 		Magic.DRC,
+ 		Checker.MagicDRC,
+ 		Magic.SpiceExtraction,

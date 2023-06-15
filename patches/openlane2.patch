@@ -1,0 +1,41 @@
+commit 3ad7fd965a4684e9bfeaf1a32630a3dd4dd50a11 (HEAD -> main)
+Author: Sylvain Munaut <tnt@246tNt.com>
+Date:   Fri Jun 2 10:23:29 2023 +0000
+
+    Update to magic 400
+
+    Signed-off-by: Sylvain Munaut <tnt@246tNt.com>
+
+diff --git a/nix/magic.nix b/nix/magic.nix
+index 213ea0c..cd32b66 100644
+--- a/nix/magic.nix
++++ b/nix/magic.nix
+@@ -38,18 +38,18 @@
+
+ with pkgs; clangStdenv.mkDerivation rec {
+   name = "magic-vlsi";
+-  rev = "a33d7b78b54d8456769d08236f91f9be31784267";
++  rev = "666c3c2c97b340e7386658fdafbe6dd6678c1b9e";
+
+   src = fetchFromGitHub {
+     owner = "RTimothyEdwards";
+     repo = "magic";
+     inherit rev;
+-    sha256 = "sha256-gWJ2A934vrQRscP/dTzmW2pW0sZYXusXHZ417SozlEQ=";
++    sha256 = "sha256-j3ZOCDCymuLRV/pZTRs94qpQ14EmZJfrw9OcUetHprw=";
+   };
+
+   patches = [
+     ./patches/magic/csh.patch
+-    # ./patches/magic/efbuild_void_return.patch
++  #  ./patches/magic/efbuild_void_return.patch
+   ];
+
+   nativeBuildInputs = [ python3 tcsh gnused ];
+@@ -88,4 +88,4 @@ with pkgs; clangStdenv.mkDerivation rec {
+
+   # Fairly sure this is deprecated?
+   enableParallelBuilding = true;
+-}
+\ No newline at end of file
++}

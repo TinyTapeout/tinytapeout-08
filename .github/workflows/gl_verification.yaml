@@ -1,0 +1,97 @@
+name: gl_verification
+# either manually started, or on a schedule
+on: [ push, workflow_dispatch, pull_request ]
+jobs:
+  gl_verification:
+    env:
+        OPENLANE_TAG:           2023.02.14
+        OPENLANE_IMAGE_NAME:    efabless/openlane:2023.05.19
+        OPENLANE_ROOT:      /home/runner/openlane
+        PDK_ROOT:           /home/runner/pdk
+        PDK:                sky130A
+        GH_TOKEN:           ${{ secrets.GH_TOKEN }}
+        GH_USERNAME:        ${{ secrets.GH_USERNAME }}
+        DESIGNS:            /home/runner/work/tinytapeout-03p5/tinytapeout-03p5
+        TARGET_PATH:        /home/runner/work/tinytapeout-03p5/tinytapeout-03p5
+        MGMT_AREA_ROOT:     /home/runner/work/tinytapeout-03p5/tinytapeout-03p5/mgmt_core_wrapper
+        MCW_ROOT:           /home/runner/work/tinytapeout-03p5/tinytapeout-03p5/mgmt_core_wrapper
+        CARAVEL_ROOT:       /home/runner/work/tinytapeout-03p5/tinytapeout-03p5/caravel
+        CORE_VERILOG_PATH:  /home/runner/work/tinytapeout-03p5/tinytapeout-03p5/mgmt_core_wrapper/verilog
+        GCC_PATH:           /home/runner/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14/bin/
+        GCC_PREFIX:         riscv64-unknown-elf
+
+    # ubuntu
+    runs-on: ubuntu-latest
+    steps:
+    # need the repo checked out
+    - name: checkout repo
+      uses: actions/checkout@v3
+
+    # install the tt tools
+    - name: checkout tt tools repo
+      uses: actions/checkout@v3
+      with:
+        repository: tinytapeout/tt-support-tools
+        ref: tt03p5
+        path: tt
+
+    # install the tt mux
+    - name: checkout tt mux repo
+      uses: actions/checkout@v3
+      with:
+        repository: tinytapeout/tt-multiplexer
+        path: tt-multiplexer
+        ref: tt03p5-openlane2
+
+    # build pdk - have to move this back above to get caravel makefile
+    - name: pdk & openlane & precheck
+      run: |
+        make setup
+
+    # uncompress any gds commited to the repo
+    - name: uncompress gds
+      run: | 
+        make uncompress
+
+    # need python
+    - name: setup python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+    - run: pip install -r tt/requirements.txt -r tt-multiplexer/proto/requirements.txt
+
+    # install oss fpga tools to get iverilog etc
+    - name: install oss-cad-suite
+      uses: YosysHQ/setup-oss-cad-suite@v2
+      with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version: '2022-09-03' # pin the version, latest one fails to work with caravel
+
+    # fetch the repos,
+    - name: Fetch user project, update caravel configuration
+      run: python ./tt/configure.py --test --clone-all --fetch-gds --update-caravel
+
+    # generate the tt mux verilog that instantiates all the modules - use the test version
+    - name: module config
+      run: |
+        cp tt_test_module.yaml tt_user_module.yaml
+        make gen-user-module
+
+    # need the modules lef & gds
+    - name: ttmux GDS
+      run: make tt_ctrl tt_mux 
+
+    # macro config, depends on the ttmux build artifacts being present
+    - name: macro config
+      run: python gen_macro_cfg.py
+
+    # user project wrapper
+    - name: user project wrapper GDS
+      run: make user_project_wrapper
+
+    # run GL test
+    - name: GL simulation
+      run: |
+        cd verilog/dv/mux
+        make clean test_mux_gl

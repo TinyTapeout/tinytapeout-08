@@ -1,0 +1,14 @@
+diff --git a/ol2/tt_top/build.py b/ol2/tt_top/build.py
+index 7ddc151..9c96aed 100755
+--- a/ol2/tt_top/build.py
++++ b/ol2/tt_top/build.py
+@@ -137,6 +137,9 @@ if __name__ == '__main__':
+ 
+ 		# PDN
+ 		"PDN_CFG": "pdn.tcl",
++		"PDN_MACRO_CONNECTIONS": [
++			"top_I.*tt_um_I vccd1 vssd1 vccd1 vssd1",
++		],
+ 
+ 		# Routing
+ 		"GRT_ALLOW_CONGESTION"  : True,

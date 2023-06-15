@@ -1,0 +1,14 @@
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/ol2/tt_top/user_project_wrapper.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/tt_top.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/tt_ctrl.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/tt_mux.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/tt_user_module.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_buf.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_dfrbp.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_diode.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_inv.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_mux4.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_tbuf_pol.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_tbuf.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_tie.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_zbuf.v
