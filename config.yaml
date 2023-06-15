@@ -1,5 +1,5 @@
-name: 'tt03p5' # used for university orders & docs
-start_date: '2023-05-24'
+name: 'tt04' # used for university orders & docs
+start_date: '2023-06-14'
 
 filler_project: https://github.com/TinyTapeout/tt03p5-test # used by Orders when updating list of real projects
 extra_projects: extra_projects.yaml

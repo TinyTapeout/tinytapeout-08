@@ -1,4 +1,4 @@
-# Build Tiny Tapeout 03p5 with Open Lane 2
+# Build Tiny Tapeout 04 with Open Lane 2
 
 ## Environment setup
 
@@ -28,10 +28,10 @@ git -C "${OPENLANE2_ROOT}" apply `pwd`/patches/openlane2.patch
 Set `GH_USERNAME` and `GH_TOKEN` environment variables with your GitHub username and a personal access token, respectively.
 To generate your GH_TOKEN go to https://github.com/settings/tokens/new . Set the checkboxes for repo and workflow.
 
-Then clone the tt03p5 branch from the tt-support-tools repo and install the required packages:
+Then clone the tt04 branch from the tt-support-tools repo and install the required packages:
 
 ```bash
-git clone -b tt03p5 https://github.com/tinytapeout/tt-support-tools tt 
+git clone -b tt04 https://github.com/tinytapeout/tt-support-tools tt 
 ```
 
 Finally, run the following commands to fetch the user projects and generate the configuration for the user_project_wrapper:

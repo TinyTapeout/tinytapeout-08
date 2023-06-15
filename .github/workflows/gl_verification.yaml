@@ -9,8 +9,6 @@ jobs:
         OPENLANE_ROOT:      /home/runner/openlane
         PDK_ROOT:           /home/runner/pdk
         PDK:                sky130A
-        GH_TOKEN:           ${{ secrets.GH_TOKEN }}
-        GH_USERNAME:        ${{ secrets.GH_USERNAME }}
         DESIGNS:            /home/runner/work/tinytapeout-03p5/tinytapeout-03p5
         TARGET_PATH:        /home/runner/work/tinytapeout-03p5/tinytapeout-03p5
         MGMT_AREA_ROOT:     /home/runner/work/tinytapeout-03p5/tinytapeout-03p5/mgmt_core_wrapper
@@ -32,7 +30,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: tinytapeout/tt-support-tools
-        ref: tt03p5
+        ref: tt04
         path: tt
 
     # install the tt mux
@@ -41,7 +39,7 @@ jobs:
       with:
         repository: tinytapeout/tt-multiplexer
         path: tt-multiplexer
-        ref: tt03p5-openlane2
+        ref: ol2
 
     # build pdk - have to move this back above to get caravel makefile
     - name: pdk & openlane & precheck
@@ -71,6 +69,8 @@ jobs:
     # fetch the repos,
     - name: Fetch user project, update caravel configuration
       run: python ./tt/configure.py --test --clone-all --fetch-gds --update-caravel
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     # generate the tt mux verilog that instantiates all the modules - use the test version
     - name: module config

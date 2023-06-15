@@ -22,7 +22,7 @@ jobs:
       with:
         repository: tinytapeout/tt-multiplexer
         path: tt-multiplexer
-        ref: tt03p5-openlane2
+        ref: ol2
 
     - name: Patch tt-multiplexer
       working-directory: tt-multiplexer
@@ -34,7 +34,7 @@ jobs:
       with:
         repository: tinytapeout/tt-support-tools
         path: tt
-        ref: tt03p5
+        ref: tt04
 
     - name: checkout openlane2 repo
       uses: actions/checkout@v3

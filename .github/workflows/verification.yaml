@@ -20,7 +20,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: tinytapeout/tt-support-tools
-        ref: tt03p5
+        ref: tt04
         path: tt
 
     # install the tt mux
@@ -29,7 +29,7 @@ jobs:
       with:
         repository: tinytapeout/tt-multiplexer
         path: tt-multiplexer
-        ref: tt03p5-openlane2
+        ref: ol2
 
     # install oss fpga tools for cocotb and iverilog
     - name: install oss-cad-suite
