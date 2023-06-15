@@ -51,4 +51,8 @@ make copy-macros
 cd tt-multiplexer/ol2/tt_top && nix-shell ${OPENLANE2_ROOT}/shell.nix --run "python build.py"
 ```
 
-You'll find the final GDS in `ol2/tt_top/runs/RUN_*/final/gds/user_project_wrapper.magic.gds`.
+You'll find the final GDS in `ol2/tt_top/runs/RUN_*/final/gds/user_project_wrapper.magic.gds`. To copy it (along with the lef, gl verilog, and spef files), run:
+
+```bash
+make copy-final-results
+```

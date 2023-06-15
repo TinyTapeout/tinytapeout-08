@@ -104,23 +104,7 @@ jobs:
       run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
 
     - name: Copy final results
-      working-directory: tt-multiplexer
-      run: |
-        cp ol2/tt_ctrl/runs/RUN_*/final/gds/tt_ctrl.magic.gds ../gds/tt_ctrl.gds
-        cp ol2/tt_ctrl/runs/RUN_*/final/lef/tt_ctrl.lef ../lef/tt_ctrl.lef
-        cp ol2/tt_ctrl/runs/RUN_*/final/pnl/tt_ctrl.pnl.v ../verilog/gl/tt_ctrl.v
-        cp ol2/tt_ctrl/runs/RUN_*/final/nl/tt_ctrl.nl.v ../verilog/gl/tt_ctrl.nl.v
-        cp -r ol2/tt_ctrl/runs/RUN_*/final/spef/* ../spef/
-        cp ol2/tt_mux/runs/RUN_*/final/gds/tt_mux.magic.gds ../gds/tt_mux.gds
-        cp ol2/tt_mux/runs/RUN_*/final/lef/tt_mux.lef ../lef/tt_mux.lef
-        cp ol2/tt_mux/runs/RUN_*/final/pnl/tt_mux.pnl.v ../verilog/gl/tt_mux.v
-        cp ol2/tt_mux/runs/RUN_*/final/nl/tt_mux.nl.v ../verilog/gl/tt_mux.nl.v
-        cp -r ol2/tt_mux/runs/RUN_*/final/spef/* ../spef/
-        cp ol2/tt_top/runs/RUN_*/final/gds/user_project_wrapper.magic.gds ../gds/user_project_wrapper.gds
-        cp ol2/tt_top/runs/RUN_*/final/lef/user_project_wrapper.lef ../lef/user_project_wrapper.lef
-        cp ol2/tt_top/runs/RUN_*/final/pnl/user_project_wrapper.pnl.v ../verilog/gl/user_project_wrapper.v
-        cp ol2/tt_top/runs/RUN_*/final/nl/user_project_wrapper.nl.v ../verilog/gl/user_project_wrapper.nl.v
-        cp -r ol2/tt_top/runs/RUN_*/final/spef/* ../spef/
+      run: make copy-final-results
 
     - name: upload GDS artifact
       uses: actions/upload-artifact@v3
