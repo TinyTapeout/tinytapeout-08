@@ -1,0 +1,142 @@
+name: sta
+
+on: [push, workflow_dispatch, pull_request]
+
+jobs:
+  sta:
+    env:
+      OPENLANE_TAG: 4a4de6ab426c8e53ae9534fdba2366a863a5af7e
+      SKY130_PDK_VERSION: 12df12e2e74145e31c5a13de02f9a1e176b56e67
+      PYTHONIOENCODING: utf-8
+      PDK_ROOT: /home/runner/pdk
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+
+      - name: checkout tt-multiplexer repo
+        uses: actions/checkout@v3
+        with:
+          repository: tinytapeout/tt-multiplexer
+          path: tt-multiplexer
+          ref: ol2
+
+      - name: Patch tt-multiplexer
+        working-directory: tt-multiplexer
+        run: |
+          git apply ../patches/tt_top_no_xor.patch
+
+      - name: checkout tt-support-tools repo
+        uses: actions/checkout@v3
+        with:
+          repository: tinytapeout/tt-support-tools
+          path: tt
+          ref: tt04
+
+      - name: checkout openlane2 repo
+        uses: actions/checkout@v3
+        with:
+          repository: efabless/openlane2
+          path: openlane2
+          ref: ${{ env.OPENLANE_TAG }}
+
+      - name: patch OpenLane 2
+        working-directory: openlane2
+        run: |
+          git apply ../patches/openlane2.patch
+
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - run: |
+          pip install -r tt-multiplexer/py/requirements.txt -r tt/requirements.txt -r sta_top/requirements.txt
+
+      # Install yosys (required for tt/configure.py)
+      - name: install oss-cad-suite
+        uses: YosysHQ/setup-oss-cad-suite@v2
+        with:
+          version: '2023-05-27'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Use modules_sta.yaml and projects_sta.yaml for user module placement
+        run: |
+          cp modules_sta.yaml modules.yaml
+          cp projects_sta.yaml projects.yaml
+
+      - name: Fetch user project, update caravel configuration
+        run: python ./tt/configure.py --clone-all --fetch-gds --update-caravel
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: cachix/install-nix-action@v20
+
+      - uses: cachix/cachix-action@v12
+        with:
+          name: openlane
+          extraPullNames: openlane
+
+      - name: Install Sky130 PDK
+        run: |
+          pip3 install volare
+          volare enable --pdk sky130 ${{ env.SKY130_PDK_VERSION }}
+
+      #    - name: uncompress gds files
+      #      run: gunzip -v gds/*.gds.gz
+
+      - name: Generate sources from user macro configuration
+        run: make gen-module-placement
+
+      - name: Harden tt_ctrl
+        working-directory: tt-multiplexer/ol2/tt_ctrl
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
+
+      - name: Harden tt_mux
+        working-directory: tt-multiplexer/ol2/tt_mux
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
+
+      - name: Copy macros
+        run: |
+          make copy-macros
+          cp verilog/rtl/tt_um_*.v tt-multiplexer/ol2/tt_top/verilog
+
+      - name: Harden tt_top
+        working-directory: tt-multiplexer/ol2/tt_top
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
+
+      - name: Copy final results
+        run: make copy-final-results
+
+      # setup sta script
+      - name: setup sta
+        run: python ./sta_top/toplevel_sta.py ./verilog/gl/user_project_wrapper.v ./spef/user_project_wrapper.spef sta_top/top.sdc
+
+      # run sta, create sta.log
+      - name: run sta
+        run: ./stadocker.sh
+
+      # test
+      - name: test sta
+        if: success() || failure()
+        run: |
+          ! grep VIOLATED sta.log
+
+      - name: upload logs
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: STA
+          path: sta.log
+
+      - name: upload macros artifact
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: macros
+          path: |
+            gds/*
+            lef/*
+            spef/*
+            verilog/gl/*
