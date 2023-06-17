@@ -29,7 +29,6 @@ jobs:
       with:
         repository: tinytapeout/tt-multiplexer
         path: tt-multiplexer
-        ref: ol2
 
     # install oss fpga tools for cocotb and iverilog
     - name: install oss-cad-suite

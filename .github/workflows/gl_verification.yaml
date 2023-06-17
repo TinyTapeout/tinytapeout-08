@@ -39,7 +39,6 @@ jobs:
       with:
         repository: tinytapeout/tt-multiplexer
         path: tt-multiplexer
-        ref: ol2
 
     # build pdk - have to move this back above to get caravel makefile
     - name: pdk & openlane & precheck

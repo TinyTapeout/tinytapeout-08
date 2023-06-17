@@ -9,7 +9,7 @@ export SKY130_PDK_VERSION=12df12e2e74145e31c5a13de02f9a1e176b56e67
 pip3 install volare
 volare enable --pdk sky130 ${{ env.SKY130_PDK_VERSION }}
 
-git clone -b ol2 https://github.com/TinyTapeout/tt-multiplexer/
+git clone https://github.com/TinyTapeout/tt-multiplexer/
 pip install -r tt-multiplexer/py/requirements.txt
 ```
 
