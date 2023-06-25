@@ -1,6 +1,8 @@
-[![gl_verification](https://github.com/TinyTapeout/tinytapeout-03p5/actions/workflows/gl_verification.yaml/badge.svg)](https://github.com/TinyTapeout/tinytapeout-03p5/actions/workflows/gl_verification.yaml)
-[![verification](https://github.com/TinyTapeout/tinytapeout-03p5/actions/workflows/verification.yaml/badge.svg)](https://github.com/TinyTapeout/tinytapeout-03p5/actions/workflows/verification.yaml)
-[![gds](https://github.com/TinyTapeout/tinytapeout-03p5/actions/workflows/gds.yaml/badge.svg)](https://github.com/TinyTapeout/tinytapeout-03p5/actions/workflows/gds.yaml)
+[![verification](https://github.com/TinyTapeout/tinytapeout-04/actions/workflows/verification.yaml/badge.svg)](https://github.com/TinyTapeout/tinytapeout-04/actions/workflows/verification.yaml)
+[![gl_verification](https://github.com/TinyTapeout/tinytapeout-04/actions/workflows/gl_verification.yaml/badge.svg)](https://github.com/TinyTapeout/tinytapeout-04/actions/workflows/gl_verification.yaml)
+[![formal](https://github.com/TinyTapeout/tinytapeout-04/actions/workflows/formal.yaml/badge.svg)](https://github.com/TinyTapeout/tinytapeout-04/actions/workflows/formal.yaml)
+[![sta](https://github.com/TinyTapeout/tinytapeout-04/actions/workflows/sta.yaml/badge.svg)](https://github.com/TinyTapeout/tinytapeout-04/actions/workflows/sta.yaml)
+[![gds](https://github.com/TinyTapeout/tinytapeout-04/actions/workflows/gds.yaml/badge.svg)](https://github.com/TinyTapeout/tinytapeout-04/actions/workflows/gds.yaml)
 
 # Tiny Tapeout 04
 
