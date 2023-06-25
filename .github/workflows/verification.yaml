@@ -1,69 +1,99 @@
 name: verification
 # either manually started, or on a schedule
-on: [ push, workflow_dispatch, pull_request ]
+on: [push, workflow_dispatch, pull_request]
 jobs:
   verification:
     env:
-        OPENLANE_ROOT:      /home/runner/openlane
-        PDK_ROOT:           /home/runner/pdk
-        PDK:                sky130A
+      SKY130_PDK_VERSION: 12df12e2e74145e31c5a13de02f9a1e176b56e67
+      PDK_ROOT: /home/runner/pdk
+      MPW_TAG: mpw-9a
 
     # ubuntu
     runs-on: ubuntu-latest
     steps:
-    # need the repo checked out
-    - name: checkout repo
-      uses: actions/checkout@v3
+      # need the repo checked out
+      - name: checkout repo
+        uses: actions/checkout@v3
 
-    # install the tt tools
-    - name: checkout tt tools repo
-      uses: actions/checkout@v3
-      with:
-        repository: tinytapeout/tt-support-tools
-        ref: tt04
-        path: tt
+      # install the tt tools
+      - name: checkout tt tools repo
+        uses: actions/checkout@v3
+        with:
+          repository: tinytapeout/tt-support-tools
+          ref: tt04
+          path: tt
 
-    # install the tt mux
-    - name: checkout tt mux repo
-      uses: actions/checkout@v3
-      with:
-        repository: tinytapeout/tt-multiplexer
-        path: tt-multiplexer
+      # install the tt mux
+      - name: checkout tt mux repo
+        uses: actions/checkout@v3
+        with:
+          repository: tinytapeout/tt-multiplexer
+          path: tt-multiplexer
 
-    # install oss fpga tools for cocotb and iverilog
-    - name: install oss-cad-suite
-      uses: YosysHQ/setup-oss-cad-suite@v2
-      with:
-          version: '2022-09-03' # pin the version, latest one fails to work with caravel
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Clone caravel
+        uses: actions/checkout@v3
+        with:
+          repository: efabless/caravel-lite
+          ref: ${{ env.MPW_TAG }}
+          path: caravel
 
-    # Set Python up
-    - name: setup python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-    - run: pip install -r tt-multiplexer/py/requirements.txt
-    - run: pip install -r tt/requirements.txt
+      - name: Install sky130A PDK
+        uses: TinyTapeOut/volare-action@v1
+        with:
+          pdk_version: ${{ env.SKY130_PDK_VERSION }}
+          pdk_root: ${{ env.PDK_ROOT }}
 
-    # fetch the repos - test mode
-    - name: fetch all
-      run: python ./tt/configure.py --clone-all --fetch-gds --debug --test
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install management core wrapper
+        working-directory: caravel
+        run: make install_mcw
 
-    # install projects
-    - name: configure for test
-      run: python ./tt/configure.py --update-caravel --test
+      - name: Install RISC-V GCC
+        run: |
+          wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14.tar.gz
+          tar -xzf riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14.tar.gz
 
-    # generate the tt mux verilog that instantiates all the modules - use the test version
-    - name: module config
-      working-directory: tt-multiplexer
-      run: |
-        cp ../test_modules.yaml cfg/modules.yaml
-        make gensrc
+      # Set Python up
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install -r tt/requirements.txt -r tt-multiplexer/py/requirements.txt -r verilog/dv/mux_ext/requirements.txt
 
-    # run first set of tests
-    - name: basic simulations
-      run: |
-        cd verilog/dv/mux
-        make clean test_mux
+
+      - name: install iverilog
+        run: sudo apt-get update && sudo apt-get install -y iverilog
+
+      # fetch the repos - test mode
+      - name: fetch all
+        run: python ./tt/configure.py --clone-all --fetch-gds --debug --test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # install projects
+      - name: configure for test
+        run: python ./tt/configure.py --update-caravel --test
+
+      # generate the tt mux verilog that instantiates all the modules - use the test version
+      - name: module config
+        working-directory: tt-multiplexer
+        run: |
+          cp ../test_modules.yaml cfg/modules.yaml
+          make gensrc
+
+      # run first set of tests
+      - name: Mux simulation (without caravel)
+        working-directory: verilog/dv/mux
+        run: make clean test_mux
+
+      - name: Mux + caravel simulation
+        working-directory: verilog/dv/mux_ext
+        run: make clean coco_test
+        env:
+          DESIGNS: ${{ github.workspace }}
+          TARGET_PATH: ${{ github.workspace }}
+          MGMT_AREA_ROOT: ${{ github.workspace }}/caravel/mgmt_core_wrapper
+          MCW_ROOT: ${{ github.workspace }}/caravel/mgmt_core_wrapper
+          CARAVEL_ROOT: ${{ github.workspace }}/caravel
+          CORE_VERILOG_PATH: ${{ github.workspace }}/caravel/mgmt_core_wrapper/verilog
+          GCC_PATH: ${{ github.workspace }}/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14/bin/
+          GCC_PREFIX: riscv64-unknown-elf

@@ -1,7 +1,7 @@
 name: 'tt04' # used for university orders & docs
 start_date: '2023-06-14'
 
-filler_project: https://github.com/TinyTapeout/tt03p5-test # used by Orders when updating list of real projects
+filler_project: https://github.com/TinyTapeout/tt04-factory-test # used by Orders when updating list of real projects
 extra_projects: extra_projects.yaml
 
 project_dir: 'projects'

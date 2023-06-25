@@ -1,5 +1,5 @@
 modules:
-  - name: "test"
-  - name: "test"
+  - name: "factory_test"
+  - name: "factory_test"
     x: 5
     y: 3
