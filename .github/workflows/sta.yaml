@@ -62,9 +62,11 @@ jobs:
           extraPullNames: openlane
 
       - name: Install Sky130 PDK
-        run: |
-          pip3 install volare
-          volare enable --pdk sky130 ${{ env.SKY130_PDK_VERSION }}
+        uses: TinyTapeout/volare-action@v1
+        with:
+          pdk_name: sky130
+          pdk_version: ${{ env.SKY130_PDK_VERSION }}
+          pdk_root: ${{ env.PDK_ROOT }}
 
       #    - name: uncompress gds files
       #      run: gunzip -v gds/*.gds.gz
