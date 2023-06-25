@@ -1,96 +1,95 @@
 name: gl_verification
 # either manually started, or on a schedule
-on: [ push, workflow_dispatch, pull_request ]
+on: [push, workflow_dispatch, pull_request]
 jobs:
   gl_verification:
     env:
-        OPENLANE_TAG:           2023.02.14
-        OPENLANE_IMAGE_NAME:    efabless/openlane:2023.05.19
-        OPENLANE_ROOT:      /home/runner/openlane
-        PDK_ROOT:           /home/runner/pdk
-        PDK:                sky130A
-        DESIGNS:            /home/runner/work/tinytapeout-03p5/tinytapeout-03p5
-        TARGET_PATH:        /home/runner/work/tinytapeout-03p5/tinytapeout-03p5
-        MGMT_AREA_ROOT:     /home/runner/work/tinytapeout-03p5/tinytapeout-03p5/mgmt_core_wrapper
-        MCW_ROOT:           /home/runner/work/tinytapeout-03p5/tinytapeout-03p5/mgmt_core_wrapper
-        CARAVEL_ROOT:       /home/runner/work/tinytapeout-03p5/tinytapeout-03p5/caravel
-        CORE_VERILOG_PATH:  /home/runner/work/tinytapeout-03p5/tinytapeout-03p5/mgmt_core_wrapper/verilog
-        GCC_PATH:           /home/runner/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14/bin/
-        GCC_PREFIX:         riscv64-unknown-elf
+      OPENLANE_TAG: 4a4de6ab426c8e53ae9534fdba2366a863a5af7e
+      SKY130_PDK_VERSION: 12df12e2e74145e31c5a13de02f9a1e176b56e67
+      PYTHONIOENCODING: utf-8
+      PDK_ROOT: /home/runner/pdk
+      MPW_TAG: mpw-9a
 
-    # ubuntu
     runs-on: ubuntu-latest
     steps:
-    # need the repo checked out
-    - name: checkout repo
-      uses: actions/checkout@v3
+      - name: checkout repo
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
 
-    # install the tt tools
-    - name: checkout tt tools repo
-      uses: actions/checkout@v3
-      with:
-        repository: tinytapeout/tt-support-tools
-        ref: tt04
-        path: tt
+      - name: checkout openlane2 repo
+        uses: actions/checkout@v3
+        with:
+          repository: efabless/openlane2
+          path: openlane2
+          ref: ${{ env.OPENLANE_TAG }}
 
-    # install the tt mux
-    - name: checkout tt mux repo
-      uses: actions/checkout@v3
-      with:
-        repository: tinytapeout/tt-multiplexer
-        path: tt-multiplexer
+      - name: patch OpenLane 2
+        working-directory: openlane2
+        run: |
+          git apply ../patches/openlane2.patch
 
-    # build pdk - have to move this back above to get caravel makefile
-    - name: pdk & openlane & precheck
-      run: |
-        make setup
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - run: pip install -r tt-multiplexer/py/requirements.txt -r tt/requirements.txt
 
-    # uncompress any gds commited to the repo
-    - name: uncompress gds
-      run: | 
-        make uncompress
-
-    # need python
-    - name: setup python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-        cache: 'pip'
-    - run: pip install -r tt/requirements.txt -r tt-multiplexer/proto/requirements.txt
-
-    # install oss fpga tools to get iverilog etc
-    - name: install oss-cad-suite
-      uses: YosysHQ/setup-oss-cad-suite@v2
-      with:
+      # Install yosys (required for tt/configure.py)
+      - name: install oss-cad-suite
+        uses: YosysHQ/setup-oss-cad-suite@v2
+        with:
+          version: '2023-05-27'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          version: '2022-09-03' # pin the version, latest one fails to work with caravel
 
-    # fetch the repos,
-    - name: Fetch user project, update caravel configuration
-      run: python ./tt/configure.py --test --clone-all --fetch-gds --update-caravel
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Fetch user project, update caravel configuration
+        run: python ./tt/configure.py --test --clone-all --fetch-gds --update-caravel
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    # generate the tt mux verilog that instantiates all the modules - use the test version
-    - name: module config
-      run: |
-        cp tt_test_module.yaml tt_user_module.yaml
-        make gen-user-module
+      - uses: cachix/install-nix-action@v20
+        
+      - uses: cachix/cachix-action@v12
+        with:
+          name: openlane
+          extraPullNames: openlane
 
-    # need the modules lef & gds
-    - name: ttmux GDS
-      run: make tt_ctrl tt_mux 
+      - name: Install Sky130 PDK
+        uses: TinyTapeout/volare-action@v1
+        with:
+          pdk_name: sky130
+          pdk_version: ${{ env.SKY130_PDK_VERSION }}
+          pdk_root: ${{ env.PDK_ROOT }}
 
-    # macro config, depends on the ttmux build artifacts being present
-    - name: macro config
-      run: python gen_macro_cfg.py
+      # generate the tt mux verilog that instantiates all the modules - use the test version
+      - name: module config
+        working-directory: tt-multiplexer
+        run: |
+          cp ../test_modules.yaml cfg/modules.yaml
+          make gensrc
 
-    # user project wrapper
-    - name: user project wrapper GDS
-      run: make user_project_wrapper
+      - name: Harden tt_ctrl
+        working-directory: tt-multiplexer/ol2/tt_ctrl
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"      
 
-    # run GL test
-    - name: GL simulation
-      run: |
-        cd verilog/dv/mux
-        make clean test_mux_gl
+      - name: Harden tt_mux
+        working-directory: tt-multiplexer/ol2/tt_mux
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
+
+      - name: Copy macros
+        run: |
+          make copy-macros
+          cp verilog/rtl/tt_um_*.v tt-multiplexer/ol2/tt_top/verilog
+
+      - name: Harden tt_top
+        working-directory: tt-multiplexer/ol2/tt_top
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
+
+      - name: Copy final results
+        run: make copy-final-results
+
+      # run GL test
+      - name: GL simulation
+        working-directory: verilog/dv/mux
+        run: make clean test_mux_gl
