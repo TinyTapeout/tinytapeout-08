@@ -14,24 +14,8 @@ jobs:
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
-
-      - name: checkout tt-multiplexer repo
-        uses: actions/checkout@v3
         with:
-          repository: tinytapeout/tt-multiplexer
-          path: tt-multiplexer
-
-      - name: Patch tt-multiplexer
-        working-directory: tt-multiplexer
-        run: |
-          git apply ../patches/tt_top_no_xor.patch
-
-      - name: checkout tt-support-tools repo
-        uses: actions/checkout@v3
-        with:
-          repository: tinytapeout/tt-support-tools
-          path: tt
-          ref: tt04
+          submodules: recursive
 
       - name: checkout openlane2 repo
         uses: actions/checkout@v3

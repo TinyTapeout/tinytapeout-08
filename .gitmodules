@@ -1,0 +1,6 @@
+[submodule "tt-multiplexer"]
+	path = tt-multiplexer
+	url = https://github.com/TinyTapeout/tt-multiplexer/
+[submodule "tt"]
+	path = tt
+	url = https://github.com/TinyTapeout/tt-support-tools

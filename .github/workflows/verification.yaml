@@ -11,24 +11,10 @@ jobs:
     # ubuntu
     runs-on: ubuntu-latest
     steps:
-      # need the repo checked out
-      - name: checkout repo
-        uses: actions/checkout@v3
-
-      # install the tt tools
-      - name: checkout tt tools repo
+      - name: Checkout repo
         uses: actions/checkout@v3
         with:
-          repository: tinytapeout/tt-support-tools
-          ref: tt04
-          path: tt
-
-      # install the tt mux
-      - name: checkout tt mux repo
-        uses: actions/checkout@v3
-        with:
-          repository: tinytapeout/tt-multiplexer
-          path: tt-multiplexer
+          submodules: recursive
 
       - name: Clone caravel
         uses: actions/checkout@v3
@@ -59,7 +45,6 @@ jobs:
           python-version: '3.10'
           cache: 'pip'
       - run: pip install -r tt/requirements.txt -r tt-multiplexer/py/requirements.txt -r verilog/dv/mux_ext/requirements.txt
-
 
       - name: install iverilog
         run: sudo apt-get update && sudo apt-get install -y iverilog
