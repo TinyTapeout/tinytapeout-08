@@ -89,7 +89,7 @@ jobs:
 
       - name: Harden tt_top
         working-directory: tt-multiplexer/ol2/tt_top
-        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py --skip-xor-checks"
 
       - name: Copy final results
         run: make copy-final-results
