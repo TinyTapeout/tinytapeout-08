@@ -87,12 +87,14 @@ jobs:
       run: make copy-final-results
 
     - name: upload GDS artifact
+      if: success() || failure()
       uses: actions/upload-artifact@v3
       with:
           name: GDS
           path: tt-multiplexer/ol2/tt_top/runs/RUN_*/*
 
     - name: upload macros artifact
+      if: success() || failure()
       uses: actions/upload-artifact@v3
       with:
           name: macros
