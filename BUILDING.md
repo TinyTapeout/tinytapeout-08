@@ -7,7 +7,7 @@ export OPENLANE2_ROOT=~/openlane
 export SKY130_PDK_VERSION=12df12e2e74145e31c5a13de02f9a1e176b56e67
 
 pip3 install volare
-volare enable --pdk sky130 ${{ env.SKY130_PDK_VERSION }}
+volare enable --pdk sky130 $SKY130_PDK_VERSION
 ```
 
 Then install OpenLane 2 with Nix, as explained [here](https://openlane2.readthedocs.io/en/latest/getting_started/nix_installation/index.html).
