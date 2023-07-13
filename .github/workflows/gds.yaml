@@ -4,7 +4,7 @@ on: [ push, workflow_dispatch ]
 jobs:
   gds:
     env:
-      OPENLANE_TAG: 2.0.0a47
+      OPENLANE_TAG: 2.0.0a51
       SKY130_PDK_VERSION: 12df12e2e74145e31c5a13de02f9a1e176b56e67
       PYTHONIOENCODING: utf-8
       PDK_ROOT: /home/runner/pdk
