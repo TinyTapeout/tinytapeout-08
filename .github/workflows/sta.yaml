@@ -5,7 +5,7 @@ on: [push, workflow_dispatch, pull_request]
 jobs:
   sta:
     env:
-      OPENLANE_TAG: 2.0.0a51
+      OPENLANE_TAG: 2.0.0a53
       SKY130_PDK_VERSION: 12df12e2e74145e31c5a13de02f9a1e176b56e67
       PYTHONIOENCODING: utf-8
       PDK_ROOT: /home/runner/pdk
@@ -17,12 +17,17 @@ jobs:
         with:
           submodules: recursive
 
-      - name: checkout openlane2 repo
+      - name: Checkout OpenLane 2 repo
         uses: actions/checkout@v3
         with:
           repository: efabless/openlane2
           path: openlane2
           ref: ${{ env.OPENLANE_TAG }}
+
+      - name: Patch OpenLane 2
+        working-directory: openlane2
+        run: |
+          git apply ../patches/openlane2.patch
 
       - name: Setup python
         uses: actions/setup-python@v4

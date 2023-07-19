@@ -1,0 +1,39 @@
+diff --git a/nix/openroad.nix b/nix/openroad.nix
+index 130e963..b187134 100644
+--- a/nix/openroad.nix
++++ b/nix/openroad.nix
+@@ -27,13 +27,13 @@ with pkgs; let
+   });
+ in clangStdenv.mkDerivation rec {
+   name = "openroad";
+-  rev = "71a707440d5db5c0d0ec83f86b4a3d797e39c678";
++  rev = "700a7cd9bf6188bd8ad919a876fca4273167f3a4";
+ 
+   src = fetchFromGitHub {
+     owner = "The-OpenROAD-Project";
+     repo = "OpenROAD";
+     inherit rev;
+-    sha256 = "sha256-CcDUKS/fkEMHCB4Gz6B3fHZdu089wGRv2Fzj7VRb2v8=";
++    sha256 = "sha256-LamVgN5GZqUQgi+QF0xr0N+uBb9cbRomDFfohUTMUfI=";
+     fetchSubmodules = true;
+   };
+ 
+@@ -89,4 +89,4 @@ in clangStdenv.mkDerivation rec {
+     bison
+     libsForQt5.wrapQtAppsHook
+   ];
+-}
+\ No newline at end of file
++}
+diff --git a/openlane/scripts/magic/extract_spice.tcl b/openlane/scripts/magic/extract_spice.tcl
+index bbbb731..256e518 100644
+--- a/openlane/scripts/magic/extract_spice.tcl
++++ b/openlane/scripts/magic/extract_spice.tcl
+@@ -38,6 +38,7 @@ if { ! $::env(MAGIC_NO_EXT_UNIQUE) } {
+ extract
+ 
+ ext2spice lvs
++ext2spice short resistor
+ ext2spice -o $netlist $::env(DESIGN_NAME).ext
+ feedback save $feedback_file
+ # exec cp $::env(DESIGN_NAME).spice $::env(signoff_results)/$::env(DESIGN_NAME).spice
