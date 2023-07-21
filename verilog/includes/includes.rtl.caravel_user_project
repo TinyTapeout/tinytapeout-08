@@ -12,3 +12,4 @@
 -v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_tbuf.v
 -v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_tie.v
 -v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_zbuf.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt_um_factory_test.v

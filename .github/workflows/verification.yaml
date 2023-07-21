@@ -1,6 +1,16 @@
 name: verification
-# either manually started, or on a schedule
-on: [push, workflow_dispatch, pull_request]
+
+on:
+  workflow_dispatch:
+  push:
+    # Don't run on project submissions:
+    branches-ignore:
+      - projects/tt_um_*
+  pull_request:
+    # Don't run on project submissions:
+    paths-ignore:
+      - projects/tt_um_*/**
+
 jobs:
   verification:
     env:
@@ -49,22 +59,8 @@ jobs:
       - name: install iverilog
         run: sudo apt-get update && sudo apt-get install -y iverilog
 
-      # fetch the repos - test mode
-      - name: fetch all
-        run: python ./tt/configure.py --clone-all --fetch-gds --debug --test
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # install projects
-      - name: configure for test
+      - name: Configure the multiplexer for testing
         run: python ./tt/configure.py --update-caravel --test
-
-      # generate the tt mux verilog that instantiates all the modules - use the test version
-      - name: module config
-        working-directory: tt-multiplexer
-        run: |
-          cp ../test_modules.yaml cfg/modules.yaml
-          make gensrc
 
       # run first set of tests
       - name: Mux simulation (without caravel)

@@ -1,0 +1,42 @@
+name: tt_datasheet
+
+on:
+  workflow_dispatch:
+  push:
+    # Don't run on project submissions:
+    branches-ignore:
+      - projects/tt_um_*
+  pull_request:
+    # Don't run on project submissions:
+    paths-ignore:
+      - projects/tt_um_*/**
+
+jobs:
+  build_datasheet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - run: pip install -r tt/requirements.txt
+
+      - name: Pandoc deps
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y pandoc texlive-xetex
+
+      - name: Generate datasheet
+        run: python ./tt/configure.py --dump-markdown datasheet.md --dump-pdf datasheet.pdf
+
+      - name: Archive PDF
+        uses: actions/upload-artifact@v3
+        with:
+          name: PDF
+          path: datasheet.pdf

@@ -1,6 +1,15 @@
 name: sta
 
-on: [push, workflow_dispatch, pull_request]
+on:
+  workflow_dispatch:
+  push:
+    # Don't run on project submissions:
+    branches-ignore:
+      - projects/tt_um_*
+  pull_request:
+    # Don't run on project submissions:
+    paths-ignore:
+      - projects/tt_um_*/**
 
 jobs:
   sta:
@@ -44,15 +53,8 @@ jobs:
           version: '2023-05-27'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Use modules_sta.yaml and projects_sta.yaml for user module placement
-        run: |
-          cp modules_sta.yaml modules.yaml
-          cp projects_sta.yaml projects.yaml
-
-      - name: Fetch user project, update caravel configuration
-        run: python ./tt/configure.py --clone-all --fetch-gds --update-caravel
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update caravel configuration
+        run: python ./tt/configure.py --update-caravel --sta-projects
 
       - uses: cachix/install-nix-action@v20
 
@@ -71,9 +73,6 @@ jobs:
       #    - name: uncompress gds files
       #      run: gunzip -v gds/*.gds.gz
 
-      - name: Generate sources from user macro configuration
-        run: make gen-module-placement
-
       - name: Harden tt_ctrl
         working-directory: tt-multiplexer/ol2/tt_ctrl
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
@@ -83,16 +82,14 @@ jobs:
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
 
       - name: Copy macros
-        run: |
-          make copy-macros
-          cp verilog/rtl/tt_um_*.v tt-multiplexer/ol2/tt_top/verilog
+        run: python ./tt/configure.py --copy-macros
 
       - name: Harden tt_top
         working-directory: tt-multiplexer/ol2/tt_top
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py --skip-xor-checks"
 
       - name: Copy final results
-        run: make copy-final-results
+        run: python ./tt/configure.py --copy-final-results
 
       # setup sta script
       - name: setup sta

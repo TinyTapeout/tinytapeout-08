@@ -1,6 +1,16 @@
 name: gds
-# either manually started, or on a schedule
-on: [ push, workflow_dispatch ]
+
+on:
+  workflow_dispatch:
+  push:
+    # Don't run on project submissions:
+    branches-ignore:
+      - projects/tt_um_*
+  pull_request:
+    # Don't run on project submissions:
+    paths-ignore:
+      - projects/tt_um_*/**
+
 jobs:
   gds:
     env:
@@ -12,99 +22,108 @@ jobs:
     # ubuntu
     runs-on: ubuntu-latest
     steps:
-    # need the repo checked out
-    - name: checkout repo
-      uses: actions/checkout@v3
-      with:
-        submodules: recursive
+      # need the repo checked out
+      - name: checkout repo
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
 
-    - name: Checkout OpenLane 2 repo
-      uses: actions/checkout@v3
-      with:
-        repository: efabless/openlane2
-        path: openlane2
-        ref: ${{ env.OPENLANE_TAG }}
+      - name: Checkout OpenLane 2 repo
+        uses: actions/checkout@v3
+        with:
+          repository: efabless/openlane2
+          path: openlane2
+          ref: ${{ env.OPENLANE_TAG }}
 
-    - name: Patch OpenLane 2
-      working-directory: openlane2
-      run: |
-        git apply ../patches/openlane2.patch
+      - name: Patch OpenLane 2
+        working-directory: openlane2
+        run: |
+          git apply ../patches/openlane2.patch
 
-    # Set Python up
-    - name: setup python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-        cache: 'pip'
-    - run: pip install -r tt-multiplexer/py/requirements.txt -r tt/requirements.txt
+      # Set Python up
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - run: pip install -r tt-multiplexer/py/requirements.txt -r tt/requirements.txt
 
-    # Install yosys (required for tt/configure.py)
-    - name: install oss-cad-suite
-      uses: YosysHQ/setup-oss-cad-suite@v2
-      with:
+      # Install yosys (required for tt/configure.py)
+      - name: install oss-cad-suite
+        uses: YosysHQ/setup-oss-cad-suite@v2
+        with:
           version: '2023-05-27'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-   
-    - name: Fetch user project, update caravel configuration
-      run: python ./tt/configure.py --clone-all --fetch-gds --update-caravel
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - uses: cachix/install-nix-action@v20
-      
-    - uses: cachix/cachix-action@v12
-      with:
-        name: openlane
-        extraPullNames: openlane
+      - name: Update caravel configuration
+        run: python ./tt/configure.py --update-caravel
 
-    - name: Install Sky130 PDK
-      uses: TinyTapeout/volare-action@v1
-      with:
-        pdk_name: sky130
-        pdk_version: ${{ env.SKY130_PDK_VERSION }}
-        pdk_root: ${{ env.PDK_ROOT }}
+      - uses: cachix/install-nix-action@v20
 
-#    - name: uncompress gds files
-#      run: gunzip -v gds/*.gds.gz
+      - uses: cachix/cachix-action@v12
+        with:
+          name: openlane
+          extraPullNames: openlane
 
-    - name: Generate sources from user macro configuration
-      run: make gen-module-placement
+      - name: Install Sky130 PDK
+        uses: TinyTapeout/volare-action@v1
+        with:
+          pdk_name: sky130
+          pdk_version: ${{ env.SKY130_PDK_VERSION }}
+          pdk_root: ${{ env.PDK_ROOT }}
 
-    # run OpenLane to build the GDS
-    - name: Harden tt_ctrl
-      working-directory: tt-multiplexer/ol2/tt_ctrl
-      run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"      
+      #    - name: uncompress gds files
+      #      run: gunzip -v gds/*.gds.gz
 
-    - name: Harden tt_mux
-      working-directory: tt-multiplexer/ol2/tt_mux
-      run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
+      # run OpenLane to build the GDS
+      - name: Harden tt_ctrl
+        working-directory: tt-multiplexer/ol2/tt_ctrl
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
 
-    - name: Copy macros
-      run: |
-        make copy-macros
-        cp verilog/rtl/tt_um_*.v tt-multiplexer/ol2/tt_top/verilog
+      - name: Harden tt_mux
+        working-directory: tt-multiplexer/ol2/tt_mux
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
 
-    - name: Harden tt_top
-      working-directory: tt-multiplexer/ol2/tt_top
-      run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py --skip-xor-checks"
+      - name: Copy macros
+        run: python ./tt/configure.py --copy-macros
 
-    - name: Copy final results
-      run: make copy-final-results
+      - name: Harden tt_top
+        working-directory: tt-multiplexer/ol2/tt_top
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py --skip-xor-checks"
 
-    - name: upload GDS artifact
-      if: success() || failure()
-      uses: actions/upload-artifact@v3
-      with:
+      - name: Copy final results
+        run: python ./tt/configure.py --copy-final-results
+
+      - name: Create eFabless submission
+        run: python ./tt/configure.py --create-efabless-submission
+
+      - name: upload GDS artifact
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
           name: GDS
           path: tt-multiplexer/ol2/tt_top/runs/RUN_*/*
 
-    - name: upload macros artifact
-      if: success() || failure()
-      uses: actions/upload-artifact@v3
-      with:
+      - name: upload macros artifact
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
           name: macros
           path: |
             gds/*
             lef/*
             spef/*
             verilog/gl/*
+
+      - name: upload shuttle_index.json
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: shuttle_index
+          path: shuttle_index.json
+
+      - name: upload Efabless submission directory
+        uses: actions/upload-artifact@v3
+        with:
+          name: efabless_submission
+          path: efabless

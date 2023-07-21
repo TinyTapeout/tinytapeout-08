@@ -221,7 +221,10 @@ for inst in mainmod.module_instances:
 ok=True
 nmerged=0
 for mod in required_modules.keys():
-    modfile=vdir+"/"+mod+".v"
+    if mod.startswith("tt_um_"):
+        modfile=f"projects/{mod}/{mod}.v"
+    else:
+        modfile=vdir+"/"+mod+".v"
     if not os.path.isfile(modfile):
         print("missing file for %s\n"%mod)
         ok=False
@@ -260,7 +263,10 @@ ok=True
 nspefs=0
 for spefpair in spefs_needed:
     modname,instname=spefpair
-    smod=sdir+"/"+modname+".spef"
+    if modname.startswith("tt_um_"):
+        smod=f"projects/{modname}/{modname}.spef"
+    else:
+        smod=sdir+"/"+modname+".spef"
     if not os.path.isfile(smod):
         print("missing spef for %s\n"%modname)
         ok=False

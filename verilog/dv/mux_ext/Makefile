@@ -17,7 +17,7 @@ coco_test: mux_ext.hex
 	# change project_tb.v to match your testbench name
 	iverilog -Ttyp -DFUNCTIONAL -DSIM -DUSE_POWER_PINS -DUNIT_DELAY=#1 \
 	-f$(VERILOG_PATH)/includes/includes.rtl.caravel \
-	-f$(abspath ../../includes/includes.rtl.caravel_user_project.openlane2) -I $(abspath ../../rtl/tt-multiplexer/rtl) -o sim_build/sim.vvp mux_ext_tb.v
+	-f$(abspath ../../includes/includes.rtl.caravel_user_project) -I $(abspath ../../rtl/tt-multiplexer/rtl) -o sim_build/sim.vvp mux_ext_tb.v
 
   # change this line to choose the comma separated test cases and the name of your python test module
 	TESTCASE=test_start MODULE=test_mux_ext vvp -M $$(cocotb-config --prefix)/cocotb/libs -m libcocotbvpi_icarus sim_build/sim.vvp

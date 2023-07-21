@@ -1,6 +1,6 @@
 modules:
-# Add a bunch of loopback modules to test the input / output timings
-  - name: "loopback"
+# Hard coded module locations - other modules will be assigned dynamically
+  - name: "chip_rom"
     x: 0
     y: 0
   - name: "loopback"
@@ -8,67 +8,4 @@ modules:
     y: 0
   - name: "loopback"
     x: 0
-    y: 3
-  - name: "loopback"
-    x: 16
-    y: 3
-  - name: "loopback"
-    x: 16
-    y: 4
-  - name: "loopback"
-    x: 0
-    y: 4
-  - name: "loopback"
-    x: 16
-    y: 7
-  - name: "loopback"
-    x: 0
-    y: 7
-  - name: "loopback"
-    x: 16
-    y: 8
-  - name: "loopback"
-    x: 0
-    y: 8
-  - name: "loopback"
-    x: 16
-    y: 11
-  - name: "loopback"
-    x: 0
-    y: 11
-  - name: "loopback"
-    x: 0
-    y: 12
-  - name: "loopback"
-    x: 16
-    y: 12
-  - name: "loopback"
-    x: 0
-    y: 15
-  - name: "loopback"
-    x: 16
-    y: 15
-  - name: "loopback"
-    x: 0
-    y: 16
-  - name: "loopback"
-    x: 16
-    y: 16
-  - name: "loopback"
-    x: 0
-    y: 19
-  - name: "loopback"
-    x: 16
-    y: 19
-  - name: "loopback"
-    x: 0
-    y: 20
-  - name: "loopback"
-    x: 16
-    y: 20
-  - name: "loopback"
-    x: 0
-    y: 23
-  - name: "loopback"
-    x: 16
     y: 23

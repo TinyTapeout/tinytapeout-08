@@ -1,6 +1,16 @@
 name: gl_verification
-# either manually started, or on a schedule
-on: [push, workflow_dispatch, pull_request]
+
+on:
+  workflow_dispatch:
+  push:
+    # Don't run on project submissions:
+    branches-ignore:
+      - projects/tt_um_*
+  pull_request:
+    # Don't run on project submissions:
+    paths-ignore:
+      - projects/tt_um_*/**
+
 jobs:
   gl_verification:
     env:
@@ -43,10 +53,8 @@ jobs:
           version: '2023-05-27'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Fetch user project, update caravel configuration
-        run: python ./tt/configure.py --test --clone-all --fetch-gds --update-caravel
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update caravel configuration
+        run: python ./tt/configure.py --test --update-caravel
 
       - uses: cachix/install-nix-action@v20
 
@@ -62,13 +70,6 @@ jobs:
           pdk_version: ${{ env.SKY130_PDK_VERSION }}
           pdk_root: ${{ env.PDK_ROOT }}
 
-      # generate the tt mux verilog that instantiates all the modules - use the test version
-      - name: module config
-        working-directory: tt-multiplexer
-        run: |
-          cp ../test_modules.yaml cfg/modules.yaml
-          make gensrc
-
       - name: Harden tt_ctrl
         working-directory: tt-multiplexer/ol2/tt_ctrl
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
@@ -78,16 +79,14 @@ jobs:
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
 
       - name: Copy macros
-        run: |
-          make copy-macros
-          cp verilog/rtl/tt_um_*.v tt-multiplexer/ol2/tt_top/verilog
+        run: python ./tt/configure.py --copy-macros
 
       - name: Harden tt_top
         working-directory: tt-multiplexer/ol2/tt_top
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
 
       - name: Copy final results
-        run: make copy-final-results
+        run: python ./tt/configure.py --copy-final-results
 
       # run GL test
       - name: GL simulation

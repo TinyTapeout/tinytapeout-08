@@ -53,7 +53,7 @@ ifeq ($(GATES),yes)
   VERILOG_SOURCES += $(PDK_ROOT)/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v
   SIM_BUILD       := sim_build_gates
 else
-  COMPILE_ARGS    += -f $(abspath ../../includes/includes.rtl.caravel_user_project.openlane2) -I $(abspath ../../rtl/tt-multiplexer/rtl)
+  COMPILE_ARGS    += -f $(abspath ../../includes/includes.rtl.caravel_user_project) -I $(abspath ../../rtl/tt-multiplexer/rtl)
   VERILOG_SOURCES += $(abspath ../../rtl/fast/sky130_fd_sc_hd_fast.v)
 endif
 

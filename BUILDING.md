@@ -39,24 +39,23 @@ pip install -r tt-multiplexer/py/requirements.txt -r tt/requirements.txt
 Set `GH_USERNAME` and `GH_TOKEN` environment variables with your GitHub username and a personal access token, respectively.
 To generate your GH_TOKEN go to https://github.com/settings/tokens/new . Set the checkboxes for repo and workflow.
 
-Finally, run the following commands to fetch the user projects and generate the configuration for the user_project_wrapper:
+Finally, run the following commands to generate the configuration for the user_project_wrapper:
 
 ```bash
-python tt/configure.py --clone-all --fetch-gds --update-caravel
+python tt/configure.py --update-caravel
 ```
 
 ## Harden
 
 ```bash
-make gen-module-placement
 cd tt-multiplexer/ol2/tt_ctrl && nix-shell ${OPENLANE2_ROOT}/shell.nix --run "python build.py"
 cd tt-multiplexer/ol2/tt_mux && nix-shell ${OPENLANE2_ROOT}/shell.nix --run "python build.py"
-make copy-macros
+python tt/configure.py --copy-macros
 cd tt-multiplexer/ol2/tt_top && nix-shell ${OPENLANE2_ROOT}/shell.nix --run "python build.py"
 ```
 
 You'll find the final GDS in `ol2/tt_top/runs/RUN_*/final/gds/user_project_wrapper.magic.gds`. To copy it (along with the lef, gl verilog, and spef files), run:
 
 ```bash
-make copy-final-results
+python tt/configure.py --copy-final-results
 ```

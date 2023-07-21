@@ -1,3 +1,6 @@
 precheck_results/
+verilog/includes/rom_tile.vmem
 venv/
+efabless
 sta.log
+shuttle_index.json
