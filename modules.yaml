@@ -10,8 +10,8 @@ modules:
     x: 7
     y: 0
   - name: "loopback"
-    x: 16
-    y: 0
+    x: 7
+    y: 1
   - name: "loopback"
     x: 0
-    y: 23
+    y: 11
