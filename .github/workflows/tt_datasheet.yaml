@@ -25,7 +25,7 @@ jobs:
         with:
           python-version: '3.10'
           cache: 'pip'
-      - run: pip install -r tt/requirements.txt
+      - run: pip install -r tt/requirements.txt -r tt-multiplexer/py/requirements.txt
 
       - name: Pandoc deps
         run: |
@@ -40,3 +40,10 @@ jobs:
         with:
           name: PDF
           path: datasheet.pdf
+
+      - name: upload shuttle_index.json
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: shuttle_index
+          path: shuttle_index.json
