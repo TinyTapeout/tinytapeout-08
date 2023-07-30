@@ -1,3 +1,4 @@
-name: 'tt04' # used for university orders & docs
+id: 'tt04' 
+name: 'Tiny Tapeout 04'
 start_date: '2023-06-14'
 project_dir: 'projects'
