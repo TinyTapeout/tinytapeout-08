@@ -35,6 +35,13 @@ jobs:
       - name: Generate datasheet
         run: python ./tt/configure.py --dump-markdown datasheet.md --dump-pdf datasheet.pdf
 
+      - name: Check file existence and content
+        run: |
+          if [ ! -f "datasheet.pdf" ] || [ ! -s "datasheet.pdf" ]; then
+            echo "Datasheet generation failed."
+            exit 1
+          fi
+
       - name: Archive PDF
         uses: actions/upload-artifact@v3
         with:
