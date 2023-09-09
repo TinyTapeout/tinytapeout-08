@@ -24,7 +24,7 @@ jobs:
       - run: pip install -r tt-multiplexer/py/requirements.txt -r tt/requirements.txt
 
       - name: Update caravel configuration
-        run: python ./tt/configure.py --update-caravel
+        run: python ./tt/configure.py --update-shuttle
 
       - name: upload shuttle_index.json
         if: success() || failure()

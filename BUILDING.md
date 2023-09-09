@@ -42,7 +42,7 @@ To generate your GH_TOKEN go to https://github.com/settings/tokens/new . Set the
 Finally, run the following commands to generate the configuration for the user_project_wrapper:
 
 ```bash
-python tt/configure.py --update-caravel
+python tt/configure.py --update-shuttle
 ```
 
 ## Harden

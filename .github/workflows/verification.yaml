@@ -60,7 +60,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y iverilog
 
       - name: Configure the multiplexer for testing
-        run: python ./tt/configure.py --update-caravel --test
+        run: python ./tt/configure.py --update-shuttle --test
 
       # run first set of tests
       - name: Mux simulation (without caravel)

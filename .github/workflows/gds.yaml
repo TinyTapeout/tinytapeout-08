@@ -56,7 +56,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update caravel configuration
-        run: python ./tt/configure.py --update-caravel
+        run: python ./tt/configure.py --update-shuttle
 
       - uses: cachix/install-nix-action@v20
 
