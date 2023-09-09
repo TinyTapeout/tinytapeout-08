@@ -1,4 +1,4 @@
-# Build Tiny Tapeout 04 with Open Lane 2
+# Build Tiny Tapeout with Open Lane 2
 
 ## Environment setup
 
