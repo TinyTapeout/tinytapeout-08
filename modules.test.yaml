@@ -1,5 +1,8 @@
 modules:
   - name: "factory_test"
+  - name: "chip_rom"
+    x: 1
+    y: 0
   - name: "factory_test"
     x: 5
     y: 3

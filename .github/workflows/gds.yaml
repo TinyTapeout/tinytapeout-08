@@ -71,6 +71,9 @@ jobs:
       #      run: gunzip -v gds/*.gds.gz
 
       # run OpenLane to build the GDS
+      - name: Harden Chip ROM
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python -m openlane tt/rom/config.json"
+
       - name: Harden tt_ctrl
         working-directory: tt-multiplexer/ol2/tt_ctrl
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"

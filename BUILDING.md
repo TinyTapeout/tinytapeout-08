@@ -39,6 +39,7 @@ python tt/configure.py --update-shuttle
 ## Harden
 
 ```bash
+nix-shell ${OPENLANE2_ROOT}/shell.nix --run "python -m openlane tt/rom/config.json"
 nix-shell ${OPENLANE2_ROOT}/shell.nix --run "cd tt-multiplexer/ol2/tt_ctrl && python build.py"
 nix-shell ${OPENLANE2_ROOT}/shell.nix --run "cd tt-multiplexer/ol2/tt_mux && python build.py"
 python tt/configure.py --copy-macros

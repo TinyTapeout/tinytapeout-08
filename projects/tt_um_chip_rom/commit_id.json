@@ -1,7 +1,6 @@
 {
-  "app": "Tiny Tapeout tt04 64d21511",
-  "repo": "https://github.com/TinyTapeout/tt-chip-rom",
-  "commit": "a3b2f09878d66b03ba70130cf9389eb3c0ea957f",
-  "workflow_url": "https://github.com/TinyTapeout/tt-chip-rom/actions/runs/5777250605",
-  "sort_id": 1689945304867
+  "app": "Tiny Tapeout",
+  "repo": "https://github.com/TinyTapeout/tinytapeout-05",
+  "commit": "",
+  "sort_id": 1
 }
