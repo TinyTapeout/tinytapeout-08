@@ -14,8 +14,8 @@ on:
 jobs:
   gds:
     env:
-      OPENLANE_TAG: 2.0.0a54
-      SKY130_PDK_VERSION: 12df12e2e74145e31c5a13de02f9a1e176b56e67
+      OPENLANE_TAG: 6ac326e384ab2a4ceef664b350894c60884caef4
+      SKY130_PDK_VERSION: 1341f54f5ce0c4955326297f235e4ace1eb6d419
       PYTHONIOENCODING: utf-8
       PDK_ROOT: /home/runner/pdk
 
@@ -34,11 +34,6 @@ jobs:
           repository: efabless/openlane2
           path: openlane2
           ref: ${{ env.OPENLANE_TAG }}
-
-      - name: Patch OpenLane 2
-        working-directory: openlane2
-        run: |
-          git apply ../patches/openlane2.patch
 
       # Set Python up
       - name: setup python
