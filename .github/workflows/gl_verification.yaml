@@ -65,6 +65,9 @@ jobs:
           pdk_version: ${{ env.SKY130_PDK_VERSION }}
           pdk_root: ${{ env.PDK_ROOT }}
 
+      - name: Harden Chip ROM
+        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python -m openlane tt/rom/config.json"
+
       - name: Harden tt_ctrl
         working-directory: tt-multiplexer/ol2/tt_ctrl
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"

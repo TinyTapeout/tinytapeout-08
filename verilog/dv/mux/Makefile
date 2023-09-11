@@ -18,6 +18,7 @@ TOPLEVEL_LANG ?= verilog
 COMPILE_ARGS  += -DUSE_POWER_PINS
 COMPILE_ARGS  += -DMPRJ_IO_PADS=38
 COMPILE_ARGS  += -DSIM_$(shell echo $(SIM) | tr a-z A-Z)=1
+COMPILE_ARGS  += -DROM_VMEM_PATH=\"../../../tt/rom/rom.vmem\"
 
 # Additional arguments to support Verilator
 ifeq ($(SIM),verilator)
@@ -48,7 +49,7 @@ ifeq ($(GATES),yes)
   COMPILE_ARGS    += -DGL_TEST
   COMPILE_ARGS    += -DFUNCTIONAL
   COMPILE_ARGS    += -DSIM
-  COMPILE_ARGS    += -DUNIT_DELAY=#1
+  COMPILE_ARGS    += -DUNIT_DELAY=\#1
   VERILOG_SOURCES += $(PDK_ROOT)/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v
   VERILOG_SOURCES += $(PDK_ROOT)/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v
   SIM_BUILD       := sim_build_gates
@@ -70,9 +71,9 @@ include $(shell cocotb-config --makefiles)/Makefile.sim
 # ==============================================================================
 
 .PHONY: test_mux
-test_mux: TESTCASE=test_mux
+test_mux: TESTCASE=test_mux,test_rom
 test_mux: $(COCOTB_RESULTS_FILE)
 
 .PHONY: test_mux_gl
-test_mux_gl: TESTCASE=test_mux
+test_mux_gl: TESTCASE=test_mux,test_rom
 test_mux_gl: $(COCOTB_RESULTS_FILE)

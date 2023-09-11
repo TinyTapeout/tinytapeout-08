@@ -64,7 +64,7 @@ async def test_start(dut):
     dut._log.info("firmware ready, enabling design")
 
     dut.reset_n.value = 0
-    await enable_design(dut, 0, 0)
+    await enable_design(dut, 1, 0)
 
     # with bit 0 of ui_in set to 0, module will uio_in to uo_out
     dut.ui_in.value = 0b0
