@@ -14,7 +14,7 @@ on:
 jobs:
   gl_verification:
     env:
-      OPENLANE_TAG: 6ac326e384ab2a4ceef664b350894c60884caef4
+      OPENLANE_TAG: 2.0.0b13
       SKY130_PDK_VERSION: 1341f54f5ce0c4955326297f235e4ace1eb6d419
       PYTHONIOENCODING: utf-8
       PDK_ROOT: /home/runner/pdk

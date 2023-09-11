@@ -12,6 +12,8 @@ volare enable --pdk sky130 $SKY130_PDK_VERSION
 
 Then install OpenLane 2 with Nix, as explained [here](https://openlane2.readthedocs.io/en/latest/getting_started/nix_installation/index.html).
 
+Install version 2.0.0b13. Newer versions may work as well, but were not tested.
+
 Clone OpenLane 2 to ~/openlane (or change the value of the OPENLANE2_ROOT environment variable).
 
 ## Repository setup
