@@ -54,3 +54,30 @@ jobs:
         with:
           name: shuttle_index
           path: shuttle_index.json
+
+      - name: Prepare GitHub pages archive
+        run: |
+          mkdir gh_pages
+          cp datasheet.pdf shuttle_index.json gh_pages
+
+      - name: Upload 
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: 'gh_pages'
+
+  deploy_pages:
+    needs: build_datasheet
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
