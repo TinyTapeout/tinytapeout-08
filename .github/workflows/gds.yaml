@@ -44,13 +44,6 @@ jobs:
           cache: 'pip'
       - run: pip install -r tt-multiplexer/py/requirements.txt -r tt/requirements.txt
 
-      # Install yosys (required for tt/configure.py)
-      - name: install oss-cad-suite
-        uses: YosysHQ/setup-oss-cad-suite@v2
-        with:
-          version: '2023-05-27'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Update caravel configuration
         run: python ./tt/configure.py --update-shuttle
 
@@ -126,3 +119,14 @@ jobs:
         with:
           name: efabless_submission
           path: efabless
+
+      # Install iverilog, cocotb (required for GL test)
+      - name: install oss-cad-suite
+        uses: YosysHQ/setup-oss-cad-suite@v2
+        with:
+          version: '2023-05-27'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: GL simulation
+        working-directory: verilog/dv/mux
+        run: make clean test_mux_gl

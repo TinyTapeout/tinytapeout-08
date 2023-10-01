@@ -2,4 +2,3 @@
 -v $(USER_PROJECT_VERILOG)/gl/tt_ctrl.v
 -v $(USER_PROJECT_VERILOG)/gl/tt_mux.v
 -v $(USER_PROJECT_VERILOG)/gl/tt_um_chip_rom.v
--v $(USER_PROJECT_VERILOG)/../projects/tt_um_factory_test/tt_um_factory_test.v
