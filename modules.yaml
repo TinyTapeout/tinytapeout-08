@@ -3,6 +3,9 @@ modules:
   - name: "chip_rom"
     x: 7
     y: 11
+  - name: "factory_test"
+    x: 7
+    y: 10
   - name: "loopback"
     x: 6
     y: 11

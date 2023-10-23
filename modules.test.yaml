@@ -1,10 +1,10 @@
 modules:
   - name: "chip_rom"
-    x: 0
-    y: 0
+    x: 7
+    y: 11
   - name: "factory_test"
-    x: 1
-    y: 0
+    x: 7
+    y: 10
   - name: "factory_test"
     x: 5
     y: 3

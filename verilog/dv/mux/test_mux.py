@@ -63,7 +63,7 @@ async def test_mux(dut):
     dut.ui_in.value = 0
     # select test design
     dut.reset_n.value = 0
-    await enable_design(dut, 1, 0)
+    await enable_design(dut, 7, 10)
 
     # with bit 0 of ui_in set to 0, module will copy inputs to outputs
     dut.ui_in.value = 0b0
