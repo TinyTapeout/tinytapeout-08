@@ -129,4 +129,7 @@ jobs:
 
       - name: GL simulation
         working-directory: verilog/dv/mux
-        run: make clean test_mux_gl
+        run: |
+          make clean test_mux_gl
+          # make will return success even if the test fails, so check for failure in the results.xml
+          ! grep failure results.xml
