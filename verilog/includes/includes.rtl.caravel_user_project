@@ -7,6 +7,7 @@
 -v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_dfrbp.v
 -v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_diode.v
 -v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_inv.v
+-v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_mux2.v
 -v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_mux4.v
 -v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_tbuf_pol.v
 -v $(USER_PROJECT_VERILOG)/rtl/tt-multiplexer/rtl/prim_generic/tt_prim_tbuf.v

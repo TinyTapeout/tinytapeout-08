@@ -2,13 +2,37 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import RisingEdge, FallingEdge, ClockCycles, with_timeout
 
+def p2l(pos_x, pos_y):
+    """Translate x/y position into a logical mux address, taken from tt-multiplexer"""
+    # Grid dimensions
+    gx = 16
+    gy = 24
+
+    # Position vs middle point
+    pos_x -= gx // 2
+    pos_y -= gy // 2
+
+    # TopBottom / LeftRight
+    tb = pos_y >= 0
+    lr = pos_x >= 0
+
+    # Logical position
+    pos_y = abs(pos_y + 1 - tb)
+    pos_x = abs(pos_x + 1 - lr)
+
+    mux_id = ((pos_y >> 1) << 2) | (lr << 1) | tb
+    blk_id = (pos_x << 1) | (pos_y & 1)
+
+    return mux_id, blk_id
+
 # copied from test_mux because I couldn't get PYTHONPATH to work
 async def enable_design(dut, x, y):
     # RTL for the controller test: Y = cur_core[9:5] X = cur_core[4:0] 
     assert x < 2**5
     assert y < 2**5
 
-    count = x + (y << 5)
+    mux_id, blk_id = p2l(x, y)
+    count = (mux_id << 5) + blk_id
     dut._log.info(f"enabling [{x},{y}] by sending {count} pulses")
 
     # reset the controller
