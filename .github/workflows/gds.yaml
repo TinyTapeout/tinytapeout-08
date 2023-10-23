@@ -102,10 +102,10 @@ jobs:
         with:
           name: macros
           path: |
-            gds/*
-            lef/*
-            spef/*
-            verilog/gl/*
+            tt-multiplexer/ol2/tt_top/gds/*
+            tt-multiplexer/ol2/tt_top/lef/*
+            tt-multiplexer/ol2/tt_top/spef/*
+            tt-multiplexer/ol2/tt_top/verilog/*
 
       - name: upload shuttle_index.json
         if: success() || failure()
