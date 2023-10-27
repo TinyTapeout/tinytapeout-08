@@ -17,6 +17,10 @@ modules:
     width: 1
     height: 1
     pg_vdd: true
+  - name: "urish_skullfet"
+    width: 1
+    height: 1
+    pg_vdd: true
   - name: "tt05_analog_test"
     x: 0
     y: 6
