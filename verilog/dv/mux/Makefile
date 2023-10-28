@@ -45,8 +45,7 @@ endif
 
 # Alter behaviour between GLS & fast functional sims
 ifeq ($(GATES),yes)
-  COMPILE_ARGS    += -f $(abspath ../../includes/includes.gl.mux_top)
-  COMPILE_ARGS    += -f $(abspath ../../includes/includes.gl.user_projects)
+  COMPILE_ARGS    += -i -f $(abspath ../../includes/includes.gl.mux_top)
   COMPILE_ARGS    += -DGL_TEST
   COMPILE_ARGS    += -DFUNCTIONAL
   COMPILE_ARGS    += -DSIM
