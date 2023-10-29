@@ -1,0 +1,82 @@
+name: mpw_precheck
+
+on:
+  workflow_dispatch:
+  push:
+    # Don't run on project submissions:
+    branches-ignore:
+      - projects/tt_um_*
+  pull_request:
+    # Don't run on project submissions:
+    paths-ignore:
+      - projects/tt_um_*/**
+
+jobs:
+  mpw_precheck:
+    env:
+      PYTHONIOENCODING: utf-8
+      PDK_ROOT: /home/runner/pdk
+
+    # ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      # need the repo checked out
+      - name: checkout repo
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Load OpenLane environment variables
+        run: cat .github/config/openlane.txt | tee -a $GITHUB_ENV
+
+      - name: Checkout Precheck Repo
+        uses: actions/checkout@v4
+        with:
+          repository: efabless/mpw_precheck
+          path: mpw_precheck
+
+      - name: Install Sky130 PDK
+        uses: TinyTapeout/volare-action@v1
+        with:
+          pdk_name: sky130
+          pdk_version: ${{ env.SKY130_PDK_VERSION }}
+          pdk_root: ${{ env.PDK_ROOT }}
+
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: gds.yaml
+          workflow_conclusion: success
+          name: efabless_submission
+          path: tinytapeout-05
+
+      - name: Run precheck
+        working-directory: mpw_precheck
+        run: |
+          docker run -v $(pwd):/opt/mpw_precheck \
+            -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "$PDK_PATH":"$PDK_PATH" \
+            -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_PATH="$PDK_PATH" \
+            -u $(id -u "$USER"):$(id -g "$USER") \
+            -w /opt/mpw_precheck \
+            efabless/mpw_precheck:latest ./run_precheck.sh $CHECKS
+        env:
+          CHECKS: |
+            default
+            consistency
+            gpio_defines
+            xor
+            klayout_feol
+            klayout_beol
+            klayout_offgrid
+            klayout_met_min_ca_density
+            klayout_zeroarea
+          # Skipped checks: drc klayout_pin_label_purposes_overlapping_drawing oeb
+          PDK_PATH: ${{ env.PDK_ROOT }}/sky130A
+          INPUT_DIRECTORY: ${{ github.workspace }}/tinytapeout-05
+
+      - name: Upload precheck results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: precheck_results
+          path: tinytapeout-05/precheck_results
