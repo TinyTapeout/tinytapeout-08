@@ -55,7 +55,7 @@ jobs:
         run: |
           docker run -v $(pwd):/opt/mpw_precheck \
             -v "$INPUT_DIRECTORY":"$INPUT_DIRECTORY" -v "$PDK_PATH":"$PDK_PATH" \
-            -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_PATH="$PDK_PATH" \
+            -e INPUT_DIRECTORY="$INPUT_DIRECTORY" -e PDK_PATH="$PDK_PATH" -e PDK_ROOT="$PDK_ROOT" \
             -u $(id -u "$USER"):$(id -g "$USER") \
             -w /opt/mpw_precheck \
             efabless/mpw_precheck:latest ./run_precheck.sh $CHECKS
@@ -69,8 +69,9 @@ jobs:
             klayout_beol
             klayout_offgrid
             klayout_met_min_ca_density
+            klayout_pin_label_purposes_overlapping_drawing
             klayout_zeroarea
-          # Skipped checks: drc klayout_pin_label_purposes_overlapping_drawing oeb
+          # Skipped checks: magic_drc (it's very slow), oeb
           PDK_PATH: ${{ env.PDK_ROOT }}/sky130A
           INPUT_DIRECTORY: ${{ github.workspace }}/tinytapeout-05
 
