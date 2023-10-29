@@ -61,9 +61,6 @@ jobs:
           pdk_version: ${{ env.SKY130_PDK_VERSION }}
           pdk_root: ${{ env.PDK_ROOT }}
 
-      #    - name: uncompress gds files
-      #      run: gunzip -v gds/*.gds.gz
-
       # run OpenLane to build the GDS
       - name: Harden Chip ROM
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python -m openlane tt/rom/config.json"
