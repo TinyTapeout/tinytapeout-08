@@ -2,14 +2,9 @@ name: mpw_precheck
 
 on:
   workflow_dispatch:
-  push:
-    # Don't run on project submissions:
-    branches-ignore:
-      - projects/tt_um_*
-  pull_request:
-    # Don't run on project submissions:
-    paths-ignore:
-      - projects/tt_um_*/**
+  workflow_run:
+    workflows: ["gds"]
+    types: [completed]
 
 jobs:
   mpw_precheck:
@@ -42,15 +37,17 @@ jobs:
           pdk_version: ${{ env.SKY130_PDK_VERSION }}
           pdk_root: ${{ env.PDK_ROOT }}
 
-      - name: Download artifact
+      - name: Download artifact (run id = ${{ github.event.workflow_run.id }})
         uses: dawidd6/action-download-artifact@v2
+        id: download_artifact
         with:
           workflow: gds.yaml
+          run_id: ${{ github.event.workflow_run.id }}
           workflow_conclusion: success
           name: efabless_submission
           path: tinytapeout-05
 
-      - name: Run precheck
+      - name: Run precheck (run id = ${{ fromJSON(steps.download_artifact.outputs.artifacts)[0].workflow_run.id }})
         working-directory: mpw_precheck
         run: |
           docker run -v $(pwd):/opt/mpw_precheck \
