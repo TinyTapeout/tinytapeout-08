@@ -68,7 +68,8 @@ jobs:
             klayout_met_min_ca_density
             klayout_pin_label_purposes_overlapping_drawing
             klayout_zeroarea
-          # Skipped checks: magic_drc (it's very slow), oeb
+            oeb
+          # Skipped checks: magic_drc (it's very slow)
           PDK_PATH: ${{ env.PDK_ROOT }}/sky130A
           INPUT_DIRECTORY: ${{ github.workspace }}/tinytapeout-05
 

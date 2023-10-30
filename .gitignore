@@ -1,6 +1,11 @@
 precheck_results/
 verilog/includes/rom_tile.vmem
 venv/
-efabless
 sta.log
 shuttle_index.json
+
+# Auto generated eFabless submission files:
+efabless/gds/*.gds
+efabless/gds/*.lef
+efabless/verilog/*/*.v
+efabless/README.md
