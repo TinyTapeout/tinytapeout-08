@@ -1,6 +1,7 @@
 {
 	"TOP_SOURCE": "user_project_wrapper",
 	"TOP_LAYOUT": "$TOP_SOURCE",
+	"EXTRACT_TYPE": "analog",
 	"EXTRACT_FLATGLOB": [
 		""
 	],
