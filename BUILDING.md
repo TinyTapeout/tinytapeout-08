@@ -3,18 +3,18 @@
 ## Environment setup
 
 ```bash
-export OPENLANE2_ROOT=~/openlane
+export OPENLANE2_ROOT=~/openlane2
 export SKY130_PDK_VERSION=1341f54f5ce0c4955326297f235e4ace1eb6d419
 
 pip3 install volare
 volare enable --pdk sky130 $SKY130_PDK_VERSION
 ```
 
-Then install OpenLane 2 with Nix, as explained [here](https://openlane2.readthedocs.io/en/latest/getting_started/nix_installation/index.html).
+Then install OpenLane 2 with Nix, as explained [here](https://openlane2.readthedocs.io/en/latest/getting_started/nix_installation/index.html), taking care of the following:
 
-Install version 2.0.0b13. Newer versions may work as well, but were not tested.
+1. Look at the value of `OPENLANE_TAG` in [.github/config/openlane.txt](.github/config/openlane.txt) to find the exact OpenLane 2 commit you need to check out. Installing a different version will likely not work, as OpenLane 2 is still in beta and the API is not very stable.
 
-Clone OpenLane 2 to ~/openlane (or change the value of the OPENLANE2_ROOT environment variable).
+2. Clone OpenLane 2 to ~/openlane2 (or change the value of the `OPENLANE2_ROOT`` environment variable).
 
 ## Repository setup
 
