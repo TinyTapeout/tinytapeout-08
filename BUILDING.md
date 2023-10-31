@@ -45,8 +45,10 @@ nix-shell ${OPENLANE2_ROOT}/shell.nix --run "python -m openlane tt/rom/config.js
 nix-shell ${OPENLANE2_ROOT}/shell.nix --run "cd tt-multiplexer/ol2/tt_ctrl && python build.py"
 nix-shell ${OPENLANE2_ROOT}/shell.nix --run "cd tt-multiplexer/ol2/tt_mux && python build.py"
 python tt/configure.py --copy-macros
-nix-shell ${OPENLANE2_ROOT}/shell.nix --run "cd tt-multiplexer/ol2/tt_top && python build.py"
+nix-shell ${OPENLANE2_ROOT}/shell.nix --run "cd tt-multiplexer/ol2/tt_top && python build.py --skip-xor-checks"
 ```
+
+Note: We're skipping the XOR checks as they takes a lot of time and require much RAM (~ 64 GB). If you have enough RAM, you can remove the `--skip-xor-checks` flag.
 
 You'll find the final GDS in `tt-multiplexer/ol2/tt_top/runs/RUN_*/final/gds/user_project_wrapper.gds`. To copy it (along with the lef, gl verilog, and spef files), run:
 
