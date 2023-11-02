@@ -2,3 +2,4 @@ id: 'tt05'
 name: 'Tiny Tapeout 05'
 start_date: '2023-09-11'
 project_dir: 'projects'
+openframe: true

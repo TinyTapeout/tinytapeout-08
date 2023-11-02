@@ -1,0 +1,34 @@
+{
+	"STD_CELL_LIBRARY": "sky130_fd_sc_hd",
+	"EXTRACT_TYPE": "analog",
+	"INCLUDE_CONFIGS": [
+		"$LVS_ROOT/tech/$PDK/lvs_config.base.json"
+	],
+	"TOP_SOURCE": "openframe_project_wrapper",
+	"TOP_LAYOUT": "$TOP_SOURCE",
+	"EXTRACT_FLATGLOB": [
+		""
+	],
+	"EXTRACT_ABSTRACT": [
+		""
+	],
+	"LVS_FLATTEN": [
+		"*vccd1_connection*",
+		"*vssd1_connection*"
+	],
+	"LVS_NOFLATTEN": [
+		""
+	],
+	"LVS_IGNORE": [
+		""
+	],
+	"LVS_SPICE_FILES": [
+		""
+	],
+	"LVS_VERILOG_FILES": [
+		"$UPRJ_ROOT/verilog/gl/vccd1_connection.v",
+		"$UPRJ_ROOT/verilog/gl/vssd1_connection.v",
+		"$UPRJ_ROOT/verilog/gl/$TOP_SOURCE.v"
+	],
+	"LAYOUT_FILE": "$UPRJ_ROOT/gds/$TOP_LAYOUT.gds"
+}
