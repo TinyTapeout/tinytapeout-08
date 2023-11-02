@@ -26,27 +26,11 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Clone caravel
-        uses: actions/checkout@v3
-        with:
-          repository: efabless/caravel-lite
-          ref: ${{ env.MPW_TAG }}
-          path: caravel
-
       - name: Install sky130A PDK
         uses: TinyTapeOut/volare-action@v1
         with:
           pdk_version: ${{ env.SKY130_PDK_VERSION }}
           pdk_root: ${{ env.PDK_ROOT }}
-
-      - name: Install management core wrapper
-        working-directory: caravel
-        run: make install_mcw
-
-      - name: Install RISC-V GCC
-        run: |
-          wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14.tar.gz
-          tar -xzf riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14.tar.gz
 
       # Set Python up
       - name: setup python
@@ -69,19 +53,3 @@ jobs:
           make clean test_mux
           # make will return success even if the test fails, so check for failure in the results.xml
           ! grep failure results.xml
-
-      - name: Mux + caravel simulation
-        working-directory: verilog/dv/mux_ext
-        run: |
-          make clean coco_test
-          # make will return success even if the test fails, so check for failure in the results.xml
-          ! grep failure results.xml
-        env:
-          DESIGNS: ${{ github.workspace }}
-          TARGET_PATH: ${{ github.workspace }}
-          MGMT_AREA_ROOT: ${{ github.workspace }}/caravel/mgmt_core_wrapper
-          MCW_ROOT: ${{ github.workspace }}/caravel/mgmt_core_wrapper
-          CARAVEL_ROOT: ${{ github.workspace }}/caravel
-          CORE_VERILOG_PATH: ${{ github.workspace }}/caravel/mgmt_core_wrapper/verilog
-          GCC_PATH: ${{ github.workspace }}/riscv64-unknown-elf-gcc-8.3.0-2020.04.1-x86_64-linux-ubuntu14/bin/
-          GCC_PREFIX: riscv64-unknown-elf
