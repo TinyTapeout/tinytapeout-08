@@ -59,18 +59,30 @@ module test_mux_tb(
     wire [43:0] gpio_in;
     wire [43:0] gpio_out;
     wire [43:0] gpio_oeb;
+    wire [43:0] gpio_inp_dis;
+    wire [43:0] gpio_dm2;
+    wire [43:0] gpio_dm1;
+    wire [43:0] gpio_dm0;
 
     assign gpio_in[37:0] = io_in;
-    assign io_out = gpio_out[37:0];
+    assign io_out = gpio_out[37:0] & ~gpio_oeb[37:0] & gpio_dm2[37:0] & gpio_dm1[37:0];
     assign io_oeb = gpio_oeb[37:0];
+    wire [43:0] inp_ena = (gpio_dm0 | gpio_dm1 | gpio_dm2) & ~gpio_inp_dis;
 
     openframe_project_wrapper user_project_wrapper(
     `ifdef GL_TEST
         .vccd1( 1'b1),
         .vssd1( 1'b0),
     `endif
-        .gpio_in      (gpio_in),
+        .gpio_loopback_zero({44{1'b0}}),
+        .gpio_loopback_one({44{1'b1}}),
+        .gpio_in      (gpio_in & inp_ena),
         .gpio_out     (gpio_out),
-        .gpio_oeb     (gpio_oeb));
+        .gpio_oeb     (gpio_oeb),
+        .gpio_inp_dis (gpio_inp_dis),
+        .gpio_dm2     (gpio_dm2),
+        .gpio_dm1     (gpio_dm1),
+        .gpio_dm0     (gpio_dm0)
+    );
 
 endmodule
