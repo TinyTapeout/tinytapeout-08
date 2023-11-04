@@ -24,3 +24,9 @@ modules:
     height: 1
     pg_vdd: true
     analog: true
+  - name: "urish_skullfet"
+    x: 15
+    y: 15
+    width: 1
+    height: 1
+    pg_vdd: true
