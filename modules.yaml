@@ -35,6 +35,14 @@ modules:
     y: 0
     pg_vdd: true
     mask_rev: true
+  - name: "diferential_ringy"
+    x: 8
+    y: 15
+    width: 1
+    height: 2
+  - name: "myuart"
+    x: 10
+    y: 16
   - name: "yubex_metastability_experiment"
     x: 9
     y: 16
