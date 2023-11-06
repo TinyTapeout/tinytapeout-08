@@ -30,3 +30,11 @@ modules:
     width: 1
     height: 1
     pg_vdd: true
+  - name: "openframe_mask_rev"
+    x: 15
+    y: 0
+    pg_vdd: true
+    mask_rev: true
+  - name: "yubex_metastability_experiment"
+    x: 9
+    y: 16
