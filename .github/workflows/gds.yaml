@@ -66,9 +66,6 @@ jobs:
       - name: Harden Chip ROM
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python -m openlane tt/rom/config.json"
       
-      - name: Harden tt_autosel
-        run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python -m openlane tt-multiplexer/ol2/tt_autosel/config.json"
-
       - name: Harden tt_ctrl
         working-directory: tt-multiplexer/ol2/tt_ctrl
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"

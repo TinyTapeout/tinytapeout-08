@@ -1,5 +1,5 @@
-id: 'tt05of' 
-name: 'Tiny Tapeout 05 Openframe'
-start_date: '2023-09-11'
+id: 'tt06' 
+name: 'Tiny Tapeout 06'
+start_date: '2023-11-24'
 project_dir: 'projects'
 openframe: true

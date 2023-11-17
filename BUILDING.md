@@ -32,7 +32,7 @@ pip install -r tt-multiplexer/py/requirements.txt -r tt/requirements.txt
 
 ## Fetching the projects
 
-Run the following commands to generate the configuration for the user_project_wrapper:
+Run the following commands to generate the configuration for building Tiny Tapeout:
 
 ```bash
 python tt/configure.py --update-shuttle
@@ -42,7 +42,6 @@ python tt/configure.py --update-shuttle
 
 ```bash
 nix-shell ${OPENLANE2_ROOT}/shell.nix --run "python -m openlane tt/rom/config.json"
-nix-shell ${OPENLANE2_ROOT}/shell.nix --run "python -m openlane tt-multiplexer/ol2/tt_autosel/config.json"
 nix-shell ${OPENLANE2_ROOT}/shell.nix --run "cd tt-multiplexer/ol2/tt_ctrl && python build.py"
 nix-shell ${OPENLANE2_ROOT}/shell.nix --run "cd tt-multiplexer/ol2/tt_mux && python build.py"
 python tt/configure.py --copy-macros
@@ -51,7 +50,7 @@ nix-shell ${OPENLANE2_ROOT}/shell.nix --run "cd tt-multiplexer/ol2/tt_top && pyt
 
 Note: We're skipping the XOR checks as they takes a lot of time and require much RAM (~ 64 GB). If you have enough RAM, you can remove the `--skip-xor-checks` flag.
 
-You'll find the final GDS in `tt-multiplexer/ol2/tt_top/runs/RUN_*/final/gds/user_project_wrapper.gds`. To copy it (along with the lef, gl verilog, and spef files), run:
+You'll find the final GDS in `tt-multiplexer/ol2/tt_top/runs/RUN_*/final/gds/openframe_project_wrapper.gds`. To copy it (along with the lef, gl verilog, and spef files), run:
 
 ```bash
 python tt/configure.py --copy-final-results

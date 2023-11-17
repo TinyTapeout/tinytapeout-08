@@ -3,46 +3,9 @@ modules:
   - name: "chip_rom"
     x: 7
     y: 11
-  - name: "factory_test"
-    x: 7
-    y: 10
-  - name: "loopback"
-    x: 6
-    y: 11
-  - name: "urish_ringosc_cnt"
-    width: 1
-    height: 1
-    pg_vdd: true
-  - name: "urish_simon"
-    width: 1
-    height: 1
-    pg_vdd: true
-  - name: "tt05_analog_test"
-    x: 0
-    y: 6
-    width: 1
-    height: 1
-    pg_vdd: true
-    analog: true
-  - name: "urish_skullfet"
-    x: 15
-    y: 15
-    width: 1
-    height: 1
-    pg_vdd: true
-  - name: "openframe_mask_rev"
-    x: 15
-    y: 0
-    pg_vdd: true
-    mask_rev: true
-  - name: "diferential_ringy"
-    x: 8
-    y: 15
-    width: 1
-    height: 2
-  - name: "myuart"
-    x: 10
-    y: 16
-  - name: "yubex_metastability_experiment"
-    x: 9
-    y: 16
+#  - name: "factory_test"
+#    x: 7
+#    y: 10
+#  - name: "loopback"
+#    x: 6
+#    y: 11
