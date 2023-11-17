@@ -2,10 +2,10 @@ modules:
 # Hard coded module locations and power gated modules - other modules will be assigned dynamically
   - name: "chip_rom"
     x: 7
-    y: 11
+    y: 15
 #  - name: "factory_test"
 #    x: 7
-#    y: 10
+#    y: 14
 #  - name: "loopback"
 #    x: 6
-#    y: 11
+#    y: 15
