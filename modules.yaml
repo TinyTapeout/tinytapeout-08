@@ -6,6 +6,3 @@ modules:
   - name: "factory_test"
     x: 7
     y: 14
-#  - name: "loopback"
-#    x: 6
-#    y: 15
