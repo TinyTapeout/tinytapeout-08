@@ -8,7 +8,7 @@ The ROM layout is as follows:
 
 | Address | Length | Encoding  | Description                              |
 | ------- | ------ | --------- | ---------------------------------------- |
-| 0       | 8      | 7-segment | Shuttle name (e.g. "tt06"), null-padded  |
+| 0       | 8      | 7-segment | Shuttle name (e.g. "tt07"), null-padded  |
 | 8       | 8      | 7-segment | Git commit hash                          |
 | 32      | 96     | ASCII     | Chip descriptor (see below)              |
 
@@ -19,8 +19,8 @@ Each line is a key-value pair, separated by an equals sign. It contains the foll
 
 | Key     | Description                   | Example value              |
 | ------- | ----------------------------- | -------------------------- |
-| shuttle | The identifier of the shuttle | tt06                       |
-| repo    | The name of the repository    | TinyTapeout/tinytapeout-06 |
+| shuttle | The identifier of the shuttle | tt07                       |
+| repo    | The name of the repository    | TinyTapeout/tinytapeout-07 |
 | commit  | The commit hash \*            | a1b2c3d4                   |
 
 \* The commit hash is only included for Tiny Tapeout 5 and later.
@@ -28,8 +28,8 @@ Each line is a key-value pair, separated by an equals sign. It contains the foll
 Here is a complete example of a chip descriptor:
 
 ```
-shuttle=tt06
-repo=TinyTapeout/tinytapeout-06
+shuttle=tt07
+repo=TinyTapeout/tinytapeout-07
 commit=a1b2c3d4
 ```
 
