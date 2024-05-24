@@ -14,7 +14,9 @@ Then install OpenLane 2 with Nix, as explained [here](https://openlane2.readthed
 
 1. Look at the value of `OPENLANE_TAG` in [.github/config/openlane.txt](.github/config/openlane.txt) to find the exact OpenLane 2 commit you need to check out. Installing a different version will likely not work, as OpenLane 2 is still in beta and the API is not very stable.
 
-2. Clone OpenLane 2 to ~/openlane2 (or change the value of the `OPENLANE2_ROOT`` environment variable).
+2. Clone OpenLane 2 to ~/openlane2 (or change the value of the `OPENLANE2_ROOT` environment variable).
+
+3. Apply patches to OpenLane 2: `git -C $OPENLANE2_ROOT apply $PWD/patches/openlane2.patch`
 
 ## Repository setup
 

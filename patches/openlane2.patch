@@ -1,0 +1,2123 @@
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index 37c7b2a..a5b8751 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -192,6 +192,7 @@ jobs:
+         uses: ./.github/actions/build_nix
+         with:
+           nix_system: x86_64-darwin
++          local_cache_key: derivation-${{ github.run_id }}
+           cachix_cache: ${{ vars.CACHIX_CACHE || 'openlane' }}
+           cachix_token: "${{ secrets.CACHIX_TOKEN }}"
+           shell: "zsh {0}"
+@@ -204,6 +205,15 @@ jobs:
+     needs: [build-linux-amd64, build-linux-aarch64]
+     name: Build Docker Image (${{ matrix.arch }})
+     steps:
++      - name: Maximize build space
++        uses: easimon/maximize-build-space@master
++        with:
++          remove-dotnet: "true"
++          remove-android: "true"
++          remove-haskell: "true"
++          remove-codeql: "true"
++          remove-docker-images: "true"
++          root-reserve-mb: 20480
+       - name: Check out repo
+         uses: actions/checkout@v3
+ 
+diff --git a/Makefile b/Makefile
+index 2dc0276..f5e9120 100644
+--- a/Makefile
++++ b/Makefile
+@@ -19,7 +19,7 @@ openlane:
+ 
+ .PHONY: docker-image
+ docker-image:
+-	cat $(shell nix-build docker.nix) | docker load
++	cat $(shell nix build --no-link --print-out-paths .#openlane-docker -L --verbose) | docker load
+ 
+ .PHONY: docs
+ docs:
+diff --git a/default.nix b/default.nix
+index e432c64..fccc1ff 100644
+--- a/default.nix
++++ b/default.nix
+@@ -39,6 +39,7 @@
+   yosys-ghdl,
+   yosys-f4pga-sdc,
+   # PIP
++  ruby,
+   click,
+   cloup,
+   pyyaml,
+@@ -116,6 +117,9 @@ buildPythonPackage rec {
+       libparse
+       psutil
+       klayout-pymod
++      
++      # Ruby
++      ruby
+     ]
+     ++ includedTools;
+ 
+diff --git a/flake.lock b/flake.lock
+index 9aea9e3..9efa1bd 100644
+--- a/flake.lock
++++ b/flake.lock
+@@ -73,7 +73,28 @@
+         "flake-compat": "flake-compat",
+         "ioplace-parser": "ioplace-parser",
+         "libparse": "libparse",
+-        "nixpkgs": "nixpkgs"
++        "nixpkgs": "nixpkgs",
++        "volare": "volare"
++      }
++    },
++    "volare": {
++      "inputs": {
++        "nixpkgs": [
++          "nixpkgs"
++        ]
++      },
++      "locked": {
++        "lastModified": 1715167549,
++        "narHash": "sha256-QzMKToqiDQzMjBM2TW1VGMUxSLj70Uk4IdJVjIdkd5c=",
++        "owner": "efabless",
++        "repo": "volare",
++        "rev": "b72ce150b80f67278d4c6b025183fb3941cab993",
++        "type": "github"
++      },
++      "original": {
++        "owner": "efabless",
++        "repo": "volare",
++        "type": "github"
+       }
+     }
+   },
+diff --git a/flake.nix b/flake.nix
+index fa2723e..056175d 100644
+--- a/flake.nix
++++ b/flake.nix
+@@ -25,17 +25,20 @@
+     nixpkgs.url = github:nixos/nixpkgs/nixos-23.11;
+     libparse.url = github:efabless/libparse-python;
+     ioplace-parser.url = github:efabless/ioplace_parser;
++    volare.url = github:efabless/volare;
+     flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
+   };
+   
+   inputs.libparse.inputs.nixpkgs.follows = "nixpkgs";
+   inputs.ioplace-parser.inputs.nixpkgs.follows = "nixpkgs";
++  inputs.volare.inputs.nixpkgs.follows = "nixpkgs";
+ 
+   outputs = {
+     self,
+     nixpkgs,
+     libparse,
+     ioplace-parser,
++    volare,
+     ...
+   }: {
+     # Helper functions
+@@ -56,11 +59,12 @@
+       );
+ 
+     createOpenLaneShell = import ./nix/create-shell.nix;
++    createDockerImage = import ./nix/create-docker.nix;
+ 
+     # Outputs
+     packages = self.forAllSystems (pkgs: let
+       callPackage = pkgs.lib.callPackageWith (pkgs // self.packages.${pkgs.system});
+-      callPythonPackage = pkgs.lib.callPackageWith (pkgs // pkgs.python3.pkgs // ioplace-parser.packages."${pkgs.system}" // libparse.packages."${pkgs.system}" // self.packages.${pkgs.system});
++      callPythonPackage = pkgs.lib.callPackageWith (pkgs // pkgs.python3.pkgs // ioplace-parser.packages."${pkgs.system}" // libparse.packages."${pkgs.system}" // volare.packages."${pkgs.system}" // self.packages.${pkgs.system});
+     in
+       rec {
+         colab-env = callPackage ./nix/colab-env.nix {};
+@@ -77,7 +81,6 @@
+         sphinx-subfigure = callPythonPackage ./nix/sphinx-subfigure.nix {};
+         tclFull = callPackage ./nix/tclFull.nix {};
+         verilator = callPackage ./nix/verilator.nix {};
+-        volare = callPackage ./nix/volare.nix {};
+         yosys-abc = callPackage ./nix/yosys-abc.nix {};
+         yosys = callPackage ./nix/yosys.nix {};
+         yosys-sby = callPackage ./nix/yosys-sby.nix {};
+diff --git a/nix/create-docker.nix b/nix/create-docker.nix
+new file mode 100644
+index 0000000..00b1732
+--- /dev/null
++++ b/nix/create-docker.nix
+@@ -0,0 +1,372 @@
++/*
++  Copyright (C) 2012-2017 Eelco Dolstra and the Nix Contributors
++
++  This program is free software; you can redistribute it and/or
++  modify it under the terms of the GNU General Public License
++  as published by the Free Software Foundation; either version 2
++  of the License, or (at your option) any later version.
++
++  This program is distributed in the hope that it will be useful,
++  but WITHOUT ANY WARRANTY; without even the implied warranty of
++  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++  GNU General Public License for more details.
++
++  You should have received a copy of the GNU General Public License
++  along with this program; If not, see <http://www.gnu.org/licenses/>.
++*/
++/*
++  This file is a modified version of
++  https://raw.githubusercontent.com/NixOS/nix/master/docker.nix that exposes
++  more options for the final image and enables the use of sudo.
++*/
++{ pkgs ? import <nixpkgs> { }
++, lib ? pkgs.lib
++, name ? "nix"
++, tag ? "latest"
++, bundleNixpkgs ? true
++, channelName ? "nixpkgs"
++, channelURL ? "https://nixos.org/channels/nixpkgs-unstable"
++, extraPkgs ? []
++, maxLayers ? 100
++, nixConf ? {}
++, flake-registry ? null
++# ADDED
++, image-created ? null
++, image-extraCommands ? ""
++, image-config-cwd ? null
++, image-config-cmd ? [ "/root/.nix-profile/bin/bash" ]
++, image-config-extra-path ? []
++, image-config-extra-env ? []
++}:
++let
++  defaultPkgs = with pkgs; [
++    nix
++    bashInteractive
++    coreutils-full
++    gnutar
++    gzip
++    gnugrep
++    which
++    curl
++    less
++    wget
++    man
++    cacert.out
++    findutils
++    iana-etc
++    git
++    openssh
++    sudo
++    su
++  ] ++ extraPkgs;
++
++  users = {
++
++    root = {
++      uid = 0;
++      shell = "${pkgs.bashInteractive}/bin/bash";
++      home = "/root";
++      gid = 0;
++      groups = [ "root" ];
++      description = "System administrator";
++    };
++
++    nobody = {
++      uid = 65534;
++      shell = "${pkgs.shadow}/bin/nologin";
++      home = "/var/empty";
++      gid = 65534;
++      groups = [ "nobody" ];
++      description = "Unprivileged account (don't use!)";
++    };
++
++  } // lib.listToAttrs (
++    map
++      (
++        n: {
++          name = "nixbld${toString n}";
++          value = {
++            uid = 30000 + n;
++            gid = 30000;
++            groups = [ "nixbld" ];
++            description = "Nix build user ${toString n}";
++          };
++        }
++      )
++      (lib.lists.range 1 32)
++  ) // lib.listToAttrs (
++    map
++      (
++        n: {
++          name = "openlane-user-${toString n}";
++          value = {
++            uid = n;
++            gid = 0;
++            groups = [ "root" ];
++            description = "OpenLane user account";
++          };
++        }
++      )
++      (lib.lists.range 1 29999)
++  );
++
++  groups = {
++    root.gid = 0;
++    nixbld.gid = 30000;
++    nobody.gid = 65534;
++  };
++
++  userToPasswd = (
++    k:
++    { uid
++    , gid ? 65534
++    , home ? "/var/empty"
++    , description ? ""
++    , shell ? "/bin/false"
++    , groups ? [ ]
++    }: "${k}:x:${toString uid}:${toString gid}:${description}:${home}:${shell}"
++  );
++  passwdContents = (
++    lib.concatStringsSep "\n"
++      (lib.attrValues (lib.mapAttrs userToPasswd users))
++  );
++
++  userToShadow = k: { ... }: "${k}:!:1::::::";
++  shadowContents = (
++    lib.concatStringsSep "\n"
++      (lib.attrValues (lib.mapAttrs userToShadow users))
++  );
++
++  # Map groups to members
++  # {
++  #   group = [ "user1" "user2" ];
++  # }
++  groupMemberMap = (
++    let
++      # Create a flat list of user/group mappings
++      mappings = (
++        builtins.foldl'
++          (
++            acc: user:
++              let
++                groups = users.${user}.groups or [ ];
++              in
++              acc ++ map
++                (group: {
++                  inherit user group;
++                })
++                groups
++          )
++          [ ]
++          (lib.attrNames users)
++      );
++    in
++    (
++      builtins.foldl'
++        (
++          acc: v: acc // {
++            ${v.group} = acc.${v.group} or [ ] ++ [ v.user ];
++          }
++        )
++        { }
++        mappings)
++  );
++
++  groupToGroup = k: { gid }:
++    let
++      members = groupMemberMap.${k} or [ ];
++    in
++    "${k}:x:${toString gid}:${lib.concatStringsSep "," members}";
++  groupContents = (
++    lib.concatStringsSep "\n"
++      (lib.attrValues (lib.mapAttrs groupToGroup groups))
++  );
++
++  defaultNixConf = {
++    sandbox = "false";
++    build-users-group = "nixbld";
++    trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" ];
++  };
++
++  nixConfContents = (lib.concatStringsSep "\n" (lib.mapAttrsFlatten (n: v:
++    let
++      vStr = if builtins.isList v then lib.concatStringsSep " " v else v;
++    in
++      "${n} = ${vStr}") (defaultNixConf // nixConf))) + "\n";
++
++  baseSystem =
++    let
++      nixpkgs = pkgs.path;
++      channel = pkgs.runCommand "channel-nixos" { inherit bundleNixpkgs; } ''
++        mkdir $out
++        if [ "$bundleNixpkgs" ]; then
++          ln -s ${nixpkgs} $out/nixpkgs
++          echo "[]" > $out/manifest.nix
++        fi
++      '';
++      rootEnv = pkgs.buildPackages.buildEnv {
++        name = "root-profile-env";
++        paths = defaultPkgs;
++      };
++      manifest = pkgs.buildPackages.runCommand "manifest.nix" { } ''
++        cat > $out <<EOF
++        [
++        ${lib.concatStringsSep "\n" (builtins.map (drv: let
++          outputs = drv.outputsToInstall or [ "out" ];
++        in ''
++          {
++            ${lib.concatStringsSep "\n" (builtins.map (output: ''
++              ${output} = { outPath = "${lib.getOutput output drv}"; };
++            '') outputs)}
++            outputs = [ ${lib.concatStringsSep " " (builtins.map (x: "\"${x}\"") outputs)} ];
++            name = "${drv.name}";
++            outPath = "${drv}";
++            system = "${drv.system}";
++            type = "derivation";
++            meta = { };
++          }
++        '') defaultPkgs)}
++        ]
++        EOF
++      '';
++      profile = pkgs.buildPackages.runCommand "user-environment" { } ''
++        mkdir $out
++        cp -a ${rootEnv}/* $out/
++        ln -s ${manifest} $out/manifest.nix
++      '';
++      flake-registry-path = if (flake-registry == null) then
++        null
++      else if (builtins.readFileType (toString flake-registry)) == "directory" then
++        "${flake-registry}/flake-registry.json"
++      else
++        flake-registry;
++    in
++    pkgs.runCommand "base-system"
++      {
++        inherit passwdContents groupContents shadowContents nixConfContents;
++        passAsFile = [
++          "passwdContents"
++          "groupContents"
++          "shadowContents"
++          "nixConfContents"
++        ];
++        allowSubstitutes = false;
++        preferLocalBuild = true;
++      } (''
++      env
++      set -x
++      mkdir -p $out/etc
++
++      mkdir -p $out/etc/ssl/certs
++      ln -s /nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt $out/etc/ssl/certs
++
++      cat $passwdContentsPath > $out/etc/passwd
++      echo "" >> $out/etc/passwd
++
++      cat $groupContentsPath > $out/etc/group
++      echo "" >> $out/etc/group
++
++      cat $shadowContentsPath > $out/etc/shadow
++      echo "" >> $out/etc/shadow
++
++      mkdir -p $out/usr
++      ln -s /nix/var/nix/profiles/share $out/usr/
++
++      mkdir -p $out/nix/var/nix/gcroots
++
++      mkdir $out/tmp
++
++      mkdir -p $out/var/tmp
++
++      mkdir -p $out/etc/nix
++      cat $nixConfContentsPath > $out/etc/nix/nix.conf
++
++      mkdir -p $out/root
++      mkdir -p $out/nix/var/nix/profiles/per-user/root
++
++      ln -s ${profile} $out/nix/var/nix/profiles/default-1-link
++      ln -s $out/nix/var/nix/profiles/default-1-link $out/nix/var/nix/profiles/default
++      ln -s /nix/var/nix/profiles/default $out/root/.nix-profile
++
++      ln -s ${channel} $out/nix/var/nix/profiles/per-user/root/channels-1-link
++      ln -s $out/nix/var/nix/profiles/per-user/root/channels-1-link $out/nix/var/nix/profiles/per-user/root/channels
++
++      mkdir -p $out/root/.nix-defexpr
++      ln -s $out/nix/var/nix/profiles/per-user/root/channels $out/root/.nix-defexpr/channels
++      echo "${channelURL} ${channelName}" > $out/root/.nix-channels
++
++      mkdir -p $out/bin $out/usr/bin
++      ln -s ${pkgs.coreutils}/bin/env $out/usr/bin/env
++      ln -s ${pkgs.bashInteractive}/bin/bash $out/bin/sh
++
++    '' + (lib.optionalString (flake-registry-path != null) ''
++      nixCacheDir="/root/.cache/nix"
++      mkdir -p $out$nixCacheDir
++      globalFlakeRegistryPath="$nixCacheDir/flake-registry.json"
++      ln -s ${flake-registry-path} $out$globalFlakeRegistryPath
++      mkdir -p $out/nix/var/nix/gcroots/auto
++      rootName=$(${pkgs.nix}/bin/nix --extra-experimental-features nix-command hash file --type sha1 --base32 <(echo -n $globalFlakeRegistryPath))
++      ln -s $globalFlakeRegistryPath $out/nix/var/nix/gcroots/auto/$rootName
++    ''));
++
++in
++pkgs.dockerTools.buildLayeredImageWithNixDb {
++
++  inherit name tag maxLayers;
++
++  contents = [ baseSystem ];
++
++  extraCommands = ''
++    rm -rf nix-support
++    ln -s /nix/var/nix/profiles nix/var/nix/gcroots/profiles
++  '' + image-extraCommands;
++  fakeRootCommands = let 
++    sudo = pkgs.sudo;
++    sudoLocalPath = (builtins.substring 1 999 "${sudo}/bin/sudo");
++  in ''
++    set -e
++    chmod 1777 tmp
++    chmod 1777 var/tmp
++    
++    # Enable sudo for all users (so they can use nix)
++    cp -r ${sudo} nix/store
++    
++    chmod u+s ${sudoLocalPath}
++    echo "ALL ALL=(ALL) NOPASSWD:ALL" > etc/sudoers
++    
++    mkdir -p etc/pam.d
++    if [[ ! -f etc/pam.d/other ]]; then
++      cat > etc/pam.d/other <<EOF
++    account sufficient pam_unix.so
++    auth sufficient pam_rootok.so
++    password requisite pam_unix.so nullok yescrypt
++    session required pam_unix.so
++    EOF
++    fi
++    if [[ ! -f etc/login.defs ]]; then
++      touch etc/login.defs
++    fi
++  '';
++
++  config = {
++    Cmd = image-config-cmd;
++    WorkingDir = image-config-cwd;
++    Env = [
++      "USER=root"
++      "PATH=${lib.concatStringsSep ":" (image-config-extra-path ++ [
++        "/root/.nix-profile/bin"
++        "/nix/var/nix/profiles/default/bin"
++        "/nix/var/nix/profiles/default/sbin"
++      ])}"
++      "MANPATH=${lib.concatStringsSep ":" [
++        "/root/.nix-profile/share/man"
++        "/nix/var/nix/profiles/default/share/man"
++      ]}"
++      "SSL_CERT_FILE=/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt"
++      "GIT_SSL_CAINFO=/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt"
++      "NIX_SSL_CERT_FILE=/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt"
++      "NIX_PATH=/nix/var/nix/profiles/per-user/root/channels:/root/.nix-defexpr/channels"
++    ] ++ image-config-extra-env;
++  };
++
++}
+diff --git a/nix/docker.nix b/nix/docker.nix
+index e8a0b61..be05cea 100644
+--- a/nix/docker.nix
++++ b/nix/docker.nix
+@@ -13,81 +13,68 @@
+ # limitations under the License.
+ {
+   dockerTools,
+-  buildEnv,
++  system,
++  pkgs,
++  lib,
+   python3,
+   openlane,
+-  system,
+-  coreutils-full,
+-  findutils,
+-  bashInteractive,
+-  gnugrep,
+-  gnused,
+-  which,
+-  cacert,
+-  iana-etc,
+   git,
+   neovim,
+   zsh,
+   silver-searcher,
++  coreutils,
+ }: let
++  # # We're fetchurl-ing this one so we don't want to use a fixed-output derivation
++  # # like fetchFromGitHub
++  # # See https://nixos.org/manual/nix/stable/language/import-from-derivation
++  # nix-docker-image-script = builtins.fetchurl {
++  #   url = "https://raw.githubusercontent.com/NixOS/nix/master/docker.nix";
++  #   sha256 = "sha256:0kpj0ms09v7ss86cayf3snpsl6pnjgjzk5wcsfp16ggvr2as80ai";
++  # };
+   openlane-env = python3.withPackages (ps: with ps; [openlane]);
+   openlane-env-sitepackages = "${openlane-env}/${openlane-env.sitePackages}";
+   openlane-env-bin = "${openlane-env}/bin";
+-in
+-  dockerTools.buildImage rec {
+-    name = "openlane";
+-    tag = "tmp-${system}";
+-
+-    copyToRoot = buildEnv {
+-      name = "image-root";
+-      paths = [
+-        # Base OS
+-        ## GNU
+-        coreutils-full
+-        findutils
+-        bashInteractive
+-        gnugrep
+-        gnused
+-        which
+-
+-        ## Networking
+-        cacert
+-        iana-etc
+-
+-        # Conveniences
+-        git
+-        neovim
+-        zsh
+-        silver-searcher
+-
+-        # OpenLane
+-        openlane-env
+-      ];
++in (import ./create-docker.nix {
++  inherit pkgs;
++  inherit lib;
++  name = "openlane";
++  tag = "tmp-${system}";
++  extraPkgs = with dockerTools; [
++    git
++    zsh
++    neovim
++    silver-searcher
+ 
+-      postBuild = ''
+-        mkdir -p $out/tmp
+-        mkdir -p $out/etc
+-        cat <<HEREDOC > $out/etc/zshrc
+-        autoload -U compinit && compinit
+-        autoload -U promptinit && promptinit && prompt suse && setopt prompt_sp
+-        autoload -U colors && colors
++    openlane-env
++  ];
++  nixConf = {
++    extra-experimental-features = "nix-command flakes repl-flake";
++  };
++  maxLayers = 2;
++  channelURL = "https://nixos.org/channels/nixos-23.11";
+ 
+-        export PS1=$'%{\033[31m%}OpenLane Container (${openlane.version})%{\033[0m%}:%{\033[32m%}%~%{\033[0m%}%% ';
+-        HEREDOC
+-      '';
+-    };
++  image-created = "now";
++  image-extraCommands = ''
++    mkdir -p ./etc
++    cat <<HEREDOC > ./etc/zshrc
++    autoload -U compinit && compinit
++    autoload -U promptinit && promptinit && prompt suse && setopt prompt_sp
++    autoload -U colors && colors
+ 
+-    created = "now";
+-    config = {
+-      Cmd = ["/bin/env" "zsh"];
+-      Env = [
+-        "LANG=C.UTF-8"
+-        "LC_ALL=C.UTF-8"
+-        "LC_CTYPE=C.UTF-8"
+-        "EDITOR=nvim"
+-        "PYTHONPATH=${openlane-env-sitepackages}"
+-        "PATH=${openlane-env-bin}:${openlane.computed_PATH}:/bin"
+-        "TMPDIR=/tmp"
+-      ];
+-    };
+-  }
++    export PS1=$'%{\033[31m%}OpenLane Container (${openlane.version})%{\033[0m%}:%{\033[32m%}%~%{\033[0m%}%% ';
++    HEREDOC
++  '';
++  image-config-cmd = ["${zsh}/bin/zsh"];
++  image-config-extra-env = [
++    "LANG=C.UTF-8"
++    "LC_ALL=C.UTF-8"
++    "LC_CTYPE=C.UTF-8"
++    "EDITOR=nvim"
++    "PYTHONPATH=${openlane-env-sitepackages}"
++    "TMPDIR=/tmp"
++  ];
++  image-config-extra-path = [
++    "${openlane-env-bin}"
++    "${openlane.computed_PATH}"
++  ];
++})
+diff --git a/nix/klayout.nix b/nix/klayout.nix
+index 9c99b22..b782437 100644
+--- a/nix/klayout.nix
++++ b/nix/klayout.nix
+@@ -41,14 +41,16 @@
+   curl,
+   gcc,
+   libgit2,
++  version ? "0.28.17-1",
++  sha256 ? "sha256:0c2jm0n3vm4wyk25wpi1dlv00qnjqdmgpjmchv0hc5ysx47a2y6a",
+ }:
+ clangStdenv.mkDerivation rec {
+   name = "klayout";
+-  version = "0.28.17-1";
++  inherit version;
+ 
+   src = fetchTarball {
+     url = "https://github.com/KLayout/klayout/archive/refs/tags/v${version}.tar.gz";
+-    sha256 = "sha256:0c2jm0n3vm4wyk25wpi1dlv00qnjqdmgpjmchv0hc5ysx47a2y6a";
++    inherit sha256;
+   };
+ 
+   patches = [
+diff --git a/nix/magic.nix b/nix/magic.nix
+index c1557b8..2d62fd0 100644
+--- a/nix/magic.nix
++++ b/nix/magic.nix
+@@ -41,16 +41,18 @@
+   cairo,
+   python3,
+   gnused,
++  rev ? "bfd938b5e2321cf9a6c15f398fbc987b56fcc179",
++  sha256 ? "sha256-xNhPnNGoJ8YiG6NFeFhOuKTB56rQvggJugIvukao6U8=",
+ }:
+ clangStdenv.mkDerivation rec {
+   name = "magic-vlsi";
+-  rev = "bfd938b5e2321cf9a6c15f398fbc987b56fcc179";
++  inherit rev;
+ 
+   src = fetchFromGitHub {
+     owner = "RTimothyEdwards";
+     repo = "magic";
+     inherit rev;
+-    sha256 = "sha256-xNhPnNGoJ8YiG6NFeFhOuKTB56rQvggJugIvukao6U8=";
++    inherit sha256;
+   };
+ 
+   nativeBuildInputs = [python3 gnused];
+diff --git a/nix/netgen.nix b/nix/netgen.nix
+index b7cb1eb..f8dfa8a 100644
+--- a/nix/netgen.nix
++++ b/nix/netgen.nix
+@@ -19,14 +19,16 @@
+   tk,
+   m4,
+   python3,
++  rev ? "f2f082e62756a1ae92076b3d025435d46ea6fa36",
++  sha256 ? "sha256-zkkry4j+IYQeB1EKoAjn1f1Ff68CFaOIIN8Tjn25PyU=",
+ }:
+ clangStdenv.mkDerivation {
+   name = "netgen";
+   src = fetchFromGitHub {
+-    owner = "RTimothyEdwards";
++    owner = "smunaut";
+     repo = "netgen";
+-    rev = "87d8759a6980d297edcb9be6f8661867e4726f9a";
+-    sha256 = "sha256-wTreP/hVlXuo+SOC+jdROeC53o3tOF2M9eQIgX15zRo=";
++    inherit rev;
++    inherit sha256;
+   };
+ 
+   configureFlags = [
+diff --git a/nix/openroad-abc.nix b/nix/openroad-abc.nix
+index 4e2e2ca..b6b669e 100644
+--- a/nix/openroad-abc.nix
++++ b/nix/openroad-abc.nix
+@@ -16,6 +16,9 @@
+   abc-verifier,
+   fetchFromGitHub,
+   zlib,
++  abc-namespace-name ? "abc",
++  rev ? "ef5389d31526003c2ebd7e6d6d6fe3848a20f0a2",
++  sha256 ? "sha256-7W66b1Toa9uEAKoijPujqQXVjxf1Ku4w2eP2Vk0ri8c=",
+ }:
+ abc-verifier.overrideAttrs (finalAttrs: previousAttrs: {
+   name = "openroad-abc";
+@@ -23,8 +26,8 @@ abc-verifier.overrideAttrs (finalAttrs: previousAttrs: {
+   src = fetchFromGitHub {
+     owner = "The-OpenROAD-Project";
+     repo = "abc";
+-    rev = "d3916ac0337d599b30aeaf94e82b13338530ced3";
+-    sha256 = "sha256-osJzeOb0bgvbPGJjcpcfQzwcRJTZh1DYJ7RpFgw1NKg=";
++    inherit rev;
++    inherit sha256;
+   };
+ 
+   patches = [
+@@ -34,6 +37,7 @@ abc-verifier.overrideAttrs (finalAttrs: previousAttrs: {
+   cmakeFlags = [
+     "-DREADLINE_FOUND=FALSE"
+     "-DUSE_SYSTEM_ZLIB:BOOL=ON"
++    "-DABC_USE_NAMESPACE=${abc-namespace-name}"
+   ];
+ 
+   buildInputs = [zlib];
+@@ -52,6 +56,8 @@ abc-verifier.overrideAttrs (finalAttrs: previousAttrs: {
+     mkdir -p $header_dir
+     cp ../src/$header $header_tgt
+     done
++    
++    sed -Ei "/#\s*ifdef ABC_NAMESPACE/i#define ABC_NAMESPACE abc\n" $out/include/misc/util/abc_namespaces.h
+   '';
+ 
+   meta = with lib; {
+diff --git a/nix/openroad.nix b/nix/openroad.nix
+index b8fdac7..876cdb8 100644
+--- a/nix/openroad.nix
++++ b/nix/openroad.nix
+@@ -42,107 +42,109 @@
+   bison,
+   clang-tools_14,
+   ioplace-parser,
+-}:
+-let
+-  pyenv = (python3.withPackages(p: with p; [
+-    click
+-    rich
+-    pyyaml
+-    ioplace-parser
+-  ]));
++  rev ? "dd25c1e9dbfea6186d4932743d06a1959bafe981",
++  sha256 ? "sha256-c+EFRpmVWqpShvGIspmhDu2AM3VqnErAssejnjPzE1A=",
++}: let
++  pyenv = python3.withPackages (p:
++    with p; [
++      click
++      rich
++      pyyaml
++      ioplace-parser
++    ]);
+   pyenv-sitepackages = "${pyenv}/${pyenv.sitePackages}";
+ in
+-clangStdenv.mkDerivation rec {
+-  name = "openroad";
+-  rev = "d423155d69de7f683a23f6916ead418a615ad4ad";
+-
+-  src = fetchFromGitHub {
+-    owner = "The-OpenROAD-Project";
+-    repo = "OpenROAD";
++  clangStdenv.mkDerivation rec {
++    name = "openroad";
+     inherit rev;
+-    sha256 = "sha256-RrJYdvzxD64TeNAlPs6G4BKxflpQO6ED78SqQVH7EUE=";
+-  };
+ 
+-  cmakeFlagsAll = [
+-    "-DTCL_LIBRARY=${tcl}/lib/libtcl${clangStdenv.hostPlatform.extensions.sharedLibrary}"
+-    "-DTCL_HEADER=${tcl}/include/tcl.h"
+-    "-DUSE_SYSTEM_BOOST:BOOL=ON"
+-    "-DCMAKE_CXX_FLAGS=-I${openroad-abc}/include"
+-    "-DENABLE_TESTS:BOOL=OFF"
+-    "-DVERBOSE=1"
+-  ];
++    src = fetchFromGitHub {
++      owner = "smunaut";
++      repo = "OpenROAD";
++      inherit rev;
++      inherit sha256;
++    };
+ 
+-  cmakeFlags =
+-    cmakeFlagsAll
+-    ++ [
+-      "-DUSE_SYSTEM_ABC:BOOL=ON"
+-      "-DUSE_SYSTEM_OPENSTA:BOOL=ON"
+-      "-DOPENSTA_HOME=${opensta}"
+-      "-DABC_LIBRARY=${openroad-abc}/lib/libabc.a"
++    cmakeFlagsAll = [
++      "-DTCL_LIBRARY=${tcl}/lib/libtcl${clangStdenv.hostPlatform.extensions.sharedLibrary}"
++      "-DTCL_HEADER=${tcl}/include/tcl.h"
++      "-DUSE_SYSTEM_BOOST:BOOL=ON"
++      "-DCMAKE_CXX_FLAGS=-I${openroad-abc}/include"
++      "-DENABLE_TESTS:BOOL=OFF"
++      "-DVERBOSE=1"
+     ];
+ 
+-  preConfigure = ''
+-    sed -i "s/GITDIR-NOTFOUND/${rev}/" ./cmake/GetGitRevisionDescription.cmake
+-    patchShebangs ./etc/find_messages.py
++    cmakeFlags =
++      cmakeFlagsAll
++      ++ [
++        "-DUSE_SYSTEM_ABC:BOOL=ON"
++        "-DUSE_SYSTEM_OPENSTA:BOOL=ON"
++        "-DOPENSTA_HOME=${opensta}"
++        "-DABC_LIBRARY=${openroad-abc}/lib/libabc.a"
++      ];
+ 
+-    sed -i 's@#include "base/abc/abc.h"@#include <base/abc/abc.h>@' src/rmp/src/Restructure.cpp
+-    sed -i 's@#include "base/main/abcapis.h"@#include <base/main/abcapis.h>@' src/rmp/src/Restructure.cpp
+-    sed -i 's@# tclReadline@target_link_libraries(openroad readline)@' src/CMakeLists.txt
+-    sed -i 's@%include "../../src/Exception.i"@%include "../../Exception.i"@' src/dbSta/src/dbSta.i
+-  '';
++    preConfigure = ''
++      sed -i "s/GITDIR-NOTFOUND/${rev}/" ./cmake/GetGitRevisionDescription.cmake
++      patchShebangs ./etc/find_messages.py
+ 
+-  buildInputs = [
+-    openroad-abc
+-    boost183
+-    eigen
+-    tcl
+-    pyenv
+-    readline
+-    tclreadline
+-    spdlog-internal-fmt
+-    libffi
+-    libsForQt5.qtbase
+-    llvmPackages.openmp
++      sed -i 's@#include "base/abc/abc.h"@#include <base/abc/abc.h>@' src/rmp/src/Restructure.cpp
++      sed -i 's@#include "base/main/abcapis.h"@#include <base/main/abcapis.h>@' src/rmp/src/Restructure.cpp
++      sed -i 's@# tclReadline@target_link_libraries(openroad readline)@' src/CMakeLists.txt
++      sed -i 's@%include "../../src/Exception.i"@%include "../../Exception.i"@' src/dbSta/src/dbSta.i
++    '';
+ 
+-    lemon-graph
+-    or-tools
+-    opensta
+-    glpk
+-    zlib
+-    clp
+-    cbc
+-    re2
+-  ];
++    buildInputs = [
++      openroad-abc
++      boost183
++      eigen
++      tcl
++      pyenv
++      readline
++      tclreadline
++      spdlog-internal-fmt
++      libffi
++      libsForQt5.qtbase
++      llvmPackages.openmp
+ 
+-  patches = [
+-    ./patches/openroad/antenna.patch
+-  ];
++      lemon-graph
++      or-tools
++      opensta
++      glpk
++      zlib
++      clp
++      cbc
++      re2
++    ];
+ 
+-  nativeBuildInputs = [
+-    swig4
+-    pkg-config
+-    cmake
+-    gnumake
+-    flex
+-    bison
+-    libsForQt5.wrapQtAppsHook
+-    clang-tools_14
+-  ];
++    patches = [
++      ./patches/openroad/rmp_abc.patch
++    ];
+ 
+-  shellHook = ''
+-    export DEVSHELL_CMAKE_FLAGS="${builtins.concatStringsSep " " cmakeFlagsAll}"
+-  '';
+-  
+-  qtWrapperArgs = [
+-    "--prefix PYTHONPATH : ${pyenv-sitepackages}"
+-  ];
++    nativeBuildInputs = [
++      swig4
++      pkg-config
++      cmake
++      gnumake
++      flex
++      bison
++      libsForQt5.wrapQtAppsHook
++      clang-tools_14
++    ];
++
++    shellHook = ''
++      export DEVSHELL_CMAKE_FLAGS="${builtins.concatStringsSep " " cmakeFlagsAll}"
++    '';
++
++    qtWrapperArgs = [
++      "--prefix PYTHONPATH : ${pyenv-sitepackages}"
++    ];
+ 
+-  meta = with lib; {
+-    description = "OpenROAD's unified application implementing an RTL-to-GDS flow";
+-    homepage = "https://theopenroadproject.org";
+-    # OpenROAD code is BSD-licensed, but OpenSTA is GPLv3 licensed,
+-    # so the combined work is GPLv3
+-    license = licenses.gpl3Plus;
+-    platforms = platforms.linux ++ platforms.darwin;
+-  };
+-}
++    meta = with lib; {
++      description = "OpenROAD's unified application implementing an RTL-to-GDS flow";
++      homepage = "https://theopenroadproject.org";
++      # OpenROAD code is BSD-licensed, but OpenSTA is GPLv3 licensed,
++      # so the combined work is GPLv3
++      license = licenses.gpl3Plus;
++      platforms = platforms.linux ++ platforms.darwin;
++    };
++  }
+diff --git a/nix/opensta.nix b/nix/opensta.nix
+index bdf07f3..702d8a8 100644
+--- a/nix/opensta.nix
++++ b/nix/opensta.nix
+@@ -23,16 +23,19 @@
+   bison,
+   tcl,
+   zlib,
++  eigen,
++  rev ? "68e0f166580e660085c5ce327cc41378f8347864",
++  sha256 ? "sha256-aw6nzZgbLGzceWWgaLUeqblSKGqCsjdA8CGGW0Q1RII=",
+ }:
+ clangStdenv.mkDerivation rec {
+   name = "opensta";
+-  rev = "a7f34210b403fe399c170296d54258f10f92885f";
++  inherit rev;
+ 
+   src = fetchFromGitHub {
+-    owner = "The-OpenROAD-Project";
++    owner = "smunaut";
+     repo = "OpenSTA";
+     inherit rev;
+-    sha256 = "sha256-2R+ox0kcjXX5Kc6dtH/OEOccU/m8FjW1qnb0kxM/ahE=";
++    inherit sha256;
+   };
+ 
+   cmakeFlags = [
+@@ -41,6 +44,7 @@ clangStdenv.mkDerivation rec {
+   ];
+ 
+   buildInputs = [
++    eigen
+     tcl
+     zlib
+   ];
+diff --git a/nix/patches/openroad-abc/zlib.patch b/nix/patches/openroad-abc/zlib.patch
+index 05ce3d3..9372830 100644
+--- a/nix/patches/openroad-abc/zlib.patch
++++ b/nix/patches/openroad-abc/zlib.patch
+@@ -1,25 +1,28 @@
+ diff --git a/CMakeLists.txt b/CMakeLists.txt
+-index 4388b50d..b23ccdbf 100644
++index b90ac02d..b0d6b13f 100644
+ --- a/CMakeLists.txt
+ +++ b/CMakeLists.txt
+-@@ -57,6 +57,8 @@ if( APPLE )
++@@ -61,6 +61,11 @@ if( APPLE )
+      set(make_env ${CMAKE_COMMAND} -E env SDKROOT=${CMAKE_OSX_SYSROOT})
+  endif()
+  
+-+option(USE_SYSTEM_ZLIB "Use system shared ZLIB" OFF)
+++option(ABC_USE_SYSTEM_ZLIB "Use system shared ZLIB" OFF)
+++if(ABC_USE_SYSTEM_ZLIB)
+++    set(ABC_USE_SYSTEM_ZLIB_FLAGS "ABC_USE_SYSTEM_ZLIB=${ABC_USE_SYSTEM_ZLIB}")
+++endif()
+ +
+  # run make to extract compiler options, linker options and list of source files
+  execute_process(
+    COMMAND
+-@@ -70,6 +72,7 @@ execute_process(
++@@ -69,6 +74,7 @@ execute_process(
++         ${ABC_READLINE_FLAGS}
++         ${ABC_USE_NAMESPACE_FLAGS}
++         ${ABC_USE_STDINT_H_FLAGS}
+++        ${ABC_USE_SYSTEM_ZLIB_FLAGS}
++         ARCHFLAGS_EXE=${CMAKE_CURRENT_BINARY_DIR}/abc_arch_flags_program.exe
++         ABC_MAKE_NO_DEPS=1
+          CC=${CMAKE_C_COMPILER}
+-         CXX=${CMAKE_CXX_COMPILER}
+-         LD=${CMAKE_CXX_COMPILER}
+-+        USE_SYSTEM_ZLIB=${USE_SYSTEM_ZLIB}
+-         cmake_info
+-   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+-   OUTPUT_VARIABLE MAKE_OUTPUT
+-@@ -94,10 +97,16 @@ if(ABC_USE_NAMESPACE)
++@@ -98,10 +104,16 @@ if(ABC_USE_NAMESPACE)
+      set_source_files_properties(${ABC_SRC} PROPERTIES LANGUAGE CXX)
+  endif()
+  
+@@ -30,27 +33,18 @@ index 4388b50d..b23ccdbf 100644
+      target_include_directories(${target} ${visibility} ${CMAKE_CURRENT_SOURCE_DIR}/src )
+      target_compile_options_filtered(${target} ${visibility} ${ABC_CFLAGS} ${ABC_CXXFLAGS} -Wno-unused-but-set-variable )
+      target_link_libraries(${target} ${visibility} ${ABC_LIBS})
+-+    if(USE_SYSTEM_ZLIB)
+++    if(ABC_USE_SYSTEM_ZLIB)
+ +        target_link_libraries(${target} ${visibility} ZLIB::ZLIB)
+ +    endif()
+  endfunction()
+  
+  set(ABC_MAIN_SRC src/base/main/main.c)
+ diff --git a/Makefile b/Makefile
+-index 556c5f0e..e9a46d27 100644
++index e94591b2..89e2500b 100644
+ --- a/Makefile
+ +++ b/Makefile
+-@@ -15,6 +15,8 @@ $(info $(MSG_PREFIX)Using LD=$(LD))
+- PROG := abc
+- OS := $(shell uname -s)
+- 
+-+USE_SYSTEM_ZLIB ?= OFF
+-+
+- MODULES := \
+- 	$(wildcard src/ext*) \
+- 	src/base/abc src/base/abci src/base/cmd src/base/io src/base/main src/base/exor \
+-@@ -22,7 +24,7 @@ MODULES := \
+- 	src/map/mapper src/map/mio src/map/super src/map/if \
++@@ -22,7 +22,7 @@ MODULES := \
++ 	src/map/mapper src/map/mio src/map/super src/map/if src/map/if/acd \
+  	src/map/amap src/map/cov src/map/scl src/map/mpm \
+  	src/misc/extra src/misc/mvc src/misc/st src/misc/util src/misc/nm \
+ -	src/misc/vec src/misc/hash src/misc/tim src/misc/bzlib src/misc/zlib \
+@@ -58,14 +52,36 @@ index 556c5f0e..e9a46d27 100644
+  	src/misc/mem src/misc/bar src/misc/bbl src/misc/parse \
+  	src/opt/cut src/opt/fxu src/opt/fxch src/opt/rwr src/opt/mfs src/opt/sim \
+  	src/opt/ret src/opt/fret src/opt/res src/opt/lpk src/opt/nwk src/opt/rwt \
+-@@ -35,6 +37,10 @@ MODULES := \
+- 	src/aig/aig src/aig/saig src/aig/gia src/aig/ioa src/aig/ivy src/aig/hop \
+- 	src/aig/miniaig
++@@ -45,6 +45,12 @@ $(ARCHFLAGS_EXE) : arch_flags.c
++ 
++ INCLUDES += -I$(ABCSRC)/src
+  
+-+ifneq (${USE_SYSTEM_ZLIB},ON)
+-+MODULES += src/misc/zlib
+++ifdef ABC_USE_SYSTEM_ZLIB
+++	CFLAGS += -DUSE_SYSTEM_ZLIB
+++else
+++	MODULES += src/misc/zlib
+ +endif
+ +
+- all: $(PROG)
+- default: $(PROG)
++ # Use C99 stdint.h header for platform-dependent types
++ ifdef ABC_USE_STDINT_H
++     ARCHFLAGS ?= -DABC_USE_STDINT_H=1
++diff --git a/src/misc/zlib/zlib.h b/src/misc/zlib/zlib.h
++index 46c1a1ae..1667a8cf 100644
++--- a/src/misc/zlib/zlib.h
+++++ b/src/misc/zlib/zlib.h
++@@ -28,6 +28,10 @@
++   (zlib format), rfc1951.txt (deflate format) and rfc1952.txt (gzip format).
++ */
++ 
+++#ifdef USE_SYSTEM_ZLIB
+++#include "misc/util/abc_global.h"
+++#include <zlib.h>
+++#else
++ #ifndef ZLIB_H
++ #define ZLIB_H
++ 
++@@ -1617,3 +1621,4 @@ ZEXTERN int            ZEXPORT inflateUndermine OF((z_streamp, int));
++ ABC_NAMESPACE_HEADER_END
+  
++ #endif /* ZLIB_H */
+++#endif /* USE_SYSTEM_ZLIB */
+diff --git a/nix/patches/openroad/antenna.patch b/nix/patches/openroad/antenna.patch
+deleted file mode 100644
+index b9d0c99..0000000
+--- a/nix/patches/openroad/antenna.patch
++++ /dev/null
+@@ -1,64 +0,0 @@
+-diff --git a/src/odb/include/odb/db.h b/src/odb/include/odb/db.h
+-index 02e9f36d8..3642a153c 100644
+---- a/src/odb/include/odb/db.h
+-+++ b/src/odb/include/odb/db.h
+-@@ -5704,6 +5704,8 @@ class dbMTerm : public dbObject
+-   // From LEF's ANTENNADIFFAREA on the MACRO's PIN
+-   void getDiffArea(std::vector<std::pair<double, dbTechLayer*>>& data);
+- 
+-+  bool hasDiffArea();
+-+
+-   void* staPort();
+-   void staSetPort(void* port);
+- 
+-@@ -6665,6 +6667,7 @@ class dbTechAntennaPinModel : public dbObject
+-   void addMaxSideAreaCAREntry(double inval, dbTechLayer* refly = nullptr);
+-   void addMaxCutCAREntry(double inval, dbTechLayer* refly = nullptr);
+- 
+-+  bool hasGateArea();
+-   void getGateArea(std::vector<std::pair<double, dbTechLayer*>>& data);
+-   void getMaxAreaCAR(std::vector<std::pair<double, dbTechLayer*>>& data);
+-   void getMaxSideAreaCAR(std::vector<std::pair<double, dbTechLayer*>>& data);
+-diff --git a/src/odb/src/db/dbMTerm.cpp b/src/odb/src/db/dbMTerm.cpp
+-index 5d82e751b..f87dca48f 100644
+---- a/src/odb/src/db/dbMTerm.cpp
+-+++ b/src/odb/src/db/dbMTerm.cpp
+-@@ -490,6 +490,16 @@ void dbMTerm::getDiffArea(std::vector<std::pair<double, dbTechLayer*>>& data)
+-       mterm->getDatabase(), mterm->_diffarea, data);
+- }
+- 
+-+bool dbMTerm::hasDiffArea()
+-+{
+-+  std::vector<std::pair<double, dbTechLayer*>> diff_areas;
+-+  getDiffArea(diff_areas);
+-+  if (diff_areas.size() > 0)
+-+    return true;
+-+  else
+-+    return false;
+-+}
+-+
+- void dbMTerm::writeAntennaLef(lefout& writer) const
+- {
+-   _dbMTerm* mterm = (_dbMTerm*) this;
+-diff --git a/src/odb/src/db/dbTechLayerAntennaRule.cpp b/src/odb/src/db/dbTechLayerAntennaRule.cpp
+-index 6b10d2b3c..a7c5f8bb6 100644
+---- a/src/odb/src/db/dbTechLayerAntennaRule.cpp
+-+++ b/src/odb/src/db/dbTechLayerAntennaRule.cpp
+-@@ -985,6 +985,16 @@ void _dbTechAntennaPinModel::getAntennaValues(
+-   }
+- }
+- 
+-+bool dbTechAntennaPinModel::hasGateArea()
+-+{
+-+  vector<std::pair<double, dbTechLayer*>> gate_areas;
+-+  getGateArea(gate_areas);
+-+  if (gate_areas.size() > 0)
+-+    return true;
+-+  else
+-+    return false;
+-+}
+-+
+- void dbTechAntennaPinModel::getGateArea(
+-     std::vector<std::pair<double, dbTechLayer*>>& data)
+- {
+-
+diff --git a/nix/patches/openroad/rmp_abc.patch b/nix/patches/openroad/rmp_abc.patch
+new file mode 100644
+index 0000000..d93d5c0
+--- /dev/null
++++ b/nix/patches/openroad/rmp_abc.patch
+@@ -0,0 +1,15 @@
++diff --git a/src/rmp/src/CMakeLists.txt b/src/rmp/src/CMakeLists.txt
++index 676819197..fec6f3d3b 100644
++--- a/src/rmp/src/CMakeLists.txt
+++++ b/src/rmp/src/CMakeLists.txt
++@@ -90,6 +90,7 @@ target_link_libraries(rmp_abc_library
++     dbSta_lib
++     libabc
++     utl_lib
+++    ${ABC_LIBRARY}
++ )
++ 
++ if (Python3_FOUND AND BUILD_PYTHON)
++-- 
++2.42.0
++
+diff --git a/nix/sphinx-subfigure.nix b/nix/sphinx-subfigure.nix
+index 3bbb8b9..f2e11f5 100644
+--- a/nix/sphinx-subfigure.nix
++++ b/nix/sphinx-subfigure.nix
+@@ -13,24 +13,27 @@
+ # limitations under the License.
+ {
+   lib,
++  fetchurl,
+   buildPythonPackage,
+   sphinx,
+   flit,
++  version ? "0.2.4",
++  sha256 ? "sha256-LFW8PwoVwftQ8JINvv5ndfsmOhYrX3TgbCGfp/ywINM=",
+ }:
+ buildPythonPackage rec {
+   name = "sphinx-subfigure";
+-  version = "0.2.4";
++  inherit version;
+   format = "pyproject";
+ 
+-  src = builtins.fetchurl {
++  src = fetchurl {
+     url = "https://github.com/sphinx-extensions2/sphinx-subfigure/archive/refs/tags/v${version}.tar.gz";
+-    sha256 = "sha256:1lr0n3yag7r1dkh78prb2qx2dyvmczzbw3cjy18gph8m18zvqm9c";
++    inherit sha256;
+   };
+ 
+   propagatedBuildInputs = [
+     sphinx
+   ];
+-  
++
+   buildInputs = [
+     flit
+   ];
+diff --git a/nix/sphinx-tippy.nix b/nix/sphinx-tippy.nix
+index aa95faa..33ea9b2 100644
+--- a/nix/sphinx-tippy.nix
++++ b/nix/sphinx-tippy.nix
+@@ -13,21 +13,24 @@
+ # limitations under the License.
+ {
+   lib,
++  fetchurl,
+   buildPythonPackage,
+   sphinx,
+   beautifulsoup4,
+   jinja2,
+   requests,
+   flit,
++  version ? "0.4.1",
++  sha256 ? "sha256-nENglralwhDIJnPJp092mZqXXl+hB5rnJYqFM050H3k=",
+ }:
+ buildPythonPackage rec {
+   name = "sphinx-tippy";
+-  version = "0.4.1";
++  inherit version;
+   format = "pyproject";
+ 
+-  src = builtins.fetchurl {
++  src = fetchurl {
+     url = "https://github.com/sphinx-extensions2/sphinx-tippy/archive/refs/tags/v${version}.tar.gz";
+-    sha256 = "sha256:0y8zfi7371ca4pkrl1x1bxg9g6lrfr7sgjbk4v411hm5nsb60hww";
++    inherit sha256;
+   };
+ 
+   propagatedBuildInputs = [
+diff --git a/nix/surelog.nix b/nix/surelog.nix
+index 898370c..98576e9 100644
+--- a/nix/surelog.nix
++++ b/nix/surelog.nix
+@@ -42,6 +42,8 @@
+   gperftools,
+   capnproto,
+   nlohmann_json,
++  rev ? "3e9c2d03c8164f76bf289f141856303477df5dec",
++  sha256 ? "sha256-c4i/1tUONb5sz3OD1w8FSD7VRn/xoBGaVX7ChmujGCk=",
+ }:
+ stdenv.mkDerivation (finalAttrs: {
+   name = "surelog";
+@@ -49,8 +51,8 @@ stdenv.mkDerivation (finalAttrs: {
+   src = fetchFromGitHub {
+     owner = "chipsalliance";
+     repo = finalAttrs.name;
+-    rev = "3e9c2d03c8164f76bf289f141856303477df5dec";
+-    hash = "sha256-c4i/1tUONb5sz3OD1w8FSD7VRn/xoBGaVX7ChmujGCk=";
++    inherit rev;
++    inherit sha256;
+     fetchSubmodules = true; # Use the included UHDM to avoid extreme brainrot
+   };
+ 
+diff --git a/nix/tclFull.nix b/nix/tclFull.nix
+index c41d4e3..44c7384 100644
+--- a/nix/tclFull.nix
++++ b/nix/tclFull.nix
+@@ -15,12 +15,13 @@
+   symlinkJoin,
+   tcl,
+   tcllib,
+-  tclx
+-}: symlinkJoin {
+-    name = "tclFull";
+-    paths = [
+-        tcl
+-        tcllib
+-        tclx
+-    ];
++  tclx,
++}:
++symlinkJoin {
++  name = "tclFull";
++  paths = [
++    tcl
++    tcllib
++    tclx
++  ];
+ }
+diff --git a/nix/verilator.nix b/nix/verilator.nix
+index 2a3c1ff..f8055d8 100644
+--- a/nix/verilator.nix
++++ b/nix/verilator.nix
+@@ -41,16 +41,18 @@
+   which,
+   glibcLocales,
+   lib,
++  rev ? "67dfa37c560385827218350ea936eb1baf604240",
++  sha256 ? "sha256-f06UzNw2MQ5me03EPrVFhkwxKum/GLDzQbDNTBsJMJs=",
+ }:
+ clangStdenv.mkDerivation rec {
+   name = "verilator";
+-  rev = "67dfa37c560385827218350ea936eb1baf604240";
++  inherit rev;
+ 
+   src = fetchFromGitHub {
+     owner = "verilator";
+     repo = "verilator";
+     inherit rev;
+-    sha256 = "sha256-f06UzNw2MQ5me03EPrVFhkwxKum/GLDzQbDNTBsJMJs=";
++    inherit sha256;
+   };
+ 
+   enableParallelBuilding = true;
+diff --git a/nix/volare.nix b/nix/volare.nix
+deleted file mode 100644
+index 33295c6..0000000
+--- a/nix/volare.nix
++++ /dev/null
+@@ -1,27 +0,0 @@
+-# Copyright 2023 Efabless Corporation
+-#
+-# Licensed under the Apache License, Version 2.0 (the "License");
+-# you may not use this file except in compliance with the License.
+-# You may obtain a copy of the License at
+-#
+-#      http://www.apache.org/licenses/LICENSE-2.0
+-#
+-# Unless required by applicable law or agreed to in writing, software
+-# distributed under the License is distributed on an "AS IS" BASIS,
+-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+-# See the License for the specific language governing permissions and
+-# limitations under the License.
+-{pkgs ? import ./pkgs.nix {}}: let
+-  rev = "47325949b87e857d75f81d306f02ebccf952cb15";
+-  sha256 = "sha256-H9B/vZUs0O2jwmidCTMYhO0JY4DL+gmQNeVawaccvuU=";
+-in let
+-  src = pkgs.fetchFromGitHub {
+-    owner = "efabless";
+-    repo = "volare";
+-    inherit rev;
+-    inherit sha256;
+-  };
+-in
+-  import "${src}" {
+-    inherit pkgs;
+-  }
+diff --git a/nix/yosys-abc.nix b/nix/yosys-abc.nix
+index 1b1ee59..f0b66bc 100644
+--- a/nix/yosys-abc.nix
++++ b/nix/yosys-abc.nix
+@@ -34,6 +34,8 @@
+   fetchFromGitHub,
+   cmake,
+   libedit,
++  rev ? "896e5e7dedf9b9b1459fa019f1fa8aa8101fdf43",
++  sha256 ? "sha256-sMBCIV698TIvU/sgTwgPFWDC1kl2TeGv+3pQ06gs7aM=",
+ }:
+ clangStdenv.mkDerivation rec {
+   name = "yosys-abc";
+@@ -41,8 +43,8 @@ clangStdenv.mkDerivation rec {
+   src = fetchFromGitHub {
+     owner = "YosysHQ";
+     repo = "abc";
+-    rev = "896e5e7dedf9b9b1459fa019f1fa8aa8101fdf43";
+-    sha256 = "sha256-sMBCIV698TIvU/sgTwgPFWDC1kl2TeGv+3pQ06gs7aM=";
++    inherit rev;
++    inherit sha256;
+   };
+ 
+   patches = [
+diff --git a/nix/yosys-eqy.nix b/nix/yosys-eqy.nix
+index f546cc0..1b03606 100644
+--- a/nix/yosys-eqy.nix
++++ b/nix/yosys-eqy.nix
+@@ -21,6 +21,8 @@
+   bitwuzla,
+   zlib,
+   yosys-sby,
++  rev ? "5791c90fa6d6076b3c1ff37a3bd65e66f7748230",
++  sha256 ? "sha256-zgD8jjtK3pvHxOWvCpFyIuLYsJS5AQMrSARcqjFm9Js=",
+ }:
+ clangStdenv.mkDerivation rec {
+   name = "yosys-eqy";
+@@ -34,8 +36,8 @@ clangStdenv.mkDerivation rec {
+   src = fetchFromGitHub {
+     owner = "yosyshq";
+     repo = "eqy";
+-    rev = "5791c90fa6d6076b3c1ff37a3bd65e66f7748230";
+-    sha256 = "sha256-zgD8jjtK3pvHxOWvCpFyIuLYsJS5AQMrSARcqjFm9Js=";
++    inherit rev;
++    inherit sha256;
+   };
+ 
+   makeFlags = [
+diff --git a/nix/yosys-f4pga-sdc.nix b/nix/yosys-f4pga-sdc.nix
+index 8fe8111..9141538 100644
+--- a/nix/yosys-f4pga-sdc.nix
++++ b/nix/yosys-f4pga-sdc.nix
+@@ -20,6 +20,8 @@
+   fetchFromGitHub,
+   zlib,
+   bash,
++  rev ? "dfe9b1a15b494e7dd81a2b394dac30ea707ec5cc",
++  sha256 ? "sha256-NJnu/uFCF+esqV2hrZughn1gdZXQJNTJbl1VyKns3XE=",
+ }:
+ clangStdenv.mkDerivation rec {
+   name = "yosys-f4pga-sdc";
+@@ -28,8 +30,8 @@ clangStdenv.mkDerivation rec {
+   src = fetchFromGitHub {
+     owner = "chipsalliance";
+     repo = "yosys-f4pga-plugins";
+-    rev = "dfe9b1a15b494e7dd81a2b394dac30ea707ec5cc";
+-    sha256 = "sha256-NJnu/uFCF+esqV2hrZughn1gdZXQJNTJbl1VyKns3XE=";
++    inherit rev;
++    inherit sha256;
+   };
+   buildInputs = [
+     yosys
+@@ -38,7 +40,7 @@ clangStdenv.mkDerivation rec {
+     libbsd
+     zlib
+   ];
+-  
++
+   preConfigure = ''
+     patchShebangs .
+   '';
+diff --git a/nix/yosys-ghdl.nix b/nix/yosys-ghdl.nix
+index ed1f810..4b3aeb7 100644
+--- a/nix/yosys-ghdl.nix
++++ b/nix/yosys-ghdl.nix
+@@ -38,6 +38,8 @@
+   zlib,
+   ghdl,
+   pkg-config,
++  rev ? "c9b05e481423c55ffcbb856fd5296701f670808c",
++  sha256 ? "sha256-tT2+DXUtbJIBzBUBcyG2sz+3G+dTkciLVIczcRPr0Jw=",
+ }:
+ clangStdenv.mkDerivation {
+   name = "yosys-ghdl";
+@@ -46,8 +48,8 @@ clangStdenv.mkDerivation {
+   src = fetchFromGitHub {
+     owner = "ghdl";
+     repo = "ghdl-yosys-plugin";
+-    rev = "c9b05e481423c55ffcbb856fd5296701f670808c";
+-    sha256 = "sha256-tT2+DXUtbJIBzBUBcyG2sz+3G+dTkciLVIczcRPr0Jw=";
++    inherit rev;
++    inherit sha256;
+   };
+ 
+   buildInputs = [
+diff --git a/nix/yosys-lighter.nix b/nix/yosys-lighter.nix
+index 887eb57..385b23f 100644
+--- a/nix/yosys-lighter.nix
++++ b/nix/yosys-lighter.nix
+@@ -19,6 +19,8 @@
+   libedit,
+   libbsd,
+   zlib,
++  rev ? "b8e7d4ece5d6e22ab62c03eead761c736dbcaf3c",
++  sha256 ? "sha256-gftQwWrq7KVVQXfb/SThOvbEJK0DoPpiQ3f3X1thBiQ=",
+ }:
+ clangStdenv.mkDerivation rec {
+   name = "yosys-lighter";
+@@ -27,8 +29,8 @@ clangStdenv.mkDerivation rec {
+   src = fetchFromGitHub {
+     owner = "aucohl";
+     repo = "lighter";
+-    rev = "b8e7d4ece5d6e22ab62c03eead761c736dbcaf3c";
+-    sha256 = "sha256-gftQwWrq7KVVQXfb/SThOvbEJK0DoPpiQ3f3X1thBiQ=";
++    inherit rev;
++    inherit sha256;
+   };
+ 
+   buildInputs = [
+diff --git a/nix/yosys-sby.nix b/nix/yosys-sby.nix
+index 65c17be..d2ef1b7 100644
+--- a/nix/yosys-sby.nix
++++ b/nix/yosys-sby.nix
+@@ -21,6 +21,8 @@
+   boolector,
+   z3,
+   yices,
++  rev ? "7415abfcfa8bf14f024f28e61e62f23ccd892415",
++  sha256 ? "sha256-+h+Ddv0FYgovu4ee5e6gA+IiD2wThtzFxOMiGkG99g8=",
+ }:
+ yosys.stdenv.mkDerivation rec {
+   name = "yosys-sby";
+@@ -29,8 +31,8 @@ yosys.stdenv.mkDerivation rec {
+   src = fetchFromGitHub {
+     owner = "yosyshq";
+     repo = "sby";
+-    rev = "7415abfcfa8bf14f024f28e61e62f23ccd892415";
+-    sha256 = "sha256-+h+Ddv0FYgovu4ee5e6gA+IiD2wThtzFxOMiGkG99g8=";
++    inherit rev;
++    inherit sha256;
+   };
+ 
+   makeFlags = [
+diff --git a/nix/yosys-synlig-sv.nix b/nix/yosys-synlig-sv.nix
+index 3ef9e10..e9dac95 100644
+--- a/nix/yosys-synlig-sv.nix
++++ b/nix/yosys-synlig-sv.nix
+@@ -21,6 +21,8 @@
+   antlr4,
+   pkg-config,
+   writeText,
++  rev ? "fe8f61f1480faa1ea63377c6f60de74e5dca2713",
++  sha256 ? "sha256-IBydjoVCYLAb8fNnjgUC1FthScp/CMP17ljCpSEhErU=",
+ }:
+ clangStdenv.mkDerivation rec {
+   name = "yosys-synlig-sv";
+@@ -29,8 +31,8 @@ clangStdenv.mkDerivation rec {
+   src = fetchFromGitHub {
+     owner = "chipsalliance";
+     repo = "synlig";
+-    rev = "fe8f61f1480faa1ea63377c6f60de74e5dca2713";
+-    sha256 = "sha256-IBydjoVCYLAb8fNnjgUC1FthScp/CMP17ljCpSEhErU=";
++    inherit rev;
++    inherit sha256;
+   };
+   buildInputs = [
+     yosys
+@@ -51,7 +53,7 @@ clangStdenv.mkDerivation rec {
+     ''${ts}.src_dir         := ''$(shell yosys-config --datdir/include)
+     ''${ts}.mod_dir         := ''${TOP_DIR}third_party/yosys_mod/
+   '';
+-  
++
+   postPatch = ''
+     sed -i 's/AST::process(design, current_ast,/AST::process(design, current_ast, false,/' frontends/systemverilog/uhdm_common_frontend.cc
+     rm third_party/Build.surelog.mk
+diff --git a/nix/yosys.nix b/nix/yosys.nix
+index 21065b6..c406970 100644
+--- a/nix/yosys.nix
++++ b/nix/yosys.nix
+@@ -44,6 +44,8 @@
+   libbsd,
+   libffi,
+   zlib,
++  rev ? "543faed9c8cd7c33bbb407577d56e4b7444ba61c",
++  sha256 ? "sha256-mzMBhnIEgToez6mGFOvO7zBA+rNivZ9OnLQsjBBDamA=",
+ }: let
+   py3env = python3.withPackages (pp:
+     with pp; [
+@@ -56,8 +58,8 @@
+     src = fetchFromGitHub {
+       owner = "YosysHQ";
+       repo = "yosys";
+-      rev = "543faed9c8cd7c33bbb407577d56e4b7444ba61c";
+-      sha256 = "sha256-mzMBhnIEgToez6mGFOvO7zBA+rNivZ9OnLQsjBBDamA=";
++      inherit rev;
++      inherit sha256;
+     };
+ 
+     nativeBuildInputs = [pkg-config bison flex];
+diff --git a/openlane/__main__.py b/openlane/__main__.py
+index 69f303c..8b120d1 100644
+--- a/openlane/__main__.py
++++ b/openlane/__main__.py
+@@ -286,39 +286,31 @@ def cli_in_container(
+     if not value:
+         return
+ 
+-    status = 0
+     docker_mounts = list(ctx.params.get("docker_mounts") or ())
+     docker_tty: bool = ctx.params.get("docker_tty", True)
+     pdk_root = ctx.params.get("pdk_root")
+     argv = sys.argv[sys.argv.index("--dockerized") + 1 :]
+ 
+-    interactive = True
+     final_argv = ["zsh"]
+     if len(argv) != 0:
+         final_argv = ["openlane"] + argv
+-        interactive = False
+ 
+     docker_image = os.getenv(
+         "OPENLANE_IMAGE_OVERRIDE", f"ghcr.io/efabless/openlane2:{__version__}"
+     )
+ 
+     try:
+-        status = run_in_container(
++        run_in_container(
+             docker_image,
+             final_argv,
+             pdk_root=pdk_root,
+             other_mounts=docker_mounts,
+-            interactive=interactive,
+             tty=docker_tty,
+         )
+     except ValueError as e:
+         print(e)
+-        status = -1
+     except Exception:
+         traceback.print_exc()
+-        status = -1
+-    finally:
+-        ctx.exit(status)
+ 
+ 
+ o = partial(option, show_default=True)
+@@ -366,7 +358,7 @@ o = partial(option, show_default=True)
+         "--dockerized",
+         default=False,
+         is_flag=True,
+-        is_eager=True,  # ddocker options should be processed before anything else
++        is_eager=True,  # docker options should be processed before anything else
+         help="Run the remaining flags using a Docker container. Some caveats apply. Must precede all options except --docker-mount, --docker-tty/--docker-no-tty.",
+         callback=cli_in_container,
+     ),
+diff --git a/openlane/container.py b/openlane/container.py
+index 0f990e1..bb39ce9 100644
+--- a/openlane/container.py
++++ b/openlane/container.py
+@@ -15,12 +15,13 @@
+ ## This file is internal to OpenLane 2 and is not part of the API.
+ import os
+ import re
++import uuid
+ import httpx
+ import shlex
+ import pathlib
+ import tempfile
+ import subprocess
+-from typing import List, Sequence, Optional, Union, Tuple
++from typing import List, NoReturn, Sequence, Optional, Union, Tuple
+ 
+ from .common import mkdirp
+ from .logging import err, info, warn
+@@ -154,9 +155,8 @@ def run_in_container(
+     pdk: Optional[str] = None,
+     scl: Optional[str] = None,
+     other_mounts: Optional[Sequence[str]] = None,
+-    interactive: bool = False,
+     tty: bool = False,
+-) -> int:
++) -> NoReturn:
+     # If imported at the top level, would interfere with Conda where Volare
+     # would not be installed.
+     import volare
+@@ -173,9 +173,7 @@ def run_in_container(
+     if not ensure_image(image):
+         raise ValueError(f"Failed to use image '{image}'.")
+ 
+-    terminal_args = []
+-    if interactive:
+-        terminal_args.append("-i")
++    terminal_args = ["-i"]
+     if tty:
+         terminal_args.append("-t")
+ 
+@@ -230,11 +228,15 @@ def run_in_container(
+             else:
+                 mount_args += ["-v", f"{mount}"]
+ 
++    container_id = str(uuid.uuid4())
++
+     cmd = (
+         [
+             CONTAINER_ENGINE,
+             "run",
+             "--rm",
++            "--name",
++            container_id,
+         ]
+         + terminal_args
+         + permission_args(osinfo)
+@@ -247,9 +249,4 @@ def run_in_container(
+     info("Running containerized command:")
+     print(shlex.join(cmd))
+ 
+-    result = subprocess.call(
+-        cmd,
+-        stderr=subprocess.STDOUT,
+-    )
+-
+-    return result
++    os.execlp(CONTAINER_ENGINE, *cmd)
+diff --git a/openlane/scripts/magic/extract_spice.tcl b/openlane/scripts/magic/extract_spice.tcl
+index 084bf43..35c7106 100644
+--- a/openlane/scripts/magic/extract_spice.tcl
++++ b/openlane/scripts/magic/extract_spice.tcl
+@@ -22,6 +22,45 @@ if { $::env(MAGIC_EXT_USE_GDS) } {
+     read_def
+ }
+ 
++if { [info exists ::env(MAGIC_EXT_ABSTRACT_CELLS)] } {
++    set cells [cellname list allcells]
++    set matching_cells ""
++    foreach expression $::env(MAGIC_EXT_ABSTRACT_CELLS) {
++        set matched 0
++        foreach cell $cells {
++            if { [regexp $expression $cell] } {
++                puts "$cell matched with the expression '$expression'"
++                set matching_cells "$cell $matching_cells"
++                set matched 1
++            }
++        }
++        if { $matched == 0 } {
++            puts "\[WARNING] Failed to match the experssion '$expression' with cells in the design"
++        }
++    }
++    foreach cell $matching_cells {
++        load $cell
++        property LEFview true
++    }
++}
++
++if { [info exists ::env(MAGIC_EXT_ABSTRACT_CELLS_RX)] } {
++    set cells [cellname list allcells]
++    set matching_cells ""
++    foreach expression $::env(MAGIC_EXT_ABSTRACT_CELLS_RX) {
++        foreach cell $cells {
++            if { [regexp $expression $cell] } {
++                puts "$cell matched with $expression"
++                set matching_cells "$cell $matching_cells"
++            }
++        }
++    }
++    foreach cell $matching_cells {
++        load $cell
++        property LEFview true
++    }
++}
++
+ load $::env(DESIGN_NAME) -dereference
+ 
+ set backup $::env(PWD)
+diff --git a/openlane/scripts/netgen/setup.tcl b/openlane/scripts/netgen/setup.tcl
+index 9b439c2..a7f5333 100644
+--- a/openlane/scripts/netgen/setup.tcl
++++ b/openlane/scripts/netgen/setup.tcl
+@@ -1,2 +1,28 @@
+ source $::env(_TCL_ENV_IN)
+ source $::env(NETGEN_SETUP)
++
++#---------------------------------------------------------------
++# Equate prefixed layout cells with corresponding source
++foreach cell $cells1 {
++    set layout $cell
++    while {[regexp {([A-Z][A-Z0-9]_)(.*)} $layout match prefix cellname]} {
++        if {([lsearch $cells2 $cell] < 0) && \
++            ([lsearch $cells2 $cellname] >= 0)} {
++            # netlist with the N names should always be the second netlist
++            equate classes "-circuit2 $cellname" "-circuit1 $cell"
++            puts stdout "Custom: Equating $cell in circuit 1 and $cellname in circuit 2"
++        }
++        set layout $cellname
++    }
++}
++
++if { [info exists ::env(LVS_FLATTEN_CELLS)] } {
++    foreach cell $::env(LVS_FLATTEN_CELLS) {
++        if { [lsearch $cells1 "$cell"] >= 0 } {
++            flatten class "-circuit1 $cell"
++        }
++        if { [lsearch $cells2 "$cell"] >= 0 } {
++            flatten class "-circuit2 $cell"
++        }
++    }
++}
+diff --git a/openlane/scripts/odbpy/check_antenna_properties.py b/openlane/scripts/odbpy/check_antenna_properties.py
+index 88fcd70..cbac32f 100644
+--- a/openlane/scripts/odbpy/check_antenna_properties.py
++++ b/openlane/scripts/odbpy/check_antenna_properties.py
+@@ -31,18 +31,18 @@ def check_cells(odb_cells):
+             if mterm.getSigType() in ["GROUND", "POWER", "ANALOG"]:
+                 continue
+             pin_name = mterm.getName()
+-            has_diff_area = mterm.hasDiffArea()
+-            has_gate_area = (
++            diff_area = mterm.getDiffArea()
++            gate_area = (
+                 mterm.getDefaultAntennaModel()
+-                and mterm.getDefaultAntennaModel().hasGateArea()
+-                or False
++                and mterm.getDefaultAntennaModel().getGateArea()
++                or []
+             )
+             io_type = mterm.getIoType()
+-            if io_type == "INOUT" and not (has_diff_area or has_gate_area):
++            if io_type == "INOUT" and not (len(diff_area) or len(gate_area)):
+                 inout_pins.append(pin_name)
+-            elif io_type == "INPUT" and not has_gate_area:
++            elif io_type == "INPUT" and not len(gate_area):
+                 input_pins.append(pin_name)
+-            elif io_type == "OUTPUT" and not has_diff_area:
++            elif io_type == "OUTPUT" and not len(diff_area):
+                 output_pins.append(pin_name)
+         if inout_pins:
+             print(
+diff --git a/openlane/scripts/odbpy/defutil.py b/openlane/scripts/odbpy/defutil.py
+index 9381293..70452f8 100644
+--- a/openlane/scripts/odbpy/defutil.py
++++ b/openlane/scripts/odbpy/defutil.py
+@@ -182,6 +182,7 @@ def relocate_pins(db, input_lefs, template_def, permissive, copy_def_power=False
+                         box.yMin(),
+                         box.xMax(),
+                         box.yMax(),
++                        template_pin.getPlacementStatus(),
+                     )
+                 )
+ 
+@@ -245,9 +246,12 @@ def relocate_pins(db, input_lefs, template_def, permissive, copy_def_power=False
+             if bterm.getSigType() not in ["POWER", "GROUND"]:
+                 continue
+             pin_name = bterm.getName()
+-            pin_net = odb.dbNet.create(output_block, pin_name, True)
+-            pin_net.setSpecial()
+-            pin_net.setSigType(bterm.getSigType())
++            pin_net_name = bterm.getNet().getName()
++            pin_net = output_block.findNet(pin_net_name)
++            if pin_net is None:
++                pin_net = odb.dbNet.create(output_block, pin_net_name, True)
++                pin_net.setSpecial()
++                pin_net.setSigType(bterm.getSigType())
+             pin_bterm = odb.dbBTerm.create(pin_net, pin_name)
+             pin_bterm.setSigType(bterm.getSigType())
+             output_bterms.append(pin_bterm)
+@@ -322,7 +326,7 @@ def relocate_pins(db, input_lefs, template_def, permissive, copy_def_power=False
+                 template_bterm_location_tuple[3],
+                 template_bterm_location_tuple[4],
+             )
+-            output_new_bpin.setPlacementStatus("PLACED")
++            output_new_bpin.setPlacementStatus(template_bterm_location_tuple[5])
+ 
+     if grid_errors:
+         print(
+diff --git a/openlane/scripts/odbpy/disconnected_pins.py b/openlane/scripts/odbpy/disconnected_pins.py
+index 8c55f68..5309865 100644
+--- a/openlane/scripts/odbpy/disconnected_pins.py
++++ b/openlane/scripts/odbpy/disconnected_pins.py
+@@ -276,6 +276,8 @@ def main(
+     for instance in instances:
+         if instance.getMaster().getName() in ignore_modules:
+             continue
++        if instance.getName().startswith("clkload"):  # TritonCTS dummy clock loads
++            continue
+         instance_module = Module(instance)
+         disconnected_pin_count += instance_module.disconnected_pin_count
+         critical_disconnected_pin_count += (
+diff --git a/openlane/steps/magic.py b/openlane/steps/magic.py
+index 3103fc8..38a3eab 100644
+--- a/openlane/steps/magic.py
++++ b/openlane/steps/magic.py
+@@ -84,7 +84,7 @@ class MagicStep(TclStep):
+         Variable(
+             "CELL_MAGLEFS",
+             Optional[List[Path]],
+-            "A list of pre-processed abstract LEF views for cells. Read as a fallback for undefined cells in scripts where cells are blackboxed.",
++            "A list of pre-processed abstract LEF views for cells. Read as a fallback for undefined cells in scripts where cells are black-boxed.",
+             pdk=True,
+         ),
+         Variable(
+@@ -99,7 +99,7 @@ class MagicStep(TclStep):
+     ]
+ 
+     @abstractmethod
+-    def get_script_path(self):
++    def get_script_path(self) -> str:
+         pass
+ 
+     def get_command(self) -> List[str]:
+@@ -400,6 +400,12 @@ class SpiceExtraction(MagicStep):
+             "A flag to choose whether to use GDS for spice extraction or not. If not, then the extraction will be done using the DEF/LEF, which is faster.",
+             default=False,
+         ),
++        Variable(
++            "MAGIC_EXT_ABSTRACT_CELLS",
++            Optional[List[str]],
++            "A list of regular experssions which are matched against the cells of a "
++            + "the design. Matches are abstracted (black-boxed) during SPICE extraction.",
++        ),
+         Variable(
+             "MAGIC_NO_EXT_UNIQUE",
+             bool,
+diff --git a/openlane/steps/netgen.py b/openlane/steps/netgen.py
+index c204402..9d0e1e8 100644
+--- a/openlane/steps/netgen.py
++++ b/openlane/steps/netgen.py
+@@ -14,14 +14,15 @@
+ import os
+ import re
+ import json
++import textwrap
+ from decimal import Decimal
+ from abc import abstractmethod
+-from typing import List, Dict, Tuple
++from typing import List, Dict, Tuple, Optional
+ 
+ from .step import ViewsUpdate, MetricsUpdate, Step
+ from .tclstep import TclStep
+ 
+-from ..common import Path, mkdirp, get_script_dir
++from ..common import Path, mkdirp, get_script_dir, TclUtils
+ from ..config import Variable
+ from ..state import DesignFormat, State
+ 
+@@ -99,6 +100,12 @@ class NetgenStep(TclStep):
+     outputs = []
+ 
+     config_vars = [
++        Variable(
++            "MAGIC_EXT_USE_GDS",
++            bool,
++            "A flag to choose whether to use GDS for spice extraction or not. If not, then the extraction will be done using the DEF/LEF, which is faster.",
++            default=False,
++        ),
+         Variable(
+             "NETGEN_SETUP",
+             Path,
+@@ -109,7 +116,7 @@ class NetgenStep(TclStep):
+     ]
+ 
+     @abstractmethod
+-    def get_script_path(self):
++    def get_script_path(self) -> str:
+         pass
+ 
+     def get_command(self) -> List[str]:
+@@ -131,6 +138,19 @@ class LVS(NetgenStep):
+     id = "Netgen.LVS"
+     name = "Netgen LVS"
+     inputs = [DesignFormat.SPICE, DesignFormat.POWERED_NETLIST]
++    config_vars = NetgenStep.config_vars + [
++        Variable(
++            "LVS_INCLUDE_MARCO_NETLISTS",
++            bool,
++            "A flag that enables including the gate-level netlist of macros while running Netgen",
++            default=False,
++        ),
++        Variable(
++            "LVS_FLATTEN_CELLS",
++            Optional[List[str]],
++            "A list of cell names to be flattened while running LVS",
++        ),
++    ]
+ 
+     def get_command(self) -> List[str]:
+         return super().get_command() + [self.get_script_path()]
+@@ -159,8 +179,6 @@ class LVS(NetgenStep):
+         stats_file_json = os.path.join(reports_dir, "lvs.netgen.json")
+         mkdirp(reports_dir)
+ 
+-        setup_script = os.path.join(get_script_dir(), "netgen", "setup.tcl")
+-
+         with open(self.get_script_path(), "w") as f:
+             for lib in spice_files:
+                 print(
+@@ -171,12 +189,62 @@ class LVS(NetgenStep):
+                     f"readnet spice {lib} 1",
+                     file=f,
+                 )
++        netgen_setup_script = os.path.join(get_script_dir(), "netgen", "setup.tcl")
++        mkdirp(reports_dir)
+ 
++        spice_files_commands = []
++        for lib in spice_files:
++            spice_files_commands.append(
++                f"puts \"Reading SPICE netlist file '{lib}'...\""
++            )
++            spice_files_commands.append(f"readnet spice {lib} $circuit2")
++
++        macros_commands = []
++        macros_commands += [
++            f"readnet verilog {state_in[DesignFormat.POWERED_NETLIST]} $circuit2"
++        ]
++
++        format_list = [
++            DesignFormat.POWERED_NETLIST,
++            DesignFormat.NETLIST,
++            DesignFormat.VERILOG_HEADER,
++        ]
++
++        if self.config["LVS_INCLUDE_MARCO_NETLISTS"]:
++            macros_views = []
++            for view, _ in self.toolbox.get_macro_views_by_priority(
++                self.config, format_list
++            ):
++                macros_views.append(TclUtils.escape(str(view)))
++
++            for netlist in macros_views:
++                macros_commands.append(
++                    f"puts \"Reading Verilog netlist file '{str(netlist)}'...\""
++                )
++                macros_commands.append(f"readnet verilog {str(netlist)} $circuit2")
++
++        netgen_commands = (
++            (
++                textwrap.dedent(
++                    f"""
++                    set circuit1 [readnet spice {state_in[DesignFormat.SPICE]}]
++                    set circuit2 [readnet verilog /dev/null]"""
++                )
++            )
++            .lstrip()
++            .rstrip()
++            .split("\n")
++        )
++        netgen_commands += spice_files_commands
++        netgen_commands += macros_commands
++        netgen_commands += f'lvs "$circuit1 {design_name}" "$circuit2 {design_name}" {netgen_setup_script} {stats_file} -blackbox -json'.split(
++            "\n"
++        )
++        with open(self.get_script_path(), "w") as f:
+             print(
+-                f"lvs {{ {state_in[DesignFormat.SPICE]} {design_name} }} {{ {state_in[DesignFormat.POWERED_NETLIST]} {design_name} }} {setup_script} {stats_file} -json",
++                "\n".join(netgen_commands),
+                 file=f,
+             )
+-
+         views_updates, metrics_updates = super().run(state_in, **kwargs)
+         stats_string = open(stats_file_json).read()
+         lvs_metrics = get_metrics(json.loads(stats_string, parse_float=Decimal))
+diff --git a/openlane/steps/yosys.py b/openlane/steps/yosys.py
+index 8a8f504..9d6a694 100644
+--- a/openlane/steps/yosys.py
++++ b/openlane/steps/yosys.py
+@@ -51,6 +51,7 @@ def _parse_yosys_check(
+     report: io.TextIOBase,
+     tristate_patterns: Optional[List[str]] = None,
+     tristate_okay: bool = False,
++    elaborate_only: bool = False,
+ ) -> int:
+     verbose("Parsing synthesis checks…")
+     errors_encountered: int = 0
+@@ -68,7 +69,10 @@ def _parse_yosys_check(
+ 
+             cells = re.findall(yosys_cell_rx, last_warning)
+ 
+-            if tristate_okay and (
++            if elaborate_only and "but has no driver" in last_warning:
++                debug("Ignoring undriven cell in elaborate-only mode:")
++                debug(last_warning)
++            elif tristate_okay and (
+                 ("tribuf" in last_warning)
+                 or _check_any_tristate(cells, tristate_patterns)
+             ):
+@@ -511,6 +515,7 @@ class SynthesisCommon(YosysStep):
+                 open(check_error_count_file),
+                 self.config["TRISTATE_CELLS"],
+                 self.config["SYNTH_CHECKS_ALLOW_TRISTATE"],
++                self.config["SYNTH_ELABORATE_ONLY"],
+             )
+ 
+         return views_updates, metric_updates
+diff --git a/test/conftest.py b/test/conftest.py
+index 86616b7..a2e0417 100644
+--- a/test/conftest.py
++++ b/test/conftest.py
+@@ -136,9 +136,9 @@ def _chdir_tmp(request: SubRequest):
+     else:
+         dir = tempfile.mkdtemp()
+         with chdir(dir):
+-            print(f"TMP: {dir}")
++            print(f"\nTMP: {dir}")
+             yield
+-            print(f"TMP: {dir}")
++            print(f"\nTMP: {dir}")
+ 
+ 
+ MOCK_PDK_VARS = [
+diff --git a/test/steps/all b/test/steps/all
+index bc26bd8..77968ec 160000
+--- a/test/steps/all
++++ b/test/steps/all
+@@ -1 +1 @@
+-Subproject commit bc26bd81c03a40667be54aab22ff46293afc93e2
++Subproject commit 77968ec159fa0854ad1f46af8b3ada44e547c840

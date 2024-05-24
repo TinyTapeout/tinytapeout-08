@@ -49,6 +49,8 @@ jobs:
       # run first set of tests
       - name: Mux simulation (without caravel)
         working-directory: verilog/dv/mux
+        env:
+          EXPECTED_REPO: ${{ github.repository }}
         run: |
           make clean test_mux
           # make will return success even if the test fails, so check for failure in the results.xml

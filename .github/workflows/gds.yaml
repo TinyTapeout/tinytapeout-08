@@ -37,6 +37,11 @@ jobs:
           path: openlane2
           ref: ${{ env.OPENLANE_TAG }}
 
+      - name: Patch OpenLane 2 repo
+        working-directory: openlane2
+        run:
+          git apply --allow-empty ../patches/openlane2.patch
+
       - name: setup python
         uses: actions/setup-python@v5
         with:
@@ -51,8 +56,9 @@ jobs:
 
       - uses: cachix/cachix-action@v14
         with:
-          name: openlane
-          extraPullNames: openlane
+          name: ${{ vars.CACHIX_CACHE || 'tinytapeout' }}
+          extraPullNames: ${{ vars.CACHIX_CACHE_EXTRA || 'openlane' }}
+          authToken: ${{ secrets.CACHIX_TOKEN }}
 
       - name: Install Sky130 PDK
         uses: TinyTapeout/volare-action@v2
@@ -127,6 +133,8 @@ jobs:
 
       - name: GL simulation
         working-directory: verilog/dv/mux
+        env:
+          EXPECTED_REPO: ${{ github.repository }}
         run: |
           make clean test_mux_gl
           # make will return success even if the test fails, so check for failure in the results.xml

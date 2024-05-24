@@ -2,6 +2,7 @@ import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import ClockCycles
 import re
+import os
 from binascii import hexlify
 
 async def enable_design(dut, mux_addr):
@@ -95,5 +96,5 @@ async def test_rom(dut):
     assert 'repo' in items
     assert 'commit' in items
 
-    assert items['repo'].startswith('TinyTapeout/')
+    assert items['repo'] == os.environ.get('EXPECTED_REPO')
     assert re.match('^[0-9a-f]{8}$', items['commit']) != None

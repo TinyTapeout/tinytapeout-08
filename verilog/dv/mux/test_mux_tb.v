@@ -60,10 +60,13 @@ module test_mux_tb (
   assign io_oeb  = gpio_oeb;
   wire [43:0] inp_ena = (gpio_dm0 | gpio_dm1 | gpio_dm2) & ~gpio_inp_dis;
 
+  wire vccd1 = 1'b1;
+  wire vssd1 = 1'b0;
+
   openframe_project_wrapper user_project_wrapper (
 `ifdef GL_TEST
-      .vccd1             (1'b1),
-      .vssd1             (1'b0),
+      .vccd1             (vccd1),
+      .vssd1             (vssd1),
 `endif
       .gpio_loopback_zero({44{1'b0}}),
       .gpio_loopback_one ({44{1'b1}}),
