@@ -1,16 +1,18 @@
 ## How it works
 
-ROM memory that contains information about the Tiny Tapeout chip. The ROM is 8-bit wide and 128 bytes long.
+ROM memory that contains information about the Tiny Tapeout chip. The ROM is 8-bit wide and 256 bytes long.
 
 ### The ROM layout
 
 The ROM layout is as follows:
 
 | Address | Length | Encoding  | Description                              |
-| ------- | ------ | --------- | ---------------------------------------- |
+|---------|--------|-----------|------------------------------------------|
 | 0       | 8      | 7-segment | Shuttle name (e.g. "tt07"), null-padded  |
 | 8       | 8      | 7-segment | Git commit hash                          |
 | 32      | 96     | ASCII     | Chip descriptor (see below)              |
+| 248     | 4      | binary    | Magic value: "TT\xFA\xBB"                |
+| 252     | 4      | binary    | CRC32 of the ROM contents, little-endian |
 
 ### The chip descriptor
 
