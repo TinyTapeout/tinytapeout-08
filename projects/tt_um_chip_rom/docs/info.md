@@ -11,7 +11,7 @@ The ROM layout is as follows:
 | 0       | 8      | 7-segment | Shuttle name (e.g. "tt07"), null-padded  |
 | 8       | 8      | 7-segment | Git commit hash                          |
 | 32      | 96     | ASCII     | Chip descriptor (see below)              |
-| 248     | 4      | binary    | Magic value: "TT\xFA\xBB"                |
+| 248     | 4      | binary    | Magic value: "TT\\xFA\\xBB"              |
 | 252     | 4      | binary    | CRC32 of the ROM contents, little-endian |
 
 ### The chip descriptor
@@ -20,7 +20,7 @@ The chip descriptor is a simple null-terminated string that describes the chip.
 Each line is a key-value pair, separated by an equals sign. It contains the following keys:
 
 | Key     | Description                   | Example value              |
-| ------- | ----------------------------- | -------------------------- |
+|---------|-------------------------------|----------------------------|
 | shuttle | The identifier of the shuttle | tt07                       |
 | repo    | The name of the repository    | TinyTapeout/tinytapeout-07 |
 | commit  | The commit hash \*            | a1b2c3d4                   |
