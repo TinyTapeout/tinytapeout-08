@@ -1,0 +1,27 @@
+61. Printing statistics.
+
+=== tt_um_factory_test ===
+
+   Number of wires:                 40
+   Number of wire bits:             75
+   Number of public wires:          17
+   Number of public wire bits:      52
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 56
+     sky130_fd_sc_hd__a21o_2         1
+     sky130_fd_sc_hd__a21oi_2        4
+     sky130_fd_sc_hd__and2_2         9
+     sky130_fd_sc_hd__and2b_2        1
+     sky130_fd_sc_hd__and3_2         4
+     sky130_fd_sc_hd__buf_2          7
+     sky130_fd_sc_hd__dfrtp_2        9
+     sky130_fd_sc_hd__inv_2          1
+     sky130_fd_sc_hd__mux2_1        14
+     sky130_fd_sc_hd__nor2_2         2
+     sky130_fd_sc_hd__o2bb2a_2       1
+     sky130_fd_sc_hd__xor2_2         3
+
+   Chip area for module '\tt_um_factory_test': 655.628800
+
