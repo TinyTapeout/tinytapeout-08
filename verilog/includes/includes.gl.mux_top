@@ -1,7 +1,8 @@
--v $(USER_PROJECT_VERILOG)/gl/openframe_project_wrapper.v
--v $(USER_PROJECT_VERILOG)/gl/tt_ctrl.v
--v $(USER_PROJECT_VERILOG)/gl/tt_mux.v
--v $(USER_PROJECT_VERILOG)/gl/tt_um_chip_rom.v
--v $(USER_PROJECT_VERILOG)/gl/tt_pg_vdd_1.v
--v $(USER_PROJECT_VERILOG)/gl/tt_pg_vdd_2.v
+-v $(EFABLESS_SUBMISSION)/verilog/gl/openframe_project_wrapper.v
+-v $(TT_GL_VERILOG)/tt_ctrl.v
+-v $(TT_GL_VERILOG)/tt_mux.v
+-v $(TT_GL_VERILOG)/tt_um_chip_rom.v
+-v $(TT_GL_VERILOG)/tt_pg_1v8_1.v
+-v $(TT_GL_VERILOG)/tt_pg_1v8_2.v
+-v $(TT_GL_VERILOG)/tt_pg_3v3_2.v
 -v $(USER_PROJECT_VERILOG)/../projects/tt_um_factory_test/tt_um_factory_test.v
