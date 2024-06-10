@@ -1,5 +1,4 @@
-
-63. Printing statistics.
+61. Printing statistics.
 
 === tt_um_chip_rom ===
 
@@ -11,7 +10,7 @@
    Number of memory bits:            0
    Number of processes:              0
    Number of cells:                 24
-     sky130_fd_sc_hd__conb_1        24
+     sky130_fd_sc_hd__buf_2         24
 
-   Chip area for module '\tt_um_chip_rom': 90.086400
+   Chip area for module '\tt_um_chip_rom': 120.115200
 
