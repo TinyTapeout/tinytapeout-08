@@ -14,6 +14,18 @@ MACRO tt_um_factory_test
       LAYER met4 ;
         RECT 21.580 2.480 23.180 109.040 ;
     END
+    PORT
+      LAYER met4 ;
+        RECT 60.450 2.480 62.050 109.040 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 99.320 2.480 100.920 109.040 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 138.190 2.480 139.790 109.040 ;
+    END
   END VGND
   PIN VPWR
     DIRECTION INOUT ;
@@ -21,6 +33,18 @@ MACRO tt_um_factory_test
     PORT
       LAYER met4 ;
         RECT 18.280 2.480 19.880 109.040 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 57.150 2.480 58.750 109.040 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 96.020 2.480 97.620 109.040 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 134.890 2.480 136.490 109.040 ;
     END
   END VPWR
   PIN clk
@@ -437,9 +461,9 @@ MACRO tt_um_factory_test
       LAYER met1 ;
         RECT 2.760 2.480 158.240 109.440 ;
       LAYER met2 ;
-        RECT 18.310 2.535 143.890 110.685 ;
+        RECT 18.310 2.535 141.590 110.685 ;
       LAYER met3 ;
-        RECT 18.290 2.555 144.370 110.665 ;
+        RECT 18.290 2.555 144.170 110.665 ;
       LAYER met4 ;
         RECT 31.370 110.120 33.030 110.665 ;
         RECT 34.130 110.120 35.790 110.665 ;
@@ -482,7 +506,14 @@ MACRO tt_um_factory_test
         RECT 136.250 110.120 137.910 110.665 ;
         RECT 139.010 110.120 140.670 110.665 ;
         RECT 141.770 110.120 143.430 110.665 ;
-        RECT 30.655 95.375 144.145 110.120 ;
+        RECT 30.655 109.440 144.145 110.120 ;
+        RECT 30.655 93.335 56.750 109.440 ;
+        RECT 59.150 93.335 60.050 109.440 ;
+        RECT 62.450 93.335 95.620 109.440 ;
+        RECT 98.020 93.335 98.920 109.440 ;
+        RECT 101.320 93.335 134.490 109.440 ;
+        RECT 136.890 93.335 137.790 109.440 ;
+        RECT 140.190 93.335 144.145 109.440 ;
   END
 END tt_um_factory_test
 END LIBRARY
