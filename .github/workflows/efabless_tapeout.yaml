@@ -39,15 +39,29 @@ jobs:
       - name: Commit and push
         working-directory: tt_efabless
         shell: bash
+        env:
+          WORKFLOW_URL: '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ fromJSON(steps.download_artifact.outputs.artifacts)[0].workflow_run.id }}'
+          WORKFLOW_HEAD_SHA: '${{ fromJSON(steps.download_artifact.outputs.artifacts)[0].workflow_run.head_sha }}'
         run: |
           COMMIT_BODY="\
-          run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ fromJSON(steps.download_artifact.outputs.artifacts)[0].workflow_run.id }}
-          commit: ${{ fromJSON(steps.download_artifact.outputs.artifacts)[0].workflow_run.head_sha }}
+          run: $WORKFLOW_URL
+          commit: $WORKFLOW_HEAD_SHA
           "
+
+          DATE=$(date +%Y%m%d)
+          SHORT_SHA=$(echo $WORKFLOW_HEAD_SHA | cut -c1-7)
+
+          echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+          echo "┃ Tapeout job name: TT-${DATE}-${SHORT_SHA} ┃"
+          echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+          echo ""
+
+          echo "Tapeout job name: \`TT-${DATE}-${SHORT_SHA}\`" >> $GITHUB_STEP_SUMMARY
+          echo "Workflow run: $WORKFLOW_URL" >> $GITHUB_STEP_SUMMARY
 
           git add -A
           if ! git diff-index --quiet HEAD; then
-            git commit -m "update shuttle" -m "$COMMIT_BODY"
+            git commit -m "update shuttle ($SHORT_SHA)" -m "$COMMIT_BODY"
           fi
           echo ""
           git log -1
