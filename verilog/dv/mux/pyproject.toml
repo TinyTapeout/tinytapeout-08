@@ -1,0 +1,10 @@
+[project]
+name = "tt-mux"
+requires-python = ">=3.11"
+dynamic = ["version"]
+dependencies = [
+    "cocotb",
+]
+
+[tool.setuptools]
+packages = []

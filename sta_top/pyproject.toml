@@ -1,0 +1,11 @@
+[project]
+name = "tt-toplevel-sta"
+requires-python = ">=3.11"
+dynamic = ["version"]
+dependencies = [
+    "lark-parser",
+    "verilog-parser",
+]
+
+[tool.setuptools]
+packages = []
