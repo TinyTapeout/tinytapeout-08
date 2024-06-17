@@ -1,0 +1,21 @@
+61. Printing statistics.
+
+=== tt_um_tommythorn_maxbw ===
+
+   Number of wires:                 88
+   Number of wire bits:            123
+   Number of public wires:          40
+   Number of public wire bits:      75
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                104
+     sky130_fd_sc_hd__buf_2         16
+     sky130_fd_sc_hd__dfxtp_2       40
+     sky130_fd_sc_hd__inv_2         16
+     sky130_fd_sc_hd__nor2_2         8
+     sky130_fd_sc_hd__xnor2_2        8
+     sky130_fd_sc_hd__xor2_2        16
+
+   Chip area for module '\tt_um_tommythorn_maxbw': 1431.372800
+

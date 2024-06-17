@@ -1,0 +1,46 @@
+# Tiny Tapeout project information
+project:
+  title:        "MaxBW interconnect"
+  author:       "Tommy Thorn"
+  discord:      "tommythorn"
+  description:  "A testbench and proof of concept of the MaxBW core-uncore interconnection"
+  language:     "Verilog"
+  clock_hz:     66000000
+  tiles:        "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+  top_module:   "tt_um_tommythorn_maxbw"
+  source_files:
+    - "project.v"
+
+pinout:
+  # Inputs
+  ui[0]: "ingress0"
+  ui[1]: "ingress1"
+  ui[2]: "ingress2"
+  ui[3]: "ingress3"
+  ui[4]: "ingress4"
+  ui[5]: "ingress5"
+  ui[6]: "ingress6"
+  ui[7]: "ingress7"
+
+  # Outputs
+  uo[0]: "egress0"
+  uo[1]: "egress1"
+  uo[2]: "egress2"
+  uo[3]: "egress3"
+  uo[4]: "egress4"
+  uo[5]: "egress5"
+  uo[6]: "egress6"
+  uo[7]: "egress7"
+
+  # Bidirectional pins
+  uio[0]: "ingress8"
+  uio[1]: "ingress9"
+  uio[2]: "ingress10"
+  uio[3]: "ingress11"
+  uio[4]: "ingress12"
+  uio[5]: "ingress13"
+  uio[6]: "ingress14"
+  uio[7]: "ingress15"
+
+# Do not change!
+yaml_version: 6
