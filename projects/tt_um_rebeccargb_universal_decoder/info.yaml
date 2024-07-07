@@ -1,0 +1,59 @@
+# Tiny Tapeout project information
+project:
+  title:        "Universal Binary to Segment Decoder"                           # Project title
+  author:       "Rebecca G. Bettencourt"                                        # Your name
+  discord:      "YoukaiRempeka"                                                 # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Decodes various binary codes to various segmented displays."   # One line description of what your project does
+  language:     "Verilog"                                                       # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     0                                                               # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_rebeccargb_universal_decoder"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "project.v"
+    - "ubcd.v"
+    - "ascii.v"
+    - "cistercian.v"
+    - "kaktovik.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "BCD: Input A (0x1); ASCII: Input D0 (0x01); Cistercian: Input A1 (0x1); Kaktovik: Input A (0x1)"
+  ui[1]: "BCD: Input B (0x2); ASCII: Input D1 (0x02); Cistercian: Input B1 (0x2); Kaktovik: Input B (0x2)"
+  ui[2]: "BCD: Input C (0x4); ASCII: Input D2 (0x04); Cistercian: Input C1 (0x4); Kaktovik: Input C (0x4)"
+  ui[3]: "BCD: Input D (0x8); ASCII: Input D3 (0x08); Cistercian: Input D1 (0x8); Kaktovik: Input D (0x8)"
+  ui[4]: "BCD: Input V0 (variant selector); ASCII: Input D4 (0x10); Cistercian: Input A2 (0x1); Kaktovik: Input E (0x10)"
+  ui[5]: "BCD: Input V1 (variant selector); ASCII: Input D5 (0x20); Cistercian: Input B2 (0x2); Kaktovik: Unused"
+  ui[6]: "BCD: Input V2 (variant selector); ASCII: Input D6 (0x40); Cistercian: Input C2 (0x4); Kaktovik: /VBI (overflow blank input)"
+  ui[7]: "BCD, Kaktovik: /RBI (ripple blank input); ASCII: LC (distinct lowercase letters); Cistercian: Input D2 (0x8)"
+
+  # Outputs
+  uo[0]: "BCD, ASCII: Segment a; Cistercian: Segment U1; Kaktovik: Segment a"
+  uo[1]: "BCD, ASCII: Segment b; Cistercian: Segment U2; Kaktovik: Segment b"
+  uo[2]: "BCD, ASCII: Segment c; Cistercian: Segment V1; Kaktovik: Segment c"
+  uo[3]: "BCD, ASCII: Segment d; Cistercian: Segment V2; Kaktovik: Segment d"
+  uo[4]: "BCD, ASCII: Segment e; Cistercian: Segment W1; Kaktovik: Segment e"
+  uo[5]: "BCD, ASCII: Segment f; Cistercian: Segment W2; Kaktovik: Segment f"
+  uo[6]: "BCD, ASCII: Segment g; Cistercian: Segment X1; Kaktovik: Segment g"
+  uo[7]: "BCD, Kaktovik: /RBO (ripple blank output); ASCII: /LTR (LOW iff input is a letter); Cistercian: Segment X2"
+
+  # Bidirectional pins
+  uio[0]: "BCD, ASCII: Input X6 (digit 6 has segment a); Cistercian: Segment Y1; Kaktovik: Segment h"
+  uio[1]: "BCD, ASCII: Input X7 (digit 7 has segment f); Cistercian: Segment Y2; Kaktovik: Output V (overflow)"
+  uio[2]: "BCD, ASCII: Input X9 (digit 9 has segment d); Cistercian: Input /LT1 (lamp test for segment cluster 1)"
+  uio[3]: "BCD, Kaktovik: Input /LT (lamp test); ASCII: Input FS (font select); Cistercian: Input /LT2 (lamp test 2)"
+  uio[4]: "Input /BI (blanking input; all segments will be blank regardless of other inputs, including /LT)"
+  uio[5]: "Input /AL (LOW = segment outputs are LOW when lit; HIGH = segment outputs are HIGH when lit)"
+  uio[6]: "BCD: Input LOW; ASCII: Input HIGH; Cistercian: Input LOW; Kaktovik: Input HIGH"
+  uio[7]: "BCD: Input LOW; ASCII: Input LOW; Cistercian: Input HIGH; Kaktovik: Input HIGH"
+
+# Do not change!
+yaml_version: 6

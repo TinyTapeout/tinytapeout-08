@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="432px" height="324px" viewBox="0 0 216 162" enable-background="new 0 0 216 162" xml:space="preserve">
+<g>
+	<g>
+		<g>
+			<g>
+				<polygon points="33.641,31.237 35.441,33.037 35.441,49.763 33.641,51.563 31.841,49.763 31.841,33.037 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="38.886,33.301 36.341,33.301 
+					36.341,35.846 41.446,40.951 43.991,40.951 43.991,38.405 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="52.542,35.846 52.542,33.301 
+					49.996,33.301 44.891,38.405 44.891,40.951 47.436,40.951 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="43.991,44.396 43.991,41.851 
+					41.446,41.851 36.341,46.956 36.341,49.501 38.886,49.501 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="47.436,41.851 44.891,41.851 
+					44.891,44.396 49.996,49.501 52.542,49.501 52.542,46.956 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="34.277,52.201 36.077,50.401 
+					52.803,50.401 54.604,52.201 52.803,54.001 36.077,54.001 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="34.277,30.601 36.077,28.8 
+					52.803,28.8 54.604,30.601 52.803,32.401 36.077,32.401 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="55.241,31.237 57.042,33.037 
+					57.042,49.763 55.241,51.563 53.441,49.763 53.441,33.037 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 43.3862 28.2598)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 43.4556 57.0596)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 40.6587 34.2891)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 45.022 47.9253)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 42.2759 49.6304)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 46.6396 35.9941)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 57.9536 42.6597)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 29.4536 42.6597)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="65.321,31.237 67.121,33.037 67.121,49.763 65.321,51.563 63.521,49.763 63.521,33.037 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="70.566,33.301 68.021,33.301 
+					68.021,35.846 73.125,40.951 75.67,40.951 75.67,38.405 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="84.221,35.846 84.221,33.301 
+					81.675,33.301 76.571,38.405 76.571,40.951 79.116,40.951 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="75.67,44.396 75.67,41.851 
+					73.125,41.851 68.021,46.956 68.021,49.501 70.566,49.501 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="79.116,41.851 76.571,41.851 
+					76.571,44.396 81.675,49.501 84.221,49.501 84.221,46.956 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="65.957,52.201 67.756,50.401 
+					84.483,50.401 86.284,52.201 84.483,54.001 67.756,54.001 				"/>
+				<polygon points="65.957,30.601 67.756,28.8 84.483,28.8 86.284,30.601 84.483,32.401 67.756,32.401 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="86.92,31.237 88.721,33.037 
+					88.721,49.763 86.92,51.563 85.121,49.763 85.121,33.037 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 75.0659 28.2598)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 75.1353 57.0596)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 72.3394 34.2891)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 76.7026 47.9253)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 73.9561 49.6304)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 78.3198 35.9941)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 89.6343 42.6597)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 61.1333 42.6597)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="97.001,31.237 98.801,33.037 98.801,49.763 97.001,51.563 95.202,49.763 95.202,33.037 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="102.247,33.301 99.702,33.301 
+					99.702,35.846 104.806,40.951 107.351,40.951 107.351,38.405 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="115.9,35.846 115.9,33.301 
+					113.355,33.301 108.251,38.405 108.251,40.951 110.797,40.951 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="107.351,44.396 107.351,41.851 
+					104.806,41.851 99.702,46.956 99.702,49.501 102.247,49.501 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="110.797,41.851 108.251,41.851 
+					108.251,44.396 113.355,49.501 115.9,49.501 115.9,46.956 				"/>
+				<polygon points="97.637,52.201 99.437,50.401 116.164,50.401 117.963,52.201 116.164,54.001 99.437,54.001 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="97.637,30.601 99.437,28.8 
+					116.164,28.8 117.963,30.601 116.164,32.401 99.437,32.401 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="118.602,31.237 120.4,33.037 
+					120.4,49.763 118.602,51.563 116.801,49.763 116.801,33.037 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 106.7466 28.2598)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 106.8159 57.0596)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 104.0195 34.2891)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 108.3828 47.9253)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 105.6367 49.6304)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 110 35.9941)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 121.3145 42.6597)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 92.814 42.6597)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="128.682,31.237 130.48,33.037 130.48,49.763 128.682,51.563 126.881,49.763 126.881,33.037 				"/>
+				<polygon points="133.926,33.301 131.381,33.301 131.381,35.846 136.486,40.951 139.031,40.951 139.031,38.405 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="147.58,35.846 147.58,33.301 
+					145.035,33.301 139.932,38.405 139.932,40.951 142.477,40.951 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="139.031,44.396 139.031,41.851 
+					136.486,41.851 131.381,46.956 131.381,49.501 133.926,49.501 				"/>
+				<polygon points="142.477,41.851 139.932,41.851 139.932,44.396 145.035,49.501 147.58,49.501 147.58,46.956 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="129.316,52.201 131.117,50.401 
+					147.844,50.401 149.643,52.201 147.844,54.001 131.117,54.001 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="129.316,30.601 131.117,28.8 
+					147.844,28.8 149.643,30.601 147.844,32.401 131.117,32.401 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="150.281,31.237 152.08,33.037 
+					152.08,49.763 150.281,51.563 148.48,49.763 148.48,33.037 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 138.4258 28.2598)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 138.4961 57.0596)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 135.7002 34.2896)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 140.0635 47.9258)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 137.3164 49.6309)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 141.6807 35.9946)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 152.9941 42.6597)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 124.4941 42.6597)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="160.361,31.237 162.162,33.037 162.162,49.763 160.361,51.563 158.561,49.763 158.561,33.037 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="165.607,33.301 163.061,33.301 
+					163.061,35.846 168.166,40.951 170.711,40.951 170.711,38.405 				"/>
+				<polygon points="179.262,35.846 179.262,33.301 176.717,33.301 171.611,38.405 171.611,40.951 174.156,40.951 				"/>
+				<polygon points="170.711,44.396 170.711,41.851 168.166,41.851 163.061,46.956 163.061,49.501 165.607,49.501 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="174.156,41.851 171.611,41.851 
+					171.611,44.396 176.717,49.501 179.262,49.501 179.262,46.956 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="160.998,52.201 162.797,50.401 
+					179.523,50.401 181.324,52.201 179.523,54.001 162.797,54.001 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="160.998,30.601 162.797,28.8 
+					179.523,28.8 181.324,30.601 179.523,32.401 162.797,32.401 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="181.961,31.237 183.762,33.037 
+					183.762,49.763 181.961,51.563 180.162,49.763 180.162,33.037 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 170.1055 28.2598)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 170.1758 57.0596)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 167.3799 34.2896)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 171.7432 47.9253)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 168.9961 49.6304)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 173.3604 35.9937)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 184.6738 42.6597)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 156.1738 42.6597)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="33.641,74.437 35.441,76.237 35.441,92.963 33.641,94.764 31.841,92.963 31.841,76.237 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="38.886,76.501 36.341,76.501 
+					36.341,79.046 41.446,84.15 43.991,84.15 43.991,81.605 				"/>
+				<polygon points="52.542,79.046 52.542,76.501 49.996,76.501 44.891,81.605 44.891,84.15 47.436,84.15 				"/>
+				<polygon points="43.991,87.596 43.991,85.051 41.446,85.051 36.341,90.155 36.341,92.701 38.886,92.701 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="47.436,85.051 44.891,85.051 
+					44.891,87.596 49.996,92.701 52.542,92.701 52.542,90.155 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="34.277,95.4 36.077,93.601 
+					52.803,93.601 54.604,95.4 52.803,97.201 36.077,97.201 				"/>
+				<polygon points="34.277,73.8 36.077,72 52.803,72 54.604,73.8 52.803,75.601 36.077,75.601 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="55.241,74.437 57.042,76.237 
+					57.042,92.963 55.241,94.764 53.441,92.963 53.441,76.237 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 43.3862 71.46)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 43.4556 100.2598)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 40.6587 77.4893)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 45.022 91.1255)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 42.2759 92.8306)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 46.6396 79.1938)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 57.9536 85.8599)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 29.4536 85.8599)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="65.321,74.437 67.121,76.237 67.121,92.963 65.321,94.764 63.521,92.963 63.521,76.237 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="70.566,76.501 68.021,76.501 
+					68.021,79.046 73.125,84.15 75.67,84.15 75.67,81.605 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="84.221,79.046 84.221,76.501 
+					81.675,76.501 76.571,81.605 76.571,84.15 79.116,84.15 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="75.67,87.596 75.67,85.051 
+					73.125,85.051 68.021,90.155 68.021,92.701 70.566,92.701 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="79.116,85.051 76.571,85.051 
+					76.571,87.596 81.675,92.701 84.221,92.701 84.221,90.155 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="65.957,95.4 67.756,93.601 
+					84.483,93.601 86.284,95.4 84.483,97.201 67.756,97.201 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="65.957,73.8 67.756,72 84.483,72 
+					86.284,73.8 84.483,75.601 67.756,75.601 				"/>
+				<polygon points="86.92,74.437 88.721,76.237 88.721,92.963 86.92,94.764 85.121,92.963 85.121,76.237 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 75.0659 71.46)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 75.1353 100.2598)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 72.3394 77.4893)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 76.7026 91.1255)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 73.9561 92.8306)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 78.3198 79.1943)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 89.6343 85.8599)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 61.1333 85.8599)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="97.001,74.437 98.801,76.237 98.801,92.963 97.001,94.764 95.202,92.963 95.202,76.237 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="102.247,76.501 99.702,76.501 
+					99.702,79.046 104.806,84.15 107.351,84.15 107.351,81.605 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="115.9,79.046 115.9,76.501 
+					113.355,76.501 108.251,81.605 108.251,84.15 110.797,84.15 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="107.351,87.596 107.351,85.051 
+					104.806,85.051 99.702,90.155 99.702,92.701 102.247,92.701 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="110.797,85.051 108.251,85.051 
+					108.251,87.596 113.355,92.701 115.9,92.701 115.9,90.155 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="97.637,95.4 99.437,93.601 
+					116.164,93.601 117.963,95.4 116.164,97.201 99.437,97.201 				"/>
+				<polygon points="97.637,73.8 99.437,72 116.164,72 117.963,73.8 116.164,75.601 99.437,75.601 				"/>
+				<polygon points="118.602,74.437 120.4,76.237 120.4,92.963 118.602,94.764 116.801,92.963 116.801,76.237 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 106.7456 71.46)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 106.8149 100.2598)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 104.0195 77.4893)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 108.3828 91.1255)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 105.6362 92.8306)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 110 79.1943)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 121.3145 85.8599)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 92.813 85.8599)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="128.682,74.438 130.48,76.237 130.48,92.964 128.682,94.764 126.881,92.964 126.881,76.237 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="133.926,76.501 131.381,76.501 
+					131.381,79.046 136.486,84.151 139.031,84.151 139.031,81.606 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="147.58,79.046 147.58,76.501 
+					145.035,76.501 139.932,81.606 139.932,84.151 142.477,84.151 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="139.031,87.597 139.031,85.051 
+					136.486,85.051 131.381,90.156 131.381,92.701 133.926,92.701 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="142.477,85.051 139.932,85.051 
+					139.932,87.597 145.035,92.701 147.58,92.701 147.58,90.156 				"/>
+				<polygon points="129.316,95.401 131.117,93.602 147.844,93.602 149.643,95.401 147.844,97.201 131.117,97.201 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="129.316,73.801 131.117,72.001 
+					147.844,72.001 149.643,73.801 147.844,75.601 131.117,75.601 				"/>
+				<polygon points="150.281,74.438 152.08,76.237 152.08,92.964 150.281,94.764 148.48,92.964 148.48,76.237 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 138.4258 71.46)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 138.4941 100.2598)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 135.6992 77.4897)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 140.0625 91.126)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 137.3164 92.8311)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 141.6797 79.1948)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 152.9941 85.8604)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 124.4922 85.8604)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="160.361,74.438 162.162,76.237 162.162,92.964 160.361,94.764 158.561,92.964 158.561,76.237 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="165.607,76.501 163.061,76.501 
+					163.061,79.046 168.166,84.151 170.711,84.151 170.711,81.606 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="179.262,79.046 179.262,76.501 
+					176.717,76.501 171.611,81.606 171.611,84.151 174.156,84.151 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="170.711,87.597 170.711,85.051 
+					168.166,85.051 163.061,90.156 163.061,92.701 165.607,92.701 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="174.156,85.051 171.611,85.051 
+					171.611,87.597 176.717,92.701 179.262,92.701 179.262,90.156 				"/>
+				<polygon points="160.998,95.401 162.797,93.602 179.523,93.602 181.324,95.401 179.523,97.201 162.797,97.201 				"/>
+				<polygon points="160.998,73.801 162.797,72.001 179.523,72.001 181.324,73.801 179.523,75.601 162.797,75.601 				"/>
+				<polygon points="181.961,74.438 183.762,76.237 183.762,92.964 181.961,94.764 180.162,92.964 180.162,76.237 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 170.1055 71.46)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 170.1758 100.2598)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 167.3799 77.4897)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 171.7432 91.1265)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 168.9971 92.8315)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 173.3604 79.1948)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 184.6738 85.8604)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 156.1738 85.8604)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="17.877,117.638 19.677,119.438 19.677,136.164 17.877,137.964 16.076,136.164 16.076,119.438 				"/>
+				<polygon points="23.122,119.701 20.576,119.701 20.576,122.246 25.682,127.352 28.227,127.352 28.227,124.806 				"/>
+				<polygon points="36.776,122.246 36.776,119.701 34.231,119.701 29.127,124.806 29.127,127.352 31.672,127.352 				"/>
+				<polygon points="28.227,130.797 28.227,128.251 25.682,128.251 20.576,133.355 20.576,135.901 23.122,135.901 				"/>
+				<polygon points="31.672,128.251 29.127,128.251 29.127,130.797 34.231,135.901 36.776,135.901 36.776,133.355 				"/>
+				<polygon points="18.513,138.602 20.313,136.801 37.039,136.801 38.839,138.602 37.039,140.401 20.313,140.401 				"/>
+				<polygon points="18.513,117.001 20.313,115.201 37.039,115.201 38.839,117.001 37.039,118.801 20.313,118.801 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="39.477,117.638 41.276,119.438 
+					41.276,136.164 39.477,137.964 37.677,136.164 37.677,119.438 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 27.6216 114.6602)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 27.6909 143.46)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 24.894 120.6895)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 29.2578 134.3262)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 26.5117 136.0313)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 30.8755 122.3955)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 42.189 129.0605)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 13.689 129.0605)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="49.406,117.638 51.206,119.438 51.206,136.164 49.406,137.964 47.606,136.164 47.606,119.438 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="54.651,119.701 52.106,119.701 
+					52.106,122.246 57.211,127.352 59.756,127.352 59.756,124.806 				"/>
+				<polygon points="68.307,122.246 68.307,119.701 65.761,119.701 60.656,124.806 60.656,127.352 63.201,127.352 				"/>
+				<polygon points="59.756,130.797 59.756,128.251 57.211,128.251 52.106,133.355 52.106,135.901 54.651,135.901 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="63.201,128.251 60.656,128.251 
+					60.656,130.797 65.761,135.901 68.307,135.901 68.307,133.355 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="50.042,138.602 51.842,136.801 
+					68.568,136.801 70.369,138.602 68.568,140.401 51.842,140.401 				"/>
+				<polygon points="50.042,117.001 51.842,115.201 68.568,115.201 70.369,117.001 68.568,118.801 51.842,118.801 				"/>
+				<polygon points="71.006,117.638 72.807,119.438 72.807,136.164 71.006,137.964 69.206,136.164 69.206,119.438 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 59.1519 114.6602)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 59.2212 143.46)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 56.4248 120.6904)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 60.7881 134.3262)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 58.0415 136.0313)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 62.4058 122.3955)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 73.7192 129.0605)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 45.2192 129.0605)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="81.086,117.638 82.886,119.438 82.886,136.164 81.086,137.964 79.286,136.164 79.286,119.438 				"/>
+				<polygon points="86.331,119.701 83.786,119.701 83.786,122.246 88.891,127.352 91.436,127.352 91.436,124.806 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="99.986,122.246 99.986,119.701 
+					97.44,119.701 92.336,124.806 92.336,127.352 94.881,127.352 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="91.436,130.797 91.436,128.251 
+					88.891,128.251 83.786,133.355 83.786,135.901 86.331,135.901 				"/>
+				<polygon points="94.881,128.251 92.336,128.251 92.336,130.797 97.44,135.901 99.986,135.901 99.986,133.355 				"/>
+				<polygon points="81.722,138.602 83.521,136.801 100.248,136.801 102.049,138.602 100.248,140.401 83.521,140.401 				"/>
+				<polygon points="81.722,117.001 83.521,115.201 100.248,115.201 102.049,117.001 100.248,118.801 83.521,118.801 				"/>
+				<polygon points="102.686,117.638 104.486,119.438 104.486,136.164 102.686,137.964 100.886,136.164 100.886,119.438 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 90.8315 114.6602)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 90.9009 143.46)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 88.105 120.6904)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 92.4683 134.3262)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 89.7222 136.0313)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 94.0859 122.3955)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 105.3999 129.0605)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 76.8989 129.0605)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="112.767,117.638 114.566,119.438 114.566,136.164 112.767,137.964 110.967,136.164 110.967,119.438 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="118.012,119.701 115.467,119.701 
+					115.467,122.246 120.571,127.352 123.116,127.352 123.116,124.806 				"/>
+				<polygon points="131.666,122.246 131.666,119.701 129.121,119.701 124.017,124.806 124.017,127.352 126.562,127.352 				"/>
+				<polygon points="123.116,130.797 123.116,128.251 120.571,128.251 115.467,133.355 115.467,135.901 118.012,135.901 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="126.562,128.251 124.017,128.251 
+					124.017,130.797 129.121,135.901 131.666,135.901 131.666,133.355 				"/>
+				<polygon points="113.402,138.602 115.202,136.801 131.929,136.801 133.729,138.602 131.929,140.401 115.202,140.401 				"/>
+				<polygon points="113.402,117.001 115.202,115.201 131.929,115.201 133.729,117.001 131.929,118.801 115.202,118.801 				"/>
+				<polygon points="134.366,117.638 136.166,119.438 136.166,136.164 134.366,137.964 132.566,136.164 132.566,119.438 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 122.5117 114.6602)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 122.5801 143.46)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 119.7852 120.6895)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 124.1484 134.3271)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 121.4023 136.0313)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 125.7666 122.3955)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 137.0801 129.0605)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 108.5786 129.0605)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="144.447,117.638 146.247,119.438 146.247,136.164 144.447,137.964 142.646,136.164 142.646,119.438 				"/>
+				<polygon points="149.692,119.701 147.146,119.701 147.146,122.246 152.252,127.352 154.797,127.352 154.797,124.806 				"/>
+				<polygon points="163.347,122.246 163.347,119.701 160.802,119.701 155.697,124.806 155.697,127.352 158.242,127.352 				"/>
+				<polygon points="154.797,130.797 154.797,128.251 152.252,128.251 147.146,133.355 147.146,135.901 149.692,135.901 				"/>
+				<polygon points="158.242,128.251 155.697,128.251 155.697,130.797 160.802,135.901 163.347,135.901 163.347,133.355 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="145.083,138.602 146.883,136.801 
+					163.609,136.801 165.409,138.602 163.609,140.401 146.883,140.401 				"/>
+				<polygon points="145.083,117.001 146.883,115.201 163.609,115.201 165.409,117.001 163.609,118.801 146.883,118.801 				"/>
+				<polygon points="166.047,117.638 167.847,119.438 167.847,136.164 166.047,137.964 164.247,136.164 164.247,119.438 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 154.1914 114.6602)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 154.2598 143.46)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 151.4648 120.6904)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 155.8281 134.3262)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 153.082 136.0313)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 157.4453 122.3945)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 168.7598 129.0605)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 140.2578 129.0605)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<g>
+		<g>
+			<g>
+				<polygon points="176.127,117.638 177.927,119.438 177.927,136.164 176.127,137.964 174.326,136.164 174.326,119.438 				"/>
+				<polygon points="181.372,119.701 178.826,119.701 178.826,122.246 183.932,127.352 186.477,127.352 186.477,124.806 				"/>
+				<polygon points="195.026,122.246 195.026,119.701 192.481,119.701 187.377,124.806 187.377,127.352 189.922,127.352 				"/>
+				<polygon points="186.477,130.797 186.477,128.251 183.932,128.251 178.826,133.355 178.826,135.901 181.372,135.901 				"/>
+				<polygon points="189.922,128.251 187.377,128.251 187.377,130.797 192.481,135.901 195.026,135.901 195.026,133.355 				"/>
+				<polygon points="176.763,138.602 178.563,136.801 195.289,136.801 197.089,138.602 195.289,140.401 178.563,140.401 				"/>
+				<polygon fill="none" stroke="#000" stroke-width="0.4" points="176.763,117.001 178.563,115.201 
+					195.289,115.201 197.089,117.001 195.289,118.801 178.563,118.801 				"/>
+				<polygon points="197.727,117.638 199.526,119.438 199.526,136.164 197.727,137.964 195.927,136.164 195.927,119.438 				"/>
+			</g>
+			<text transform="matrix(1 0 0 1 185.8711 114.6602)" font-family="Verdana" font-size="2.88">U</text>
+			<text transform="matrix(1 0 0 1 185.9414 143.46)" font-family="Verdana" font-size="2.88">V</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 183.1455 120.6904)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 187.5088 134.3262)" font-family="Verdana" font-size="2.88">W</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 184.7617 136.0313)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(0.7071 -0.7071 0.7071 0.7071 189.126 122.3955)" font-family="Verdana" font-size="2.88">X</text>
+			<text transform="matrix(1 0 0 1 200.4395 129.0605)" font-family="Verdana" font-size="2.88">Y</text>
+			<text transform="matrix(1 0 0 1 171.9395 129.0605)" font-family="Verdana" font-size="2.88">Z</text>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 42.9146 64.2598)" font-family="Verdana" font-size="4.8">0</text>
+	<text transform="matrix(1 0 0 1 74.5942 64.2598)" font-family="Verdana" font-size="4.8">1</text>
+	<text transform="matrix(1 0 0 1 106.2749 64.2598)" font-family="Verdana" font-size="4.8">2</text>
+	<text transform="matrix(1 0 0 1 137.9551 64.2598)" font-family="Verdana" font-size="4.8">3</text>
+	<text transform="matrix(1 0 0 1 169.6348 64.2598)" font-family="Verdana" font-size="4.8">4</text>
+	<text transform="matrix(1 0 0 1 35.9341 107.46)" font-family="Verdana" font-size="4.8">1+4=5</text>
+	<text transform="matrix(1 0 0 1 74.5942 107.46)" font-family="Verdana" font-size="4.8">6</text>
+	<text transform="matrix(1 0 0 1 99.2935 107.46)" font-family="Verdana" font-size="4.8">1+6=7</text>
+	<text transform="matrix(1 0 0 1 130.9727 107.46)" font-family="Verdana" font-size="4.8">2+6=8</text>
+	<text transform="matrix(1 0 0 1 159.1641 107.46)" font-family="Verdana" font-size="4.8">1+2+6=9</text>
+	<text transform="matrix(1 0 0 1 11.6646 150.6602)" font-family="Verdana" font-size="4.8">1+2+3+4=10</text>
+	<text transform="matrix(1 0 0 1 50.1743 150.6602)" font-family="Verdana" font-size="4.8">5+6=11</text>
+	<text transform="matrix(1 0 0 1 81.854 150.6602)" font-family="Verdana" font-size="4.8">3+9=12</text>
+	<text transform="matrix(1 0 0 1 113.5332 150.6602)" font-family="Verdana" font-size="4.8">4+9=13</text>
+	<text transform="matrix(1 0 0 1 141.7227 150.6602)" font-family="Verdana" font-size="4.8">3+4+7=14</text>
+	<text transform="matrix(1 0 0 1 173.4043 150.6602)" font-family="Verdana" font-size="4.8">3+4+8=15</text>
+</g>
+<text transform="matrix(1 0 0 1 17.084 18)" font-family="Verdana" font-size="8">Patterns as seen in top right (units) position:</text>
+</svg>
