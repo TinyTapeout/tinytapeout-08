@@ -104,7 +104,7 @@ module tt_um_mattvenn_r2r_dac_3v3 (
         .b6(r2r_3v3[6]),
         .b7(r2r_3v3[7]),
         .out(ua[0]),
-        .GND(VGND)
+        .VGND(VGND)
         );
 
     // ties for the output enables
