@@ -26,6 +26,7 @@ module tt_um_mattvenn_r2r_dac_3v3 (
         .load_divider(uio_in[1]),   // load value set on data to the clock divider
         .data(ui_in),               // connect to ui_in[7:0]
         .r2r_out(r2r_1v8),          // 8 bit out to the R2R DAC
+        .cnt_zero(uo_out[0]),
         .VPWR(VDPWR),
         .VGND(VGND)
         );
@@ -108,7 +109,6 @@ module tt_um_mattvenn_r2r_dac_3v3 (
         );
 
     // ties for the output enables
-    assign uo_out[0] = VGND;
     assign uo_out[1] = VGND;
     assign uo_out[2] = VGND;
     assign uo_out[3] = VGND;
