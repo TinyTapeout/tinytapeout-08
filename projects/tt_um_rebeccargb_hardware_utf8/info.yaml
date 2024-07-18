@@ -23,24 +23,24 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: "/ROUT: reset output state for multiple reads, active low"
-  ui[1]: "ERRS, /PROPS: select status output"
-  ui[2]: "CHK: treat non-Unicode values (≥0x110000) as errors"
-  ui[3]: "CBE, /CLE: character I/O is big-endian"
-  ui[4]: "READ, /WRITE: select I/O direction"
-  ui[5]: "/CIO: character I/O strobe, active low"
-  ui[6]: "/UIO: UTF-16 byte I/O strobe, active low"
-  ui[7]: "/BIO: UTF-8 byte I/O strobe, active low"
+  ui[0]: "/ROUT"
+  ui[1]: "ERRS, /PROPS"
+  ui[2]: "CHK"
+  ui[3]: "CBE, /CLE"
+  ui[4]: "READ, /WRITE"
+  ui[5]: "/CIO"
+  ui[6]: "/UIO"
+  ui[7]: "/BIO"
 
   # Outputs
-  uo[0]: "output ready; normal character"
-  uo[1]: "retry input; control character"
-  uo[2]: "invalid input; surrogate character"
-  uo[3]: "overlong encoding; high surrogate or non-BMP character"
-  uo[4]: "non-Unicode value; private use character"
-  uo[5]: "error; non-character"
-  uo[6]: "UEOF: UTF-16 byte I/O EOF"
-  uo[7]: "BEOF: UTF-8 byte I/O EOF"
+  uo[0]: "READY; NORMAL"
+  uo[1]: "RETRY; CONTROL"
+  uo[2]: "INVALID; SURROGATE"
+  uo[3]: "OVERLONG; HIGHCHAR"
+  uo[4]: "NONUNI; PRIVATE"
+  uo[5]: "ERROR; NONCHAR"
+  uo[6]: "UEOF"
+  uo[7]: "BEOF"
 
   # Bidirectional pins
   uio[0]: "I/O LSB"
