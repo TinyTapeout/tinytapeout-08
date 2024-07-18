@@ -44,7 +44,9 @@ The pin assignments in this mode are:
 
 This mode converts an ASCII character to a representation on a standard seven segment display. Like with the BCD decoder, there are inputs that affect the display of the digits 6, 7, and 9. There are also two choices of “font” and the option to display lowercase letters as uppercase or as lowercase.
 
-![](ascii.svg)
+![](ascii-f0.svg)
+
+![](ascii-f1.svg)
 
 The signals used in this mode are:
 
