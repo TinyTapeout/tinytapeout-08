@@ -1,0 +1,8 @@
+{
+  "app": "custom_gds action",
+  "repo": "https://github.com/rburt16/tt08-analog-bias-generator",
+  "commit": "594296cd75b81ad9f36cda48739867b9ce4c86a7",
+  "workflow_url": "https://github.com/rburt16/tt08-analog-bias-generator/actions/runs/10310494865",
+  "sort_id": 1723157784295,
+  "analog": true
+}
