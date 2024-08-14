@@ -67,7 +67,7 @@ MACRO tt_um_ran_DanielZhu
   PIN rst_n
     DIRECTION INPUT ;
     USE SIGNAL ;
-    ANTENNAGATEAREA 0.126000 ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 141.070 110.520 141.370 111.520 ;
@@ -112,7 +112,7 @@ MACRO tt_um_ran_DanielZhu
   PIN ui_in[4]
     DIRECTION INPUT ;
     USE SIGNAL ;
-    ANTENNAGATEAREA 0.126000 ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 127.270 110.520 127.570 111.520 ;
@@ -309,7 +309,7 @@ MACRO tt_um_ran_DanielZhu
   PIN uio_out[3]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.911000 ;
+    ANTENNADIFFAREA 0.891000 ;
     PORT
       LAYER met4 ;
         RECT 63.790 110.520 64.090 111.520 ;
@@ -318,7 +318,7 @@ MACRO tt_um_ran_DanielZhu
   PIN uio_out[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.891000 ;
+    ANTENNADIFFAREA 0.462000 ;
     PORT
       LAYER met4 ;
         RECT 61.030 110.520 61.330 111.520 ;
@@ -336,7 +336,7 @@ MACRO tt_um_ran_DanielZhu
   PIN uio_out[6]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.453750 ;
+    ANTENNADIFFAREA 1.288000 ;
     PORT
       LAYER met4 ;
         RECT 55.510 110.520 55.810 111.520 ;
@@ -450,9 +450,9 @@ MACRO tt_um_ran_DanielZhu
       LAYER met1 ;
         RECT 2.760 2.480 158.240 109.040 ;
       LAYER met2 ;
-        RECT 5.160 2.535 156.760 110.685 ;
+        RECT 4.700 2.535 156.300 110.685 ;
       LAYER met3 ;
-        RECT 18.290 2.555 145.295 110.665 ;
+        RECT 18.290 2.555 145.755 110.665 ;
       LAYER met4 ;
         RECT 31.370 110.120 33.030 110.665 ;
         RECT 34.130 110.120 35.790 110.665 ;
