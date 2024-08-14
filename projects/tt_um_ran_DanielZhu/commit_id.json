@@ -1,8 +1,8 @@
 {
   "app": "Tiny Tapeout tt08 86beb5d8",
   "repo": "https://github.com/DanielZhu123/tt08-verilog-Ztemplate",
-  "commit": "fadadf60ca2bf99be5c48c1c0bea9677ab0d7e15",
-  "workflow_url": "https://github.com/DanielZhu123/tt08-verilog-Ztemplate/actions/runs/10366497150",
+  "commit": "93b2132e602d0b1c38a64a51527389bd2460c4db",
+  "workflow_url": "https://github.com/DanielZhu123/tt08-verilog-Ztemplate/actions/runs/10382292988",
   "sort_id": 1723538879399,
   "openlane_version": "OpenLane2 2.0.8",
   "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
