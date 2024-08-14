@@ -1,0 +1,58 @@
+# Tiny Tapeout project information
+project:
+  title:        "Lab and Lectures SoC"      # Project title
+  author:       "Aloke Kumar Das"      # Your name
+  discord:      "L&L"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "A tiny SoC comprising of a cpu, memory and SPI protocol"      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     50       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_LnL_SoC"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "project.v"
+    - "cpu.v"
+    - "spi.v"
+    - "bootrom.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "keyboard 0"
+  ui[1]: "keyboard 1"
+  ui[2]: "keyboard 2"
+  ui[3]: "keyboard 3"
+  ui[4]: "keyboard 4"
+  ui[5]: "keyboard 5"
+  ui[6]: "keyboard 6"
+  ui[7]: "keyboard 7"
+
+  # Outputs
+  uo[0]: "display 0"
+  uo[1]: "display 1"
+  uo[2]: "display 2"
+  uo[3]: "display 3"
+  uo[4]: "display 4"
+  uo[5]: "display 5"
+  uo[6]: "display 6"
+  uo[7]: "display 7"
+
+  # Bidirectional pins
+  uio[0]: "cpu keyboard in flag"
+  uio[1]: "miso of spi"
+  uio[2]: "ssn in of spi"
+  uio[3]: "clock of spi (future use)"
+  uio[4]: "ssn out of spi"
+  uio[5]: "mosi of spi"
+  uio[6]: "sclk of spi"
+  uio[7]: "cpu display flag"
+
+# Do not change!
+yaml_version: 6
