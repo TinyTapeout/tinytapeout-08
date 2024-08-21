@@ -18,20 +18,25 @@ project:
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
     - "tt_um_jmack2201.v"
-    - "vga_pwm_wrapper.v"
+    - "demoscene_wrapper.v"
     - "vga_cfg.v"
     - "pwm.v"
-    - "vga.v"
+    # - "vga.v"
+    - "hvsync_generator.v"
     - "audio_source.v"
+    - "spi.v"
+    - "pixel_color.v"
+    - "sfx_rom.v"
+    - "sprite_rom.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: "vga_state0"
-  ui[1]: "vga_state1"
+  ui[0]: ""
+  ui[1]: ""
   ui[2]: ""
-  ui[3]: "audio_select0"
-  ui[4]: "audio_select1"
+  ui[3]: ""
+  ui[4]: ""
   ui[5]: ""
   ui[6]: ""
   ui[7]: ""
@@ -47,10 +52,10 @@ pinout:
   uo[7]: "HSYNC"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
+  uio[0]: "SCLK"
+  uio[1]: "SSEL"
+  uio[2]: "MOSI"
+  uio[3]: "MISO"
   uio[4]: ""
   uio[5]: ""
   uio[6]: ""
