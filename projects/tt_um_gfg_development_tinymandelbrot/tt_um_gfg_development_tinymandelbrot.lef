@@ -68,7 +68,6 @@ MACRO tt_um_gfg_development_tinymandelbrot
     DIRECTION INPUT ;
     USE SIGNAL ;
     ANTENNAGATEAREA 0.196500 ;
-    ANTENNADIFFAREA 0.434700 ;
     PORT
       LAYER met4 ;
         RECT 141.070 224.760 141.370 225.760 ;
@@ -78,7 +77,6 @@ MACRO tt_um_gfg_development_tinymandelbrot
     DIRECTION INPUT ;
     USE SIGNAL ;
     ANTENNAGATEAREA 0.196500 ;
-    ANTENNADIFFAREA 0.434700 ;
     PORT
       LAYER met4 ;
         RECT 138.310 224.760 138.610 225.760 ;
@@ -88,7 +86,6 @@ MACRO tt_um_gfg_development_tinymandelbrot
     DIRECTION INPUT ;
     USE SIGNAL ;
     ANTENNAGATEAREA 0.196500 ;
-    ANTENNADIFFAREA 0.434700 ;
     PORT
       LAYER met4 ;
         RECT 135.550 224.760 135.850 225.760 ;
@@ -106,7 +103,7 @@ MACRO tt_um_gfg_development_tinymandelbrot
   PIN ui_in[3]
     DIRECTION INPUT ;
     USE SIGNAL ;
-    ANTENNAGATEAREA 0.213000 ;
+    ANTENNAGATEAREA 0.159000 ;
     PORT
       LAYER met4 ;
         RECT 130.030 224.760 130.330 225.760 ;
@@ -134,7 +131,6 @@ MACRO tt_um_gfg_development_tinymandelbrot
     DIRECTION INPUT ;
     USE SIGNAL ;
     ANTENNAGATEAREA 0.196500 ;
-    ANTENNADIFFAREA 0.434700 ;
     PORT
       LAYER met4 ;
         RECT 121.750 224.760 122.050 225.760 ;
@@ -298,7 +294,7 @@ MACRO tt_um_gfg_development_tinymandelbrot
   PIN uio_out[1]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNAGATEAREA 0.373500 ;
+    ANTENNAGATEAREA 0.621000 ;
     ANTENNADIFFAREA 0.891000 ;
     PORT
       LAYER met4 ;
@@ -328,7 +324,7 @@ MACRO tt_um_gfg_development_tinymandelbrot
   PIN uio_out[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.445500 ;
+    ANTENNADIFFAREA 0.795200 ;
     PORT
       LAYER met4 ;
         RECT 61.030 224.760 61.330 225.760 ;
@@ -373,7 +369,7 @@ MACRO tt_um_gfg_development_tinymandelbrot
   PIN uo_out[1]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.445500 ;
+    ANTENNADIFFAREA 0.891000 ;
     PORT
       LAYER met4 ;
         RECT 91.390 224.760 91.690 225.760 ;
@@ -382,7 +378,7 @@ MACRO tt_um_gfg_development_tinymandelbrot
   PIN uo_out[2]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.445500 ;
+    ANTENNADIFFAREA 0.891000 ;
     PORT
       LAYER met4 ;
         RECT 88.630 224.760 88.930 225.760 ;
@@ -400,7 +396,7 @@ MACRO tt_um_gfg_development_tinymandelbrot
   PIN uo_out[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.445500 ;
+    ANTENNADIFFAREA 0.891000 ;
     PORT
       LAYER met4 ;
         RECT 83.110 224.760 83.410 225.760 ;
@@ -409,7 +405,7 @@ MACRO tt_um_gfg_development_tinymandelbrot
   PIN uo_out[5]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.445500 ;
+    ANTENNADIFFAREA 0.891000 ;
     PORT
       LAYER met4 ;
         RECT 80.350 224.760 80.650 225.760 ;
@@ -418,7 +414,7 @@ MACRO tt_um_gfg_development_tinymandelbrot
   PIN uo_out[6]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.643500 ;
+    ANTENNADIFFAREA 0.891000 ;
     PORT
       LAYER met4 ;
         RECT 77.590 224.760 77.890 225.760 ;
@@ -427,7 +423,7 @@ MACRO tt_um_gfg_development_tinymandelbrot
   PIN uo_out[7]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 1.242000 ;
+    ANTENNADIFFAREA 1.288000 ;
     PORT
       LAYER met4 ;
         RECT 74.830 224.760 75.130 225.760 ;
@@ -479,13 +475,12 @@ MACRO tt_um_gfg_development_tinymandelbrot
       LAYER li1 ;
         RECT 2.760 2.635 158.240 223.125 ;
       LAYER met1 ;
-        RECT 2.760 1.740 160.470 225.380 ;
+        RECT 2.760 2.480 158.240 223.280 ;
       LAYER met2 ;
-        RECT 3.780 1.710 160.440 225.410 ;
+        RECT 6.540 2.535 157.680 224.925 ;
       LAYER met3 ;
-        RECT 4.665 2.555 159.555 224.905 ;
+        RECT 14.785 2.555 156.795 224.905 ;
       LAYER met4 ;
-        RECT 24.215 224.360 30.270 224.905 ;
         RECT 31.370 224.360 33.030 224.905 ;
         RECT 34.130 224.360 35.790 224.905 ;
         RECT 36.890 224.360 38.550 224.905 ;
@@ -529,14 +524,14 @@ MACRO tt_um_gfg_development_tinymandelbrot
         RECT 141.770 224.360 143.430 224.905 ;
         RECT 144.530 224.360 146.190 224.905 ;
         RECT 147.290 224.360 149.665 224.905 ;
-        RECT 24.215 223.680 149.665 224.360 ;
-        RECT 24.215 9.695 56.750 223.680 ;
-        RECT 59.150 9.695 60.050 223.680 ;
-        RECT 62.450 9.695 95.620 223.680 ;
-        RECT 98.020 9.695 98.920 223.680 ;
-        RECT 101.320 9.695 134.490 223.680 ;
-        RECT 136.890 9.695 137.790 223.680 ;
-        RECT 140.190 9.695 149.665 223.680 ;
+        RECT 30.655 223.680 149.665 224.360 ;
+        RECT 30.655 15.135 56.750 223.680 ;
+        RECT 59.150 15.135 60.050 223.680 ;
+        RECT 62.450 15.135 95.620 223.680 ;
+        RECT 98.020 15.135 98.920 223.680 ;
+        RECT 101.320 15.135 134.490 223.680 ;
+        RECT 136.890 15.135 137.790 223.680 ;
+        RECT 140.190 15.135 149.665 223.680 ;
   END
 END tt_um_gfg_development_tinymandelbrot
 END LIBRARY
