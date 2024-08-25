@@ -1,0 +1,55 @@
+# Tiny Tapeout project information
+project:
+  title:        "Crispy VGA"      # Project title
+  author:       "James Meech"      # Your name
+  discord:      "Meechy"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "The scrolling VGA example from the vga playground but as you set more inputs high it gets successively more crispy"      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_crispy_vga"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "project.v"
+    - "hvsync_generator.v"
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "Hopefully hsync vga input"
+  ui[1]: "Hopefully B[0] vga input"
+  ui[2]: "Hopefully G[0] vga input"
+  ui[3]: "Hopefully R[0] vga input"
+  ui[4]: "Hopefully vsync vga input"
+  ui[5]: "Hopefully B[1] vga input"
+  ui[6]: "Hopefully G[1] vga input"
+  ui[7]: "Hopefully R[1] vga input"
+
+  # Outputs
+  uo[0]: "hsync vga output"
+  uo[1]: "B[0] vga output"
+  uo[2]: "G[0] vga output"
+  uo[3]: "R[0] vga output"
+  uo[4]: "vsync vga output"
+  uo[5]: "B[1] vga output"
+  uo[6]: "G[1] vga output"
+  uo[7]: "R[1] vga output"
+
+  # Bidirectional pins
+  uio[0]: "Crispy input bit 0"
+  uio[1]: "Crispy input bit 1"
+  uio[2]: "Crispy input bit 2"
+  uio[3]: "Crispy input bit 3"
+  uio[4]: "Crispy input bit 4"
+  uio[5]: "Crispy input bit 5"
+  uio[6]: "Crispy input bit 6"
+  uio[7]: "Crispy input bit 7"
+
+# Do not change!
+yaml_version: 6
