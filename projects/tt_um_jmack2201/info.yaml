@@ -19,9 +19,7 @@ project:
   source_files:
     - "tt_um_jmack2201.v"
     - "demoscene_wrapper.v"
-    - "vga_cfg.v"
-    - "pwm.v"
-    # - "vga.v"
+    - "params.v"
     - "hvsync_generator.v"
     - "audio_source.v"
     - "spi.v"
