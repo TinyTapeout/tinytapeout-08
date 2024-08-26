@@ -1,0 +1,61 @@
+# Tiny Tapeout project information
+project:
+  title:        "TT08 Pachelbel's Canon demo"      # Project title
+  author:       "Mike Bell"      # Your name
+  discord:      "rebelmike"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Tiny Tapeout visuals with the classic Canon soundtrack"      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     36000000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_MichaelBell_canon"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "project.v"
+    - "pwm.v"
+    - "music.v"
+    - "sample.v"
+    - "display.sv"
+    - "timing.sv"
+    - "vga.sv"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: ""
+  ui[1]: ""
+  ui[2]: ""
+  ui[3]: ""
+  ui[4]: ""
+  ui[5]: ""
+  ui[6]: ""
+  ui[7]: ""
+
+  # Outputs
+  uo[0]: "R[1]"
+  uo[1]: "G[1]"
+  uo[2]: "B[1]"
+  uo[3]: "vsync"
+  uo[4]: "R[0]"
+  uo[5]: "G[0]"
+  uo[6]: "B[0]"
+  uo[7]: "hsync"
+
+  # Bidirectional pins
+  uio[0]: ""
+  uio[1]: ""
+  uio[2]: ""
+  uio[3]: ""
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: "PWM output"
+
+# Do not change!
+yaml_version: 6
