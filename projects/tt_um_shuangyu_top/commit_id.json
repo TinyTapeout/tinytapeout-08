@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 86beb5d8",
+  "repo": "https://github.com/Cooooobra/tt08_calculator",
+  "commit": "77e5f3dfcf5a672a106639376c775d1660b2e903",
+  "workflow_url": "https://github.com/Cooooobra/tt08_calculator/actions/runs/10573382182",
+  "sort_id": 1724747255039,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}
