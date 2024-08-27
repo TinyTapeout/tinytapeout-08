@@ -171,7 +171,8 @@ MACRO tt_um_tt08_aicd_playground
   PIN ui_in[1]
     DIRECTION INPUT ;
     USE SIGNAL ;
-    ANTENNAGATEAREA 0.196500 ;
+    ANTENNAGATEAREA 0.631200 ;
+    ANTENNADIFFAREA 0.434700 ;
     PORT
       LAYER met4 ;
         RECT 119.910 224.760 120.210 225.760 ;
@@ -189,7 +190,8 @@ MACRO tt_um_tt08_aicd_playground
   PIN ui_in[3]
     DIRECTION INPUT ;
     USE SIGNAL ;
-    ANTENNAGATEAREA 0.196500 ;
+    ANTENNAGATEAREA 0.631200 ;
+    ANTENNADIFFAREA 0.434700 ;
     PORT
       LAYER met4 ;
         RECT 114.390 224.760 114.690 225.760 ;
@@ -225,7 +227,8 @@ MACRO tt_um_tt08_aicd_playground
   PIN ui_in[7]
     DIRECTION INPUT ;
     USE SIGNAL ;
-    ANTENNAGATEAREA 0.196500 ;
+    ANTENNAGATEAREA 0.631200 ;
+    ANTENNADIFFAREA 0.434700 ;
     PORT
       LAYER met4 ;
         RECT 103.350 224.760 103.650 225.760 ;
@@ -234,7 +237,8 @@ MACRO tt_um_tt08_aicd_playground
   PIN uio_in[0]
     DIRECTION INPUT ;
     USE SIGNAL ;
-    ANTENNAGATEAREA 0.196500 ;
+    ANTENNAGATEAREA 0.631200 ;
+    ANTENNADIFFAREA 0.434700 ;
     PORT
       LAYER met4 ;
         RECT 100.590 224.760 100.890 225.760 ;
@@ -278,6 +282,7 @@ MACRO tt_um_tt08_aicd_playground
   PIN uio_in[5]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 86.790 224.760 87.090 225.760 ;
@@ -519,11 +524,11 @@ MACRO tt_um_tt08_aicd_playground
       LAYER li1 ;
         RECT 5.520 6.395 313.800 222.085 ;
       LAYER met1 ;
-        RECT 1.910 5.840 313.800 223.020 ;
+        RECT 3.290 5.840 313.800 223.700 ;
       LAYER met2 ;
-        RECT 1.930 0.770 313.800 223.050 ;
+        RECT 2.850 0.770 313.800 225.285 ;
       LAYER met3 ;
-        RECT 1.905 0.770 317.025 221.625 ;
+        RECT 2.825 0.770 317.025 225.265 ;
       LAYER met4 ;
         RECT 3.055 224.360 14.630 224.760 ;
         RECT 15.730 224.360 17.390 224.760 ;
