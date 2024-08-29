@@ -24,6 +24,7 @@ project:
     - "display.sv"
     - "timing.sv"
     - "vga.sv"
+    - "latch_reg.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
