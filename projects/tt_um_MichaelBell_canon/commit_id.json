@@ -1,9 +1,7 @@
 {
-  "app": "Tiny Tapeout tt08 86beb5d8",
+  "app": "Customised TT08 OL2 2.1.1",
   "repo": "https://github.com/MichaelBell/tt08-canon",
-  "commit": "5aaba48a9423bdb683f5206f949d4f768e102b0f",
-  "workflow_url": "https://github.com/MichaelBell/tt08-canon/actions/runs/10516270759",
-  "sort_id": 1724688550529,
-  "openlane_version": "OpenLane2 2.0.8",
-  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+  "commit": "5bf904d8bffa03ca37e5fd6f1391b14970a58933",
+  "workflow_url": "https://github.com/MichaelBell/tt08-canon/actions/runs/10623160528",
+  "sort_id": 1724688550529
 }
