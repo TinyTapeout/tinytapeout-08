@@ -21,6 +21,8 @@ project:
     - "cpu.v"
     - "spi.v"
     - "bootrom.v"
+    - "timer.v"
+    - "pwm.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
