@@ -19,9 +19,13 @@ project:
   source_files:
     - "project.v"
     - "demo.sv"
+    - "sine_table_generated.v"
+    - "logo_table_generated.v"
     - "graphics.sv"
     - "raster_scan2.sv"
-    - "sine_table_generated.v"
+    - "tinysynth.sv"
+    - "alu_code_generated.v"
+    - "memories.sv"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
