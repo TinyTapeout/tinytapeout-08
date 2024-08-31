@@ -1,0 +1,92 @@
+65. Printing statistics.
+
+=== cinv ===
+
+   Number of wires:                  2
+   Number of wire bits:              2
+   Number of public wires:           2
+   Number of public wire bits:       2
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__inv_2          1
+
+   Chip area for module '\cinv': 3.753600
+
+=== tt_um_roy1707018 ===
+
+   Number of wires:                374
+   Number of wire bits:            409
+   Number of public wires:         211
+   Number of public wire bits:     246
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                390
+     cinv                           80
+     sky130_fd_sc_hd__a211o_2        4
+     sky130_fd_sc_hd__a21o_2         3
+     sky130_fd_sc_hd__a21oi_2        1
+     sky130_fd_sc_hd__a221o_2        3
+     sky130_fd_sc_hd__a22o_2        16
+     sky130_fd_sc_hd__a31o_2         1
+     sky130_fd_sc_hd__and2_2        22
+     sky130_fd_sc_hd__and2b_2        2
+     sky130_fd_sc_hd__and3_2         1
+     sky130_fd_sc_hd__and3b_2        1
+     sky130_fd_sc_hd__buf_2         35
+     sky130_fd_sc_hd__dfrtp_2       91
+     sky130_fd_sc_hd__inv_2          1
+     sky130_fd_sc_hd__mux2_1        74
+     sky130_fd_sc_hd__nand2_2        5
+     sky130_fd_sc_hd__nor2_2         5
+     sky130_fd_sc_hd__nor3b_2        2
+     sky130_fd_sc_hd__o21ai_2        3
+     sky130_fd_sc_hd__o22a_2         8
+     sky130_fd_sc_hd__or2_2          9
+     sky130_fd_sc_hd__xnor2_2       19
+     sky130_fd_sc_hd__xor2_2         4
+
+   Area for cell type \cinv is unknown!
+
+   Chip area for module '\tt_um_roy1707018': 4505.571200
+
+=== design hierarchy ===
+
+   tt_um_roy1707018                  1
+     cinv                           80
+
+   Number of wires:                534
+   Number of wire bits:            569
+   Number of public wires:         371
+   Number of public wire bits:     406
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                390
+     sky130_fd_sc_hd__a211o_2        4
+     sky130_fd_sc_hd__a21o_2         3
+     sky130_fd_sc_hd__a21oi_2        1
+     sky130_fd_sc_hd__a221o_2        3
+     sky130_fd_sc_hd__a22o_2        16
+     sky130_fd_sc_hd__a31o_2         1
+     sky130_fd_sc_hd__and2_2        22
+     sky130_fd_sc_hd__and2b_2        2
+     sky130_fd_sc_hd__and3_2         1
+     sky130_fd_sc_hd__and3b_2        1
+     sky130_fd_sc_hd__buf_2         35
+     sky130_fd_sc_hd__dfrtp_2       91
+     sky130_fd_sc_hd__inv_2         81
+     sky130_fd_sc_hd__mux2_1        74
+     sky130_fd_sc_hd__nand2_2        5
+     sky130_fd_sc_hd__nor2_2         5
+     sky130_fd_sc_hd__nor3b_2        2
+     sky130_fd_sc_hd__o21ai_2        3
+     sky130_fd_sc_hd__o22a_2         8
+     sky130_fd_sc_hd__or2_2          9
+     sky130_fd_sc_hd__xnor2_2       19
+     sky130_fd_sc_hd__xor2_2         4
+
+   Chip area for top module '\tt_um_roy1707018': 4805.859200
+
