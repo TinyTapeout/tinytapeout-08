@@ -1,0 +1,65 @@
+# Tiny Tapeout project information
+project:
+  title:        "TT08 Analog Factory Test"
+  author:       "Sylvain Munaut"
+  discord:      "246tnt"
+  description:  "Test structures for TT08 analog support"
+  language:     "Analog"
+  clock_hz:     0
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x2"
+
+  # How many analog pins does your project use?
+  analog_pins: 6
+  uses_3v3: true
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_analog_factory_test"
+  
+  # List your project's source files here. Source files must be in ./src and you must list each source file separately, one per line:
+  source_files:        
+    - "tt_um_analog_factory_test.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "ena_1v8_n"
+  ui[1]: "ena_3v3_n"
+  ui[2]: ""
+  ui[3]: ""
+  ui[4]: ""
+  ui[5]: ""
+  ui[6]: "uio_oe"
+  ui[7]: "digital_in"
+
+  # Outputs
+  uo[0]: "digital_out"
+  uo[1]: "digital_out"
+  uo[2]: "digital_out"
+  uo[3]: "digital_out"
+  uo[4]: "digital_out"
+  uo[5]: "digital_out"
+  uo[6]: "digital_out"
+  uo[7]: "digital_out"
+
+  # Bidirectional pins
+  uio[0]: "digital_out"
+  uio[1]: "digital_out"
+  uio[2]: "digital_out"
+  uio[3]: "digital_out"
+  uio[4]: "digital_out"
+  uio[5]: "digital_out"
+  uio[6]: "digital_out"
+  uio[7]: "digital_out"
+
+  # Analog pins
+  ua[0]: "ibias"
+  ua[1]: "vapwr_sense"
+  ua[2]: "vgnd_sense"
+  ua[3]: "vdpwr_sense"
+  ua[4]: "loopback_a"
+  ua[5]: "loopback_b"
+
+# Do not change!
+yaml_version: 6
