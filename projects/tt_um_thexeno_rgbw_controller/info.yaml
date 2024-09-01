@@ -1,0 +1,63 @@
+# Tiny Tapeout project information
+project:
+  title:        "RGBW Color Processor"      # Project title
+  author:       "Enrico Sanino"      # Your name
+  discord:      "thexeno"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Color processor for RGBW LEDs, with generation of hue, tint and intensity based on a color index. Is also a direct SPI to 4 channels PWM converter." # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     66000000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_thexeno_rgbw_controller"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "rgbw_lamp.v"
+    - "clock_prescaler.v"
+    - "pwm_gen.v"
+    - "spi_slave.v"
+    - "data_dispatcher.v"
+    - "color_wheel_processor.v"
+    - "mult8x8.v"
+
+
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: ""
+  ui[1]: ""
+  ui[2]: ""
+  ui[3]: "test_pin" # test pin to output some CwPU internal states
+  ui[4]: "cs_n" # ui[4]: "#CS (from external master)"
+  ui[5]: "sck" # ui[5]: "SPI SCK (from external master)"
+  ui[6]: "mosi" # ui[6]: "MOSI"
+  ui[7]: "clk_div_en"
+
+  # Outputs
+  uo[0]: "red_pwm"
+  uo[1]: "green_pwm"
+  uo[2]: "blue_pwm"
+  uo[3]: "white_pwm"
+  uo[4]: ""
+  uo[5]: ""
+  uo[6]: ""
+  uo[7]: ""
+
+  # Bidirectional pins
+  uio[0]: "test_out_0"
+  uio[1]: "test_out_1"
+  uio[2]: "test_out_2"
+  uio[3]: "test_out_3"
+  uio[4]: "test_out_4"
+  uio[5]: "test_out_5"
+  uio[6]: "test_out_6"
+  uio[7]: "test_out_7"
+
+# Do not change!
+yaml_version: 6
