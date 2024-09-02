@@ -22,34 +22,34 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: "Hopefully hsync vga input"
-  ui[1]: "Hopefully B[0] vga input"
-  ui[2]: "Hopefully G[0] vga input"
-  ui[3]: "Hopefully R[0] vga input"
-  ui[4]: "Hopefully vsync vga input"
-  ui[5]: "Hopefully B[1] vga input"
-  ui[6]: "Hopefully G[1] vga input"
-  ui[7]: "Hopefully R[1] vga input"
+  ui[0]: "R[1] vga input"
+  ui[1]: "G[1] vga input"
+  ui[2]: "B[1] vga input"
+  ui[3]: "vsync vga input"
+  ui[4]: "R[0] vga input"
+  ui[5]: "G[0] vga input"
+  ui[6]: "B[0] vga input"
+  ui[7]: "hsync vga input"
 
   # Outputs
-  uo[0]: "hsync vga output"
-  uo[1]: "B[0] vga output"
-  uo[2]: "G[0] vga output"
-  uo[3]: "R[0] vga output"
-  uo[4]: "vsync vga output"
-  uo[5]: "B[1] vga output"
-  uo[6]: "G[1] vga output"
-  uo[7]: "R[1] vga output"
+  uo[0]: "R[1] vga input"
+  uo[1]: "G[1] vga input"
+  uo[2]: "B[1] vga input"
+  uo[3]: "vsync vga input"
+  uo[4]: "R[0] vga input"
+  uo[5]: "G[0] vga input"
+  uo[6]: "B[0] vga input"
+  uo[7]: "hsync vga input"
 
   # Bidirectional pins
-  uio[0]: "Crispy input bit 0"
-  uio[1]: "Crispy input bit 1"
-  uio[2]: "Crispy input bit 2"
-  uio[3]: "Crispy input bit 3"
-  uio[4]: "Crispy input bit 4"
-  uio[5]: "Crispy input bit 5"
-  uio[6]: "Crispy input bit 6"
-  uio[7]: "Crispy input bit 7"
+  uio[0]: "Crispy input bit 0 that toggles the noise on the hsync signal on or off. Also adds one bit of noise to audio."
+  uio[1]: "Crispy input bit 1 toggles the noise on the B signal on or off. Also adds one bit of noise to audio."
+  uio[2]: "Crispy input bit 2 toggles the noise on the G signal on or off. Also adds one bit of noise to audio."
+  uio[3]: "Crispy input bit 3 toggles the noise on the R signal on or off. Also adds one bit of noise to audio."
+  uio[4]: "Crispy input bit 4 that toggles the noise on the vsync signal on or off. Also adds one bit of noise to audio."
+  uio[5]: "Crispy input bit 5 that sets the noise level applied to the R, G, and B wires to high or low. Also adds one bit of noise to audio."
+  uio[6]: "Audio input bit"
+  uio[7]: "Audio output bit"
 
 # Do not change!
 yaml_version: 6
