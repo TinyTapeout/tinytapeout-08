@@ -1,0 +1,55 @@
+# Tiny Tapeout project information
+project:
+  title:        "Tiny PLL"      # Project title
+  author:       "LegumeEmittingDiode"      # Your name
+  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "4-channel fractional-N frequency synthesizer"      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     10000000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_tiny_pll"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "project.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "csr_data_in[0]: Data input for PLL control registers"
+  ui[1]: "csr_data_in[1]: Data input for PLL control registers"
+  ui[2]: "csr_data_in[2]: Data input for PLL control registers"
+  ui[3]: "csr_data_in[3]: Data input for PLL control registers"
+  ui[4]: "csr_addr_in[0]: Address input for PLL control registers"
+  ui[5]: "csr_addr_in[1]: Address input for PLL control registers"
+  ui[6]: "csr_addr_in[2]: Address input for PLL control registers"
+  ui[7]: "csr_addr_in[3]: Address input for PLL control registers"
+
+  # Outputs
+  uo[0]: "clk_out[0]: Channel 0 PLL clock output"
+  uo[1]: "clk_out[1]: Channel 1 PLL clock output"
+  uo[2]: "clk_out[2]: Channel 2 PLL clock output"
+  uo[3]: "clk_out[3]: Channel 3 PLL clock output"
+  uo[4]: "adc_out: Channel 0 control voltage ADC output"
+  uo[5]: ""
+  uo[6]: ""
+  uo[7]: ""
+
+  # Bidirectional pins
+  uio[0]: "clk_csr: Clock input for PLL control registers"
+  uio[1]: ""
+  uio[2]: ""
+  uio[3]: ""
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
+
+# Do not change!
+yaml_version: 6
