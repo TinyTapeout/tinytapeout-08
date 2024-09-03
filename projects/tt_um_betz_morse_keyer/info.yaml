@@ -1,0 +1,58 @@
+# Tiny Tapeout project information
+project:
+  title:        "Morse Code Keyer"        # Project title
+  author:       "Brady Etz" # Your name
+  discord:      "nerducken" # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Convert a keyed CW input to morse tones and 7-segment character output" # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     12000000  # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_betz_morse_keyer"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "project.v"
+    - "morse.v"
+    - "debounce.v"
+    - "misc.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "Paddle Selection (1 = Iambic)"
+  ui[1]: "Iambic-A/B Type Selection (1 = B)"
+  ui[2]: ""
+  ui[3]: ""
+  ui[4]: "WPM Select [0] (LSB)"
+  ui[5]: "WPM Select [1]"
+  ui[6]: "WPM Select [2]"
+  ui[7]: "WPM Select [3] (MSB)"
+
+  # Outputs
+  uo[0]: "7-Seg. Display A"
+  uo[1]: "7-Seg. Display B"
+  uo[2]: "7-Seg. Display C"
+  uo[3]: "7-Seg. Display D"
+  uo[4]: "7-Seg. Display E"
+  uo[5]: "7-Seg. Display F"
+  uo[6]: "7-Seg. Display G"
+  uo[7]: "7-Seg. Display ."
+
+  # Bidirectional pins
+  uio[0]: "External Dit / Straight In (active-high)"
+  uio[1]: "External Dah In (active-high)"
+  uio[2]: "Aux. Dit Paddle Out (active-high)"
+  uio[3]: "Aux. Dah Paddle Out (active-high)"
+  uio[4]: "Aux. Morse Out (active-high)"
+  uio[5]: "Buzzer Tone Out"
+  uio[6]: ""
+  uio[7]: ""
+
+# Do not change!
+yaml_version: 6
