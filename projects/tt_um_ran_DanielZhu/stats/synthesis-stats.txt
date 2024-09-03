@@ -2,47 +2,46 @@
 
 === tt_um_ran_DanielZhu ===
 
-   Number of wires:                954
-   Number of wire bits:            989
-   Number of public wires:         810
-   Number of public wire bits:     845
+   Number of wires:                904
+   Number of wire bits:            939
+   Number of public wires:         815
+   Number of public wire bits:     850
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:                970
-     sky130_fd_sc_hd__a211o_2        1
-     sky130_fd_sc_hd__a211oi_2       1
-     sky130_fd_sc_hd__a21o_2         5
-     sky130_fd_sc_hd__a21oi_2        4
-     sky130_fd_sc_hd__a22o_2         2
+   Number of cells:                920
+     sky130_fd_sc_hd__a21o_2         2
+     sky130_fd_sc_hd__a21oi_2        5
+     sky130_fd_sc_hd__a22o_2         3
      sky130_fd_sc_hd__a41o_2         1
-     sky130_fd_sc_hd__and2_2        68
-     sky130_fd_sc_hd__and2b_2        2
-     sky130_fd_sc_hd__and3_2         1
-     sky130_fd_sc_hd__and3b_2        1
+     sky130_fd_sc_hd__and2_2        20
+     sky130_fd_sc_hd__and3_2         3
      sky130_fd_sc_hd__buf_2         10
-     sky130_fd_sc_hd__dfxtp_2       67
-     sky130_fd_sc_hd__inv_2        519
-     sky130_fd_sc_hd__mux2_1       199
+     sky130_fd_sc_hd__dfrtp_2       53
+     sky130_fd_sc_hd__dfstp_2        1
+     sky130_fd_sc_hd__dfxtp_2       13
+     sky130_fd_sc_hd__inv_2        526
+     sky130_fd_sc_hd__mux2_1       198
      sky130_fd_sc_hd__nand2_1       16
-     sky130_fd_sc_hd__nand2_2       14
-     sky130_fd_sc_hd__nand2b_2       1
-     sky130_fd_sc_hd__nor2_2        10
-     sky130_fd_sc_hd__o211a_2        2
-     sky130_fd_sc_hd__o21a_2         2
+     sky130_fd_sc_hd__nand2_2       12
+     sky130_fd_sc_hd__nor2_2         8
+     sky130_fd_sc_hd__o211a_2        1
+     sky130_fd_sc_hd__o21a_2         3
      sky130_fd_sc_hd__o21ai_2        2
-     sky130_fd_sc_hd__o21ba_2        3
-     sky130_fd_sc_hd__o22a_2         1
+     sky130_fd_sc_hd__o21ba_2        1
+     sky130_fd_sc_hd__o22a_2         2
      sky130_fd_sc_hd__o22ai_2        1
      sky130_fd_sc_hd__o2bb2a_2       1
-     sky130_fd_sc_hd__o31a_2         4
+     sky130_fd_sc_hd__o31a_2         3
      sky130_fd_sc_hd__o32a_2         2
-     sky130_fd_sc_hd__or2_2          5
+     sky130_fd_sc_hd__or2_2          4
+     sky130_fd_sc_hd__or3_2          2
+     sky130_fd_sc_hd__or4_2          1
      sky130_fd_sc_hd__or4b_2         1
-     sky130_fd_sc_hd__xnor2_2       15
-     sky130_fd_sc_hd__xor2_2         9
+     sky130_fd_sc_hd__xnor2_2       18
+     sky130_fd_sc_hd__xor2_2         7
 
    Area for cell type \sky130_fd_sc_hd__nand2_1 is unknown!
 
-   Chip area for module '\tt_um_ran_DanielZhu': 7114.323200
+   Chip area for module '\tt_um_ran_DanielZhu': 6975.440000
 
