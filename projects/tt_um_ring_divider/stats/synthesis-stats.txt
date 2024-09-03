@@ -1,0 +1,19 @@
+66. Printing statistics.
+
+=== tt_um_ring_divider ===
+
+   Number of wires:                 32
+   Number of wire bits:             67
+   Number of public wires:          23
+   Number of public wire bits:      58
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 48
+     sky130_fd_sc_hd__buf_2         24
+     sky130_fd_sc_hd__dfxtp_2       14
+     sky130_fd_sc_hd__inv_2          7
+     sky130_fd_sc_hd__nand2_2        3
+
+   Chip area for module '\tt_um_ring_divider': 462.944000
+
