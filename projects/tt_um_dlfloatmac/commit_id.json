@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/ananya343B/tt08_dlfloat_mac",
+  "commit": "d4f1bed90e34ae571d58435a5fe0ef168c63a533",
+  "workflow_url": "https://github.com/ananya343B/tt08_dlfloat_mac/actions/runs/10676732956",
+  "sort_id": 1725422044618,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}
