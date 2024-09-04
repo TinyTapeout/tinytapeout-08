@@ -4,5 +4,6 @@
   "commit": "31b882a2e923b0924593bdceb1cd699441f7a489",
   "workflow_url": "https://github.com/WallieEverest/tt08/actions/runs/10692822309",
   "sort_id": 1725409971376,
-  "analog": true
+  "analog": true,
+  "skip": true
 }
