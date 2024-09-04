@@ -76,6 +76,7 @@ MACRO tt_um_demosiine_sda
   PIN ui_in[0]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.213000 ;
     PORT
       LAYER met4 ;
         RECT 138.310 110.520 138.610 111.520 ;
@@ -84,6 +85,7 @@ MACRO tt_um_demosiine_sda
   PIN ui_in[1]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 135.550 110.520 135.850 111.520 ;
@@ -92,6 +94,7 @@ MACRO tt_um_demosiine_sda
   PIN ui_in[2]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.213000 ;
     PORT
       LAYER met4 ;
         RECT 132.790 110.520 133.090 111.520 ;
@@ -100,6 +103,7 @@ MACRO tt_um_demosiine_sda
   PIN ui_in[3]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 130.030 110.520 130.330 111.520 ;
@@ -108,6 +112,7 @@ MACRO tt_um_demosiine_sda
   PIN ui_in[4]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.213000 ;
     PORT
       LAYER met4 ;
         RECT 127.270 110.520 127.570 111.520 ;
@@ -116,6 +121,7 @@ MACRO tt_um_demosiine_sda
   PIN ui_in[5]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 124.510 110.520 124.810 111.520 ;
@@ -124,6 +130,7 @@ MACRO tt_um_demosiine_sda
   PIN ui_in[6]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 121.750 110.520 122.050 111.520 ;
@@ -132,6 +139,7 @@ MACRO tt_um_demosiine_sda
   PIN ui_in[7]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.213000 ;
     PORT
       LAYER met4 ;
         RECT 118.990 110.520 119.290 111.520 ;
@@ -339,7 +347,7 @@ MACRO tt_um_demosiine_sda
   PIN uio_out[7]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.795200 ;
+    ANTENNADIFFAREA 0.445500 ;
     PORT
       LAYER met4 ;
         RECT 52.750 110.520 53.050 111.520 ;
@@ -348,7 +356,7 @@ MACRO tt_um_demosiine_sda
   PIN uo_out[0]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 1.443500 ;
+    ANTENNADIFFAREA 1.288000 ;
     PORT
       LAYER met4 ;
         RECT 94.150 110.520 94.450 111.520 ;
@@ -357,7 +365,7 @@ MACRO tt_um_demosiine_sda
   PIN uo_out[1]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 1.443500 ;
+    ANTENNADIFFAREA 0.911000 ;
     PORT
       LAYER met4 ;
         RECT 91.390 110.520 91.690 111.520 ;
@@ -366,7 +374,7 @@ MACRO tt_um_demosiine_sda
   PIN uo_out[2]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 1.242000 ;
+    ANTENNADIFFAREA 0.453750 ;
     PORT
       LAYER met4 ;
         RECT 88.630 110.520 88.930 111.520 ;
@@ -375,7 +383,7 @@ MACRO tt_um_demosiine_sda
   PIN uo_out[3]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.795200 ;
+    ANTENNADIFFAREA 0.445500 ;
     PORT
       LAYER met4 ;
         RECT 85.870 110.520 86.170 111.520 ;
@@ -384,7 +392,7 @@ MACRO tt_um_demosiine_sda
   PIN uo_out[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 1.593000 ;
+    ANTENNADIFFAREA 0.453750 ;
     PORT
       LAYER met4 ;
         RECT 83.110 110.520 83.410 111.520 ;
@@ -393,7 +401,7 @@ MACRO tt_um_demosiine_sda
   PIN uo_out[5]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 1.593000 ;
+    ANTENNADIFFAREA 0.911000 ;
     PORT
       LAYER met4 ;
         RECT 80.350 110.520 80.650 111.520 ;
@@ -402,7 +410,7 @@ MACRO tt_um_demosiine_sda
   PIN uo_out[6]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 1.593000 ;
+    ANTENNADIFFAREA 0.924000 ;
     PORT
       LAYER met4 ;
         RECT 77.590 110.520 77.890 111.520 ;
@@ -442,13 +450,13 @@ MACRO tt_um_demosiine_sda
       LAYER li1 ;
         RECT 2.760 2.635 158.240 108.885 ;
       LAYER met1 ;
-        RECT 2.760 1.400 158.240 110.460 ;
+        RECT 2.760 2.080 158.540 111.480 ;
       LAYER met2 ;
-        RECT 4.240 1.370 156.760 110.685 ;
+        RECT 2.860 2.050 156.760 111.510 ;
       LAYER met3 ;
-        RECT 5.585 2.555 155.415 110.665 ;
+        RECT 5.125 2.555 156.335 111.345 ;
       LAYER met4 ;
-        RECT 15.015 110.120 30.270 110.665 ;
+        RECT 8.575 110.120 30.270 110.665 ;
         RECT 31.370 110.120 33.030 110.665 ;
         RECT 34.130 110.120 35.790 110.665 ;
         RECT 36.890 110.120 38.550 110.665 ;
@@ -490,18 +498,17 @@ MACRO tt_um_demosiine_sda
         RECT 136.250 110.120 137.910 110.665 ;
         RECT 139.010 110.120 140.670 110.665 ;
         RECT 141.770 110.120 143.430 110.665 ;
-        RECT 144.530 110.120 146.190 110.665 ;
-        RECT 147.290 110.120 147.825 110.665 ;
-        RECT 15.015 109.440 147.825 110.120 ;
-        RECT 15.015 4.255 17.880 109.440 ;
-        RECT 20.280 4.255 21.180 109.440 ;
-        RECT 23.580 4.255 56.750 109.440 ;
-        RECT 59.150 4.255 60.050 109.440 ;
-        RECT 62.450 4.255 95.620 109.440 ;
-        RECT 98.020 4.255 98.920 109.440 ;
-        RECT 101.320 4.255 134.490 109.440 ;
-        RECT 136.890 4.255 137.790 109.440 ;
-        RECT 140.190 4.255 147.825 109.440 ;
+        RECT 144.530 110.120 145.065 110.665 ;
+        RECT 8.575 109.440 145.065 110.120 ;
+        RECT 8.575 9.015 17.880 109.440 ;
+        RECT 20.280 9.015 21.180 109.440 ;
+        RECT 23.580 9.015 56.750 109.440 ;
+        RECT 59.150 9.015 60.050 109.440 ;
+        RECT 62.450 9.015 95.620 109.440 ;
+        RECT 98.020 9.015 98.920 109.440 ;
+        RECT 101.320 9.015 134.490 109.440 ;
+        RECT 136.890 9.015 137.790 109.440 ;
+        RECT 140.190 9.015 145.065 109.440 ;
   END
 END tt_um_demosiine_sda
 END LIBRARY
