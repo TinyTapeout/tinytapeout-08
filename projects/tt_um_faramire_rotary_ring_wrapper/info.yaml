@@ -1,0 +1,56 @@
+# Tiny Tapeout project information
+project:
+  title:        "Rotary Encoder WS2812B Control"      # Project title
+  author:       "Fabio Ramirez Stern"      # Your name
+  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "A rotary encoder controls 12 WS2812B LEDs on a ring PCB."      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     40000000  # 40MHz Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_faramire_rotary_ring_wrapper"
+  
+  # List your project's source files here. Source files must be in ./src and you must list each source file separately, one per line:
+  source_files:        
+    - "rotary_ring_wrapper.v"
+    - "controller.v"
+    - "rotary_decoder.v"
+    - "led_ring_driver.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "rotary encoder: CLK"
+  ui[1]: "rotary encoder: DT"
+  ui[2]: "rotary encoder: SW"
+  ui[3]: "green"
+  ui[4]: "red"
+  ui[5]: "blue"
+  ui[6]: "intensity1"
+  ui[7]: "intensity2"
+
+  # Outputs
+  uo[0]: "DOUT"
+  uo[1]: "inverted"
+  uo[2]: "count0"
+  uo[3]: "count1"
+  uo[4]: "count2"
+  uo[5]: "count3"
+  uo[6]: ""
+  uo[7]: ""
+
+  # Bidirectional pins
+  uio[0]: ""
+  uio[1]: ""
+  uio[2]: ""
+  uio[3]: ""
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
+
+# Do not change!
+yaml_version: 6
