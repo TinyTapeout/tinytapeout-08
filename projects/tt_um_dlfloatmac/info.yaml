@@ -1,0 +1,55 @@
+# Tiny Tapeout project information
+project:
+  title:        "DL float MAC"      # Project title 
+  author:       "Ananya P, Nidhi M D"      # Your name
+  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "MAC unit for 16 bit DL float data type"      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     50000000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_dlfloatmac"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "project.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "data_in[0]"
+  ui[1]: "data_in[1]"
+  ui[2]: "data_in[2]"
+  ui[3]: "data_in[3]"
+  ui[4]: "data_in[4]"
+  ui[5]: "data_in[5]"
+  ui[6]: "data_in[6]"
+  ui[7]: "data_in[7]"
+
+  # Outputs
+  uo[0]: "c_byte[0]"
+  uo[1]: "c_byte[1]"
+  uo[2]: "c_byte[2]"
+  uo[3]: "c_byte[3]"
+  uo[4]: "c_byte[4]"
+  uo[5]: "c_byte[5]"
+  uo[6]: "c_byte[6]"
+  uo[7]: "c_byte[7]"
+
+  # Bidirectional pins
+  uio[0]: "data_in[8]"
+  uio[1]: "data_in[9]"
+  uio[2]: "data_in[10]"
+  uio[3]: "data_in[11]"
+  uio[4]: "data_in[12]"
+  uio[5]: "data_in[13]"
+  uio[6]: "data_in[14]"
+  uio[7]: "data_in[15]"
+
+# Do not change!
+yaml_version: 6
