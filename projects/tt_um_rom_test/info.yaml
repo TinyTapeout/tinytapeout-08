@@ -1,0 +1,65 @@
+# Tiny Tapeout project information
+project:
+  title:        "TT08 SKY130 ROM 'YOLO' Test"
+  author:       "Sylvain Munaut"
+  discord:      "246tnt"
+  description:  "Quick and dirty test of some parts of a SKY130 ROM compiler"
+  language:     "Analog"
+  clock_hz:     0
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"
+
+  # How many analog pins does your project use?
+  analog_pins: 0
+  uses_3v3: false
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_rom_test"
+  
+  # List your project's source files here. Source files must be in ./src and you must list each source file separately, one per line:
+  source_files:        
+    - "tt_um_rom_test.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "wl[0]"
+  ui[1]: "wl[1]"
+  ui[2]: "wl[2]"
+  ui[3]: "wl[3]"
+  ui[4]: "wl[4]"
+  ui[5]: "wl[5]"
+  ui[6]: "wl[6]"
+  ui[7]: "wl[7]"
+
+  # Outputs
+  uo[0]: "rom_out[0]"
+  uo[1]: "rom_out[1]"
+  uo[2]: "rom_out[2]"
+  uo[3]: "rom_out[3]"
+  uo[4]: "rom_out[4]"
+  uo[5]: "rom_out[5]"
+  uo[6]: "rom_out[6]"
+  uo[7]: "rom_out[7]"
+
+  # Bidirectional pins
+  uio[0]: "bl0_ena"
+  uio[1]: "bl1_ena"
+  uio[2]: "bl_mux_n[0]"
+  uio[3]: "bl_mux_p[0]"
+  uio[4]: "bl_mux_n[1]"
+  uio[5]: "bl_mux_p[1]"
+  uio[6]: "pullup_n"
+  uio[7]: "prechg_n"
+
+  # Analog pins
+  ua[0]: ""
+  ua[1]: ""
+  ua[2]: ""
+  ua[3]: ""
+  ua[4]: ""
+  ua[5]: ""
+
+# Do not change!
+yaml_version: 6
