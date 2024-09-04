@@ -13,17 +13,16 @@ The project is a signed binary 4-bit adder-subtractor module.
 
 Depending on the sign[1:0] bits, the circuit can perform the following operations:
 
-+--------------+--------------+
-|   sign[1:0]  |  Operation   |
-+--------------+--------------+
-|      00      |    A + B     |
-+--------------+--------------+
-|      01      |   -A + B     |
-+--------------+--------------+
-|      10      |    A - B     |
-+--------------+--------------+
-|      11      |   -A - B     |
-+--------------+--------------+
+
+| sign[1:0] | Operation |
+|-----------|-----------|
+| 00 | A + B |
+| 01 | -A + B |
+| 10 | A - B |
+| 11 | -A - B |
+
+
+![](ckt.PNG)
 
 ## How to test
 
