@@ -3,7 +3,7 @@ project:
   title:        "DemoSiine"          # Project title
   author:       "SagarDevAchar"      # Your name
   discord:      "seemebadnekai"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Submission to the TT08 Demoscene Challenge"      # One line description of what your project does
+  description:  "A Wavy and Rainbowy TT08 Demoscene Submission"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     25000000       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -31,14 +31,14 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "Frame Positive / Negative"
+  ui[1]: "Enable / Disable Little Sine Layer"
+  ui[2]: "Enable / Disable Big Sine Layer"
+  ui[3]: "Enable / Disable Overlay"
+  ui[4]: "Toggle Overlay Style"
+  ui[5]: "Toggle Background Style"
+  ui[6]: "Run / Stop Animation"
+  ui[7]: "Play / Pause Audio"
 
   # Outputs
   uo[0]: "Video Red MSB"
