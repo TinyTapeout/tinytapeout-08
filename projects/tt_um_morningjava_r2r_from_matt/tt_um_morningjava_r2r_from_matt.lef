@@ -566,6 +566,6 @@ MACRO tt_um_morningjava_r2r_from_matt
         RECT 98.830 1.000 116.450 1.400 ;
         RECT 118.150 1.000 135.770 1.400 ;
   END
-END tt_um_mattvenn_r2r_dac_3v3
+END tt_um_morningjava_r2r_from_matt
 END LIBRARY
 
