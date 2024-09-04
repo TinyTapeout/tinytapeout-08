@@ -1,6 +1,6 @@
 # Tiny Tapeout project information
 project:
-  title:        "TT08 demo"      # Project title
+  title:        "Sequential Shadows [TT08 demo competition]"      # Project title
   author:       "Toivo Henningsson"      # Your name
   discord:      "possible_realities"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "My contribution to the TT08 demo competition"      # One line description of what your project does
@@ -19,7 +19,7 @@ project:
   source_files:
     - "project.v"
     - "demo.sv"
-    - "sine_table_generated.v"
+    - "sine_table_generated2.v"
     - "logo_table_generated.v"
     - "graphics.sv"
     - "raster_scan2.sv"
@@ -30,14 +30,14 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
+  ui[0]: "v_bass_off"
+  ui[1]: "v_drums_off"
+  ui[2]: "v_bass_low"
+  ui[3]: "pause"
   ui[4]: ""
   ui[5]: ""
   ui[6]: ""
-  ui[7]: ""
+  ui[7]: "step_frame"
 
   # Outputs
   uo[0]: "R1"
