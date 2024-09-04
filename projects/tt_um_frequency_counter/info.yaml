@@ -1,0 +1,68 @@
+# Tiny Tapeout project information
+project:
+  title:        "Frequency Counter SSD1306 OLED"      # Project title
+  author:       "Pawel Sitarz (embelon)"              # Your name
+  discord:      "embelon"                             # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Simple Frequency Counter displaying result on SSD1306 SPI OLED"  # One line description of what your project does
+  language:     "SystemVerilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     1000000         # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_frequency_counter"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "project.v"
+    - "ssd1306_oled_frequency_counter/src/shift_register.sv"
+    - "ssd1306_oled_frequency_counter/src/spi.sv"
+    - "ssd1306_oled_frequency_counter/src/ssd1306_microcode_rom.sv"
+    - "ssd1306_oled_frequency_counter/src/ssd1306_microcode_exec.sv"
+    - "ssd1306_oled_frequency_counter/src/ssd1306_driver.sv"
+    - "ssd1306_oled_frequency_counter/src/decoder_bin_to_7seg.sv"
+    - "ssd1306_oled_frequency_counter/src/decoder_7seg_to_21x32pix.sv"
+    - "ssd1306_oled_frequency_counter/src/counter_bcd_1digit.sv"
+    - "ssd1306_oled_frequency_counter/src/counter_bcd_1digit_async_rst.sv"
+    - "ssd1306_oled_frequency_counter/src/counter_bcd_Ndigits.sv"
+    - "ssd1306_oled_frequency_counter/src/counter_bcd_Ndigits_async_rst.sv"
+    - "ssd1306_oled_frequency_counter/src/data_streamer.sv"
+    - "ssd1306_oled_frequency_counter/src/oled_frequency_counter.sv"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "clk_x - measured frequency input"
+  ui[1]: ""
+  ui[2]: ""
+  ui[3]: ""
+  ui[4]: ""
+  ui[5]: ""
+  ui[6]: ""
+  ui[7]: ""
+
+  # Outputs
+  uo[0]: "OLED nRST"
+  uo[1]: "OLED nVBAT"
+  uo[2]: "OLED nVDC"
+  uo[3]: "OLED nCS"
+  uo[4]: "OLED Data/Command"
+  uo[5]: "OLED CLK"
+  uo[6]: "OLED Data Out"
+  uo[7]: ""
+
+  # Bidirectional pins
+  uio[0]: ""
+  uio[1]: ""
+  uio[2]: ""
+  uio[3]: ""
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
+
+# Do not change!
+yaml_version: 6

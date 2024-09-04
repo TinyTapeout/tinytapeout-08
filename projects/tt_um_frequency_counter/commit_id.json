@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/embelon/tt08-frequency-counter-oled",
+  "commit": "09605b807a37aa3bfa2664416d4badd3a92a02bb",
+  "workflow_url": "https://github.com/embelon/tt08-frequency-counter-oled/actions/runs/10705555230",
+  "sort_id": 1725469574730,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}
