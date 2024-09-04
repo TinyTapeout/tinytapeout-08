@@ -1,8 +1,8 @@
 {
   "app": "Tiny Tapeout tt08 587b6cb0",
   "repo": "https://github.com/jar/tt08_vga_glyph_mode",
-  "commit": "b40c7187dd24147909909dcde5aa68f560a26ccb",
-  "workflow_url": "https://github.com/jar/tt08_vga_glyph_mode/actions/runs/10637444846",
+  "commit": "36fedb0922fd4be1d04f888e36b2e3979ce6e472",
+  "workflow_url": "https://github.com/jar/tt08_vga_glyph_mode/actions/runs/10693898950",
   "sort_id": 1725043160715,
   "openlane_version": "OpenLane2 2.0.8",
   "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
