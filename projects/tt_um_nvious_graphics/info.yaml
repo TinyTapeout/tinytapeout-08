@@ -18,6 +18,7 @@ project:
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
     - "tt_um_nvious_graphics.v"
+    - "gradient_rom.v"
     - "hvsync_generator.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
