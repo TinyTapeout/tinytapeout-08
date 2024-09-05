@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/yuri-panchul/tt08-adder-with-flow-control",
+  "commit": "b26bc28302c742bdc8e7aaa1e211882384191f8a",
+  "workflow_url": "https://github.com/yuri-panchul/tt08-adder-with-flow-control/actions/runs/10712671266",
+  "sort_id": 1725510359746,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}
