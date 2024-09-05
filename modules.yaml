@@ -6,3 +6,9 @@ modules:
   - name: "factory_test"
     x: 7
     y: 14
+# Art containing modules that needs to be carefully placed so they don't get flipped/mirrored:
+  - name: oscillating_bones
+    x: 3
+    y: 4
+    height: 2
+    width: 1
