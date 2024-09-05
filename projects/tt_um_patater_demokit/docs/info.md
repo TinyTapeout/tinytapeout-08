@@ -13,12 +13,12 @@ This design outputs a waggling 6-bit rainbow demo on VGA.
 
 The demo will change effect based on inputs on `ui_in`.
 
-| Pin | Setting | Effect |
-| --- | ------- | ------ |
-| `ui_in[0]` | Dual mode | Horizontally flips the image each scan line |
-| `ui_in[1]` | H wave | Enables use of horizontal waves |
-| `ui_in[4:2]` | P0 offset | Controls the speed of the H wave |
-| `ui_in[7:5]` | P1 offset | Controls the speed of the V wave |
+| Pin | Pin Name | Setting | Effect |
+| --- | -------- | ------- | ------ |
+| `ui_in[0]` | `DUAL_EN` | Dual mode | Horizontally flips the image each scan line |
+| `ui_in[1]` | `HWAVE_EN` | H wave | Enables use of horizontal waves |
+| `ui_in[4:2]` | `P0_OFF_{2,1,0}` | P0 offset | Controls the speed of the H wave |
+| `ui_in[7:5]` | `P1_OFF_{2,1,0}` | P1 offset | Controls the speed of the V wave |
 
 ### Screenshots
 

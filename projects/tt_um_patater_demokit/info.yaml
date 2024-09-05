@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:
-  title:        "Patater Demo Kit on a Chip"
+  title:        "Patater Demo Kit Waggling Rainbow on a Chip"
   author:       "Jaeden Amero"
   discord:      "Patater"
-  description:  "A small collection of VGA demos"
+  description:  "A 6-bit Waggling Rainbow demo"
   language:     "Verilog"
   clock_hz:     25175000
 
@@ -23,14 +23,14 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "DUAL_EN"
+  ui[1]: "HWAVE_EN"
+  ui[2]: "P0_OFF_0"
+  ui[3]: "P0_OFF_1"
+  ui[4]: "P0_OFF_2"
+  ui[5]: "P1_OFF_0"
+  ui[6]: "P1_OFF_1"
+  ui[7]: "P1_OFF_2"
 
   # Outputs
   uo[0]: "R1"
