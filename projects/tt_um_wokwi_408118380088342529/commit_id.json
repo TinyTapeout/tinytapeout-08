@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/ClutchBore/tt08-traffic-light-sequence",
+  "commit": "219e111310b621451c808560ea5d7e2b46b26e37",
+  "workflow_url": "https://github.com/ClutchBore/tt08-traffic-light-sequence/actions/runs/10721790491",
+  "sort_id": 1725550171819,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}
