@@ -1,8 +1,8 @@
 {
-  "app": "Tiny Tapeout tt08 86beb5d8",
-  "repo": "https://github.com/ericsmi/wokwi-ddr-test",
-  "commit": "e05e927b2253a604446bbf100ea657a1ec16b2bc",
-  "workflow_url": "https://github.com/ericsmi/wokwi-ddr-test/actions/runs/10585029882",
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/ericsmi/tt08-ddr-throughput-test",
+  "commit": "11ff0f101c878350a1e48ff97d9597847228abe2",
+  "workflow_url": "https://github.com/ericsmi/tt08-ddr-throughput-test/actions/runs/10726515729",
   "sort_id": 1724788791710,
   "openlane_version": "OpenLane2 2.0.8",
   "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
