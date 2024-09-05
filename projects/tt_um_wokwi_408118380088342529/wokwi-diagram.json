@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-tt-block-input",
+      "id": "ttin1",
+      "top": -266.53,
+      "left": 14.4,
+      "attrs": { "verilogRole": "input" }
+    },
+    {
+      "type": "wokwi-dip-switch-8",
+      "id": "sw3",
+      "top": -214.9,
+      "left": -104.1,
+      "rotate": 90,
+      "attrs": {}
+    },
+    { "type": "wokwi-gate-not", "id": "not5", "top": -268.8, "left": 268.8, "attrs": {} },
+    { "type": "wokwi-gate-not", "id": "not6", "top": -153.6, "left": 144, "attrs": {} },
+    { "type": "wokwi-gate-and-2", "id": "and1", "top": -163.2, "left": 268.8, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -330, "left": 618.2, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -224.4,
+      "left": 608.6,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": -147.6,
+      "left": 589.4,
+      "attrs": { "color": "green" }
+    },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": -268.04, "left": -115.2, "attrs": {} },
+    {
+      "type": "wokwi-gnd",
+      "id": "gnd1",
+      "top": -229.5,
+      "left": 680.5,
+      "rotate": 270,
+      "attrs": {}
+    },
+    {
+      "type": "board-tt-block-output",
+      "id": "chip1",
+      "top": -276.13,
+      "left": 427.2,
+      "attrs": { "verilogRole": "output" }
+    }
+  ],
+  "connections": [
+    [ "sw3:1b", "ttin1:EXTIN0", "green", [ "h0" ] ],
+    [ "sw3:2b", "ttin1:EXTIN1", "green", [ "h0" ] ],
+    [ "ttin1:IN1", "not6:IN", "green", [ "h0" ] ],
+    [ "ttin1:IN0", "not5:IN", "green", [ "h0" ] ],
+    [ "not6:OUT", "and1:B", "green", [ "v0" ] ],
+    [ "ttin1:IN0", "and1:A", "green", [ "h0" ] ],
+    [ "vcc1:VCC", "sw3:1a", "red", [ "v0" ] ],
+    [ "vcc1:VCC", "sw3:2a", "red", [ "v0" ] ],
+    [ "gnd1:GND", "led1:C", "black", [ "v-114.3", "h-96.5", "v57.6" ] ],
+    [ "gnd1:GND", "led2:C", "black", [ "v-18.3", "h-77.3", "v38.4" ] ],
+    [ "gnd1:GND", "led3:C", "black", [ "v48.9", "h-77.3", "v48" ] ],
+    [ "sw3:3b", "ttin1:EXTIN2", "gray", [ "h0" ] ],
+    [ "sw3:4b", "ttin1:EXTIN3", "gray", [ "h0" ] ],
+    [ "sw3:5b", "ttin1:EXTIN4", "gray", [ "h0" ] ],
+    [ "sw3:6b", "ttin1:EXTIN5", "gray", [ "h0" ] ],
+    [ "sw3:7b", "ttin1:EXTIN6", "gray", [ "h0" ] ],
+    [ "sw3:8b", "ttin1:EXTIN7", "gray", [ "v0" ] ],
+    [ "vcc1:VCC", "sw3:3a", "red", [ "v0" ] ],
+    [ "vcc1:VCC", "sw3:4a", "red", [ "v0" ] ],
+    [ "vcc1:VCC", "sw3:5a", "red", [ "v57.6", "h19.2" ] ],
+    [ "vcc1:VCC", "sw3:6a", "red", [ "v0" ] ],
+    [ "vcc1:VCC", "sw3:7a", "red", [ "v0" ] ],
+    [ "vcc1:VCC", "sw3:8a", "red", [ "v0" ] ],
+    [ "not5:OUT", "chip1:OUT0", "green", [ "v0" ] ],
+    [ "chip1:EXTOUT0", "led1:A", "green", [ "v-9.6", "h115.2" ] ],
+    [ "ttin1:IN1", "chip1:OUT4", "green", [ "h0" ] ],
+    [ "chip1:EXTOUT4", "led2:A", "green", [ "h38.4", "v38.4", "h67.2" ] ],
+    [ "and1:OUT", "chip1:OUT7", "green", [ "v0" ] ],
+    [ "chip1:EXTOUT7", "led3:A", "green", [ "h19.2", "v96", "h76.8" ] ]
+  ],
+  "dependencies": {}
+}
