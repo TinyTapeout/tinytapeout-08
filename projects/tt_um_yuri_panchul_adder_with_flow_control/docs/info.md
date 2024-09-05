@@ -9,12 +9,22 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-**adder_with_flow_control** design contains an adder with a separate flow control for each argument and the result.
+**adder_with_flow_control** design contains an adder with a separate flow
+control for each argument and the result.
 
-Flow control is implemented
-using one of the following pipeline register/buffer modules.
-The choice is specified inside the *adder_with_flow_control.sv* module using
-the define macro *FLOW_CONTROL_BUFFER*.
+The design is an answer to an RTL job interview question described by Yuri
+Panchul in an [article](https://habr.com/en/articles/706484/) (in Russian)
+on Habr website. The design is used as a part of
+[systemverilog-homework](https://github.com/yuri-panchul/systemverilog-homework)
+and
+[basics-graphics-music](https://github.com/yuri-panchul/basics-graphics-music)
+GitHub repositories. These repos are maintained by engineers and educators
+associated with the [Verilog Meetup](https://verilog-meetup.com/) community.
+
+In this solution to the interview question, the flow control is implemented
+using one of the following pipeline register/buffer modules. The choice is
+specified inside the *adder_with_flow_control.sv* module using the define
+macro *FLOW_CONTROL_BUFFER*.
 
 * fcb_1_single_allows_back_to_back
 * fcb_2_single_half_perf_no_comb_path
