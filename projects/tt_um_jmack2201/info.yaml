@@ -1,11 +1,11 @@
 # Tiny Tapeout project information
 project:
-  title:        "Configurable Sprite Bouncer with SFX"      # Project title
+  title:        "Sprite Bouncer with Looping Background Options"      # Project title
   author:       "Jacob Mack"      # Your name
   discord:      "Silicon Psycho"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Configurable hardware to output a moving, bouncing sprite with audio effects on collison with boundary"      # One line description of what your project does
+  description:  "Sprite bouncer hardware that supports multiple background options."      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:      25175000      # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:      25000000      # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
   tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
@@ -21,11 +21,9 @@ project:
     - "demoscene_wrapper.v"
     - "params.v"
     - "hvsync_generator.v"
-    - "audio_source.v"
-    - "spi.v"
     - "pixel_color.v"
-    - "sfx_rom.v"
-    - "sprite_rom.v"
+    - "sprite_rom0.v"
+    - "sprite_rom1.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
@@ -50,14 +48,14 @@ pinout:
   uo[7]: "HSYNC"
 
   # Bidirectional pins
-  uio[0]: "SCLK"
-  uio[1]: "SSEL"
-  uio[2]: "MOSI"
-  uio[3]: "MISO"
+  uio[0]: ""
+  uio[1]: ""
+  uio[2]: ""
+  uio[3]: ""
   uio[4]: ""
   uio[5]: ""
   uio[6]: ""
-  uio[7]: "PWM out"
+  uio[7]: ""
 
 # Do not change!
 yaml_version: 6
