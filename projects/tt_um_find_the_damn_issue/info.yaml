@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:
   title:        "Find The Damn Issue"      # Project title
-  author:       "Synogate"      # Your name
+  author:       "Leonel Gouveia Ergin (Synogate), Michael Offel (Synogate)"      # Your name
   discord:      "mio0341"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "USB to UART/SPI/I2C/JTAG/GPIO adapter"      # One line description of what your project does
   language:     "Gatery" # other examples include SystemVerilog, Amaranth, VHDL, etc

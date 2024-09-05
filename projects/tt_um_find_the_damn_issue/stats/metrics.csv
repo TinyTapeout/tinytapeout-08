@@ -92,8 +92,8 @@ design__instance__count__macros,0
 design__instance__area__macros,0
 design__instance__utilization,0.715911
 design__instance__utilization__stdcell,0.715911
-design__power_grid_violation__count__net:VPWR,0
 design__power_grid_violation__count__net:VGND,0
+design__power_grid_violation__count__net:VPWR,0
 design__power_grid_violation__count,0
 timing__drv__floating__nets,0
 timing__drv__floating__pins,0
