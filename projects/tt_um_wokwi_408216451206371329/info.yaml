@@ -1,10 +1,10 @@
 # Tiny Tapeout project information (Wokwi project)
 project:
   wokwi_id:     408216451206371329       # Set this to the ID of your Wokwi project (the number from the project's URL)
-  title:        "Memory"      # Project title
+  title:        "Logic Test"      # Project title
   author:       "Eric Ulteig"      # Your name
   discord:      "Beirdo"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Memory"      # One line description of what your project does
+  description:  "Verify"      # One line description of what your project does
   language:     "Wokwi" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -17,15 +17,15 @@ pinout:
   ui[0]: "In 0"
   ui[1]: "In 1"
   ui[2]: "In 2"
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[3]: "In 3"
+  ui[4]: "In 4"
+  ui[5]: "In 5"
+  ui[6]: "In 6"
+  ui[7]: "In 7"
 
   # Outputs
   uo[0]: "Out 0"
-  uo[1]: ""
+  uo[1]: "Out 1"
   uo[2]: ""
   uo[3]: ""
   uo[4]: ""
@@ -34,7 +34,7 @@ pinout:
   uo[7]: ""
 
   # Bidirectional pins
-  uio[0]: "Data"
+  uio[0]: ""
   uio[1]: ""
   uio[2]: ""
   uio[3]: ""
