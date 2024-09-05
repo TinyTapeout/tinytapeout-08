@@ -1,0 +1,55 @@
+# Tiny Tapeout project information
+project:
+  title:        "7 Segment Decode"      # Project title
+  author:       "Jack Clayton"      # Your name
+  discord:      "JAC-EE"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "ASIC implementation of a university CPLD project which drives 4 multiplexed 7 segment displays, and scans a multiplexed keypad."      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     5000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_JAC_EE_segdecode"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "project.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: ""
+  ui[1]: "MOSI"
+  ui[2]: "EN"
+  ui[3]: "RESET"
+  ui[4]: "KeyPlxr[0]"
+  ui[5]: "KeyPlxr[1]"
+  ui[6]: "KeyPlxr[2]"
+  ui[7]: "KeyPlxr[3]"
+
+  # Outputs
+  uo[0]: "Out7S[0]"
+  uo[1]: "Out7S[1]"
+  uo[2]: "Out7S[2]"
+  uo[3]: "Out7S[3]"
+  uo[4]: "Out7S[4]"
+  uo[5]: "Out7S[5]"
+  uo[6]: "Out7S[6]"
+  uo[7]: "MISO"
+
+  # Bidirectional pins
+  uio[0]: "ScreenSel[0]"
+  uio[1]: "ScreenSel[1]"
+  uio[2]: "ScreenSel[2]"
+  uio[3]: "ScreenSel[3]"
+  uio[4]: "High-Z"
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
+
+# Do not change!
+yaml_version: 6
