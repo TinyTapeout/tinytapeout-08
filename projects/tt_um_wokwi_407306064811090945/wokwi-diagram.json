@@ -174,7 +174,7 @@
       "left": 998.4,
       "attrs": { "text": "2x CLK" }
     },
-    { "type": "wokwi-flip-flop-d", "id": "flop1", "top": -192, "left": 1084.8, "attrs": {} },
+    { "type": "wokwi-flip-flop-d", "id": "flop1", "top": -115.2, "left": 1094.4, "attrs": {} },
     { "type": "wokwi-flip-flop-d", "id": "flop2", "top": -259.2, "left": 777.6, "attrs": {} }
   ],
   "connections": [
@@ -202,8 +202,8 @@
     [ "ttin:EXTRST_N", "btn2:1.r", "orange", [ "h-38.4", "v-96" ] ],
     [ "btn2:1.l", "r2:2", "green", [ "h0" ] ],
     [ "pwr5:VCC", "r2:1", "red", [ "v0" ] ],
-    [ "ttin:CLK", "not1:IN", "green", [ "v0", "h57.6", "v345.6" ] ],
-    [ "not5:IN", "ttin:CLK", "green", [ "v0", "h-201.6", "v-307.2", "h-48" ] ],
+    [ "ttin:CLK", "not1:IN", "red", [ "v0", "h57.6", "v345.6" ] ],
+    [ "not5:IN", "ttin:CLK", "red", [ "v0", "h-201.6", "v-307.2", "h-48" ] ],
     [ "and2:A", "not5:IN", "green", [ "h0" ] ],
     [ "not2:IN", "not1:OUT", "green", [ "v0" ] ],
     [ "and1:A", "not2:IN", "green", [ "h0" ] ],
@@ -219,13 +219,12 @@
     [ "logic1:GND", "gnd2:GND", "black", [ "h0" ] ],
     [ "ttout:EXTOUT2", "logic1:D2", "green", [ "h0" ] ],
     [ "logic1:D3", "ttout:EXTOUT3", "green", [ "h0" ] ],
-    [ "ttin:CLK", "ttout:OUT3", "green", [ "h57.6", "v451.2", "h1440", "v-422.4", "h115.2" ] ],
     [ "ttout:OUT2", "or1:OUT", "green", [ "h-163.2", "v307.2" ] ],
     [ "flop1:CLK", "or1:OUT", "green", [ "h-19.2", "v230.4", "h48", "v19.2" ] ],
-    [ "ttout:OUT1", "flop1:Q", "green", [ "h0" ] ],
-    [ "ttin:IN1", "flop1:D", "green", [ "h0" ] ],
-    [ "flop2:D", "ttin:IN0", "green", [ "h-528", "v48" ] ],
-    [ "ttin:CLK", "flop2:CLK", "green", [ "h336", "v-28.8" ] ],
+    [ "ttout:OUT1", "flop1:Q", "green", [ "h-489.6", "v86.4" ] ],
+    [ "ttin:IN1", "flop1:D", "green", [ "h969.6", "v67.2" ] ],
+    [ "flop2:D", "ttin:IN0", "blue", [ "h-528", "v48" ] ],
+    [ "ttin:CLK", "flop2:CLK", "red", [ "h336", "v-28.8" ] ],
     [ "flop2:Q", "ttout:OUT0", "green", [ "v0", "h633.6", "v28.8" ] ]
   ],
   "dependencies": {}
