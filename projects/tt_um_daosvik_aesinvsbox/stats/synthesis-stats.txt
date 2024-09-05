@@ -1,0 +1,557 @@
+63. Printing statistics.
+
+=== a211o ===
+
+   Number of wires:                  5
+   Number of wire bits:              5
+   Number of public wires:           5
+   Number of public wire bits:       5
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__a211o_2        1
+
+   Chip area for module '\a211o': 10.009600
+
+=== a211oi ===
+
+   Number of wires:                  5
+   Number of wire bits:              5
+   Number of public wires:           5
+   Number of public wire bits:       5
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__a211oi_2       1
+
+   Chip area for module '\a211oi': 12.512000
+
+=== a21boi ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__a21boi_2       1
+
+   Chip area for module '\a21boi': 11.260800
+
+=== a21o ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__a21o_2         1
+
+   Chip area for module '\a21o': 8.758400
+
+=== a21oi ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__a21oi_2        1
+
+   Chip area for module '\a21oi': 8.758400
+
+=== a221oi ===
+
+   Number of wires:                  6
+   Number of wire bits:              6
+   Number of public wires:           6
+   Number of public wire bits:       6
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__a221oi_2       1
+
+   Chip area for module '\a221oi': 15.014400
+
+=== a22oi ===
+
+   Number of wires:                  5
+   Number of wire bits:              5
+   Number of public wires:           5
+   Number of public wire bits:       5
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__a22oi_2        1
+
+   Chip area for module '\a22oi': 12.512000
+
+=== a31oi ===
+
+   Number of wires:                  5
+   Number of wire bits:              5
+   Number of public wires:           5
+   Number of public wire bits:       5
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__a31oi_2        1
+
+   Chip area for module '\a31oi': 12.512000
+
+=== and2 ===
+
+   Number of wires:                  3
+   Number of wire bits:              3
+   Number of public wires:           3
+   Number of public wire bits:       3
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__and2_2         1
+
+   Chip area for module '\and2': 7.507200
+
+=== and3 ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__and3_2         1
+
+   Chip area for module '\and3': 7.507200
+
+=== and3b ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__and3b_2        1
+
+   Chip area for module '\and3b': 10.009600
+
+=== inv ===
+
+   Number of wires:                  2
+   Number of wire bits:              2
+   Number of public wires:           2
+   Number of public wire bits:       2
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__inv_2          1
+
+   Chip area for module '\inv': 3.753600
+
+=== nand2 ===
+
+   Number of wires:                  3
+   Number of wire bits:              3
+   Number of public wires:           3
+   Number of public wire bits:       3
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__nand2_2        1
+
+   Chip area for module '\nand2': 6.256000
+
+=== nand2b ===
+
+   Number of wires:                  3
+   Number of wire bits:              3
+   Number of public wires:           3
+   Number of public wire bits:       3
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__nand2b_2       1
+
+   Chip area for module '\nand2b': 8.758400
+
+=== nand3 ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__nand3_2        1
+
+   Chip area for module '\nand3': 10.009600
+
+=== nand3b ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__nand3b_2       1
+
+   Chip area for module '\nand3b': 11.260800
+
+=== nand4 ===
+
+   Number of wires:                  5
+   Number of wire bits:              5
+   Number of public wires:           5
+   Number of public wire bits:       5
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__nand4_2        1
+
+   Chip area for module '\nand4': 12.512000
+
+=== nor2 ===
+
+   Number of wires:                  3
+   Number of wire bits:              3
+   Number of public wires:           3
+   Number of public wire bits:       3
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__nor2_2         1
+
+   Chip area for module '\nor2': 6.256000
+
+=== nor2b ===
+
+   Number of wires:                  3
+   Number of wire bits:              3
+   Number of public wires:           3
+   Number of public wire bits:       3
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__and2b_2        1
+
+   Chip area for module '\nor2b': 8.758400
+
+=== nor3 ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__nor3_2         1
+
+   Chip area for module '\nor3': 10.009600
+
+=== nor3b ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__nor3b_2        1
+
+   Chip area for module '\nor3b': 12.512000
+
+=== nor4 ===
+
+   Number of wires:                  5
+   Number of wire bits:              5
+   Number of public wires:           5
+   Number of public wire bits:       5
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__nor4_2         1
+
+   Chip area for module '\nor4': 12.512000
+
+=== o211ai ===
+
+   Number of wires:                  5
+   Number of wire bits:              5
+   Number of public wires:           5
+   Number of public wire bits:       5
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__o211ai_2       1
+
+   Chip area for module '\o211ai': 12.512000
+
+=== o21a ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__o21a_2         1
+
+   Chip area for module '\o21a': 8.758400
+
+=== o21ai ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__o21ai_2        1
+
+   Chip area for module '\o21ai': 8.758400
+
+=== o22ai ===
+
+   Number of wires:                  5
+   Number of wire bits:              5
+   Number of public wires:           5
+   Number of public wire bits:       5
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__o22ai_2        1
+
+   Chip area for module '\o22ai': 12.512000
+
+=== o31a ===
+
+   Number of wires:                  5
+   Number of wire bits:              5
+   Number of public wires:           5
+   Number of public wire bits:       5
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__o31a_2         1
+
+   Chip area for module '\o31a': 10.009600
+
+=== or2 ===
+
+   Number of wires:                  3
+   Number of wire bits:              3
+   Number of public wires:           3
+   Number of public wire bits:       3
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__or2_2          1
+
+   Chip area for module '\or2': 6.256000
+
+=== or3 ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  1
+     sky130_fd_sc_hd__or3_2          1
+
+   Chip area for module '\or3': 7.507200
+
+=== tt_um_daosvik_aesinvsbox ===
+
+   Number of wires:                413
+   Number of wire bits:            448
+   Number of public wires:         413
+   Number of public wire bits:     448
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                429
+     a211o                           3
+     a211oi                          4
+     a21boi                          1
+     a21o                            3
+     a21oi                          51
+     a221oi                          2
+     a22oi                          32
+     a31oi                          39
+     and2                            7
+     and3                           18
+     and3b                           5
+     inv                             3
+     nand2                          13
+     nand2b                         24
+     nand3                          11
+     nand3b                          1
+     nand4                           9
+     nor2                           12
+     nor2b                          26
+     nor3                           12
+     nor3b                           5
+     nor4                            3
+     o211ai                          4
+     o21a                            1
+     o21ai                          16
+     o22ai                          71
+     o31a                            1
+     or2                             5
+     or3                            23
+     sky130_fd_sc_hd__buf_2         16
+     sky130_fd_sc_hd__dfxtp_2        8
+
+   Area for cell type \a211o is unknown!
+   Area for cell type \a211oi is unknown!
+   Area for cell type \a21boi is unknown!
+   Area for cell type \a21o is unknown!
+   Area for cell type \a21oi is unknown!
+   Area for cell type \a221oi is unknown!
+   Area for cell type \a22oi is unknown!
+   Area for cell type \a31oi is unknown!
+   Area for cell type \and2 is unknown!
+   Area for cell type \and3 is unknown!
+   Area for cell type \and3b is unknown!
+   Area for cell type \inv is unknown!
+   Area for cell type \nand2 is unknown!
+   Area for cell type \nand2b is unknown!
+   Area for cell type \nand3 is unknown!
+   Area for cell type \nand3b is unknown!
+   Area for cell type \nand4 is unknown!
+   Area for cell type \nor2 is unknown!
+   Area for cell type \nor2b is unknown!
+   Area for cell type \nor3 is unknown!
+   Area for cell type \nor3b is unknown!
+   Area for cell type \nor4 is unknown!
+   Area for cell type \o211ai is unknown!
+   Area for cell type \o21a is unknown!
+   Area for cell type \o21ai is unknown!
+   Area for cell type \o22ai is unknown!
+   Area for cell type \o31a is unknown!
+   Area for cell type \or2 is unknown!
+   Area for cell type \or3 is unknown!
+
+   Chip area for module '\tt_um_daosvik_aesinvsbox': 250.240000
+
+=== design hierarchy ===
+
+   tt_um_daosvik_aesinvsbox          1
+     a211o                           3
+     a211oi                          4
+     a21boi                          1
+     a21o                            3
+     a21oi                          51
+     a221oi                          2
+     a22oi                          32
+     a31oi                          39
+     and2                            7
+     and3                           18
+     and3b                           5
+     inv                             3
+     nand2                          13
+     nand2b                         24
+     nand3                          11
+     nand3b                          1
+     nand4                           9
+     nor2                           12
+     nor2b                          26
+     nor3                           12
+     nor3b                           5
+     nor4                            3
+     o211ai                          4
+     o21a                            1
+     o21ai                          16
+     o22ai                          71
+     o31a                            1
+     or2                             5
+     or3                            23
+
+   Number of wires:               2110
+   Number of wire bits:           2145
+   Number of public wires:        2110
+   Number of public wire bits:    2145
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                429
+     sky130_fd_sc_hd__a211o_2        3
+     sky130_fd_sc_hd__a211oi_2       4
+     sky130_fd_sc_hd__a21boi_2       1
+     sky130_fd_sc_hd__a21o_2         3
+     sky130_fd_sc_hd__a21oi_2       51
+     sky130_fd_sc_hd__a221oi_2       2
+     sky130_fd_sc_hd__a22oi_2       32
+     sky130_fd_sc_hd__a31oi_2       39
+     sky130_fd_sc_hd__and2_2         7
+     sky130_fd_sc_hd__and2b_2       26
+     sky130_fd_sc_hd__and3_2        18
+     sky130_fd_sc_hd__and3b_2        5
+     sky130_fd_sc_hd__buf_2         16
+     sky130_fd_sc_hd__dfxtp_2        8
+     sky130_fd_sc_hd__inv_2          3
+     sky130_fd_sc_hd__nand2_2       13
+     sky130_fd_sc_hd__nand2b_2      24
+     sky130_fd_sc_hd__nand3_2       11
+     sky130_fd_sc_hd__nand3b_2       1
+     sky130_fd_sc_hd__nand4_2        9
+     sky130_fd_sc_hd__nor2_2        12
+     sky130_fd_sc_hd__nor3_2        12
+     sky130_fd_sc_hd__nor3b_2        5
+     sky130_fd_sc_hd__nor4_2         3
+     sky130_fd_sc_hd__o211ai_2       4
+     sky130_fd_sc_hd__o21a_2         1
+     sky130_fd_sc_hd__o21ai_2       16
+     sky130_fd_sc_hd__o22ai_2       71
+     sky130_fd_sc_hd__o31a_2         1
+     sky130_fd_sc_hd__or2_2          5
+     sky130_fd_sc_hd__or3_2         23
+
+   Chip area for top module '\tt_um_daosvik_aesinvsbox': 4331.654400
+
