@@ -173,7 +173,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_oe[0]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 49.990 110.520 50.290 111.520 ;
@@ -182,7 +182,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_oe[1]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 47.230 110.520 47.530 111.520 ;
@@ -191,7 +191,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_oe[2]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 44.470 110.520 44.770 111.520 ;
@@ -200,7 +200,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_oe[3]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 41.710 110.520 42.010 111.520 ;
@@ -209,7 +209,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_oe[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 38.950 110.520 39.250 111.520 ;
@@ -218,7 +218,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_oe[5]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 36.190 110.520 36.490 111.520 ;
@@ -227,7 +227,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_oe[6]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 33.430 110.520 33.730 111.520 ;
@@ -236,7 +236,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_oe[7]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 30.670 110.520 30.970 111.520 ;
@@ -245,7 +245,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_out[0]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 72.070 110.520 72.370 111.520 ;
@@ -254,7 +254,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_out[1]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 69.310 110.520 69.610 111.520 ;
@@ -263,7 +263,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_out[2]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 66.550 110.520 66.850 111.520 ;
@@ -272,7 +272,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_out[3]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 63.790 110.520 64.090 111.520 ;
@@ -281,7 +281,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_out[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 61.030 110.520 61.330 111.520 ;
@@ -290,7 +290,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_out[5]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 58.270 110.520 58.570 111.520 ;
@@ -299,7 +299,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_out[6]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 55.510 110.520 55.810 111.520 ;
@@ -308,7 +308,7 @@ MACRO tt_um_shiftreg_test
   PIN uio_out[7]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 79.396797 ;
+    ANTENNADIFFAREA 79.195198 ;
     PORT
       LAYER met4 ;
         RECT 52.750 110.520 53.050 111.520 ;
