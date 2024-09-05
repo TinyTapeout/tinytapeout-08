@@ -9,11 +9,11 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Memory
+Logic
 
 ## How to test
 
-Memory fail
+Test
 
 ## External hardware
 
