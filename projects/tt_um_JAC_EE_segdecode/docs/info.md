@@ -15,7 +15,7 @@ Data is sent Most Significant Bit (MSB) first.
 
 ![SPI Protocol visual bit representations](./images/2.2.0.1_bit_representations.png)
 
-![SPI Protocol bit definitions](./images/2.2.0.2 _bit_definitions.png)
+![SPI Protocol bit definitions](./images/2.2.0.2_bit_definitions.png)
 
 ![SPI example byte 0xD7](./images/2.2.0.3_example_byte.png)
 
