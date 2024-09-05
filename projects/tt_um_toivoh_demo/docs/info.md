@@ -24,6 +24,8 @@ Set all inputs to zero to get the default behavior.
 **Warning: The default behavior includes some flashing ligts.** Set `v_bass_off` and `v_drums_off` (keep `ui_in` at 3 instead of 0) to remove flashing.
 The demo starts directly after reset.
 
+This demo is best viewed with the monitor rotated 90 degrees, with the left side facing down.
+
 ### Inputs
 There is no guarantee that changing the inputs after reset is released works as intended, but it probably does.
 Some of the inputs provide options on how the demo is run:

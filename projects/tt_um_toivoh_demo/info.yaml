@@ -19,7 +19,7 @@ project:
   source_files:
     - "project.v"
     - "demo.sv"
-    - "sine_table_generated2.v"
+    - "sine_table_generated3.v"
     - "logo_table_generated.v"
     - "graphics.sv"
     - "raster_scan2.sv"
