@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/ccattuto/tt08-sr-latch",
+  "commit": "39def64a3648573854a12fad811a9771b0d83ec2",
+  "workflow_url": "https://github.com/ccattuto/tt08-sr-latch/actions/runs/10727144363",
+  "sort_id": 1725569542496,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}

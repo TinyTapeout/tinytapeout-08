@@ -1,0 +1,21 @@
+61. Printing statistics.
+
+=== tt_um_cattuto_sr_latch ===
+
+   Number of wires:               1545
+   Number of wire bits:           1580
+   Number of public wires:        1545
+   Number of public wire bits:    1580
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               1561
+     sky130_fd_sc_hd__buf_2         24
+     sky130_fd_sc_hd__dlxtp_1      512
+     sky130_fd_sc_hd__inv_1       1024
+     sky130_fd_sc_hd__xor2_2         1
+
+   Area for cell type \sky130_fd_sc_hd__inv_1 is unknown!
+
+   Chip area for module '\tt_um_cattuto_sr_latch': 7823.753600
+
