@@ -3,7 +3,7 @@ project:
   title:        "CMOS design of 4-bit Signed Adder Subtractor"      # Project title
   author:       "Vivek Chiranjit"      # Your name
   discord:      "cj_pat"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "4-bit signed adder subtractor"      # One line description of what your project does
+  description:  "The project is a signed binary 4-bit adder-subtractor module."      # One line description of what your project does
   language:     "SystemVerilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
