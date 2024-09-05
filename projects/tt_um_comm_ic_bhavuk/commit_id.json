@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/Bhavuk-HDL/tty8_comm_ic",
+  "commit": "f1cb2df40ff540ad3d8a22d0b6d4bc27a5150aaa",
+  "workflow_url": "https://github.com/Bhavuk-HDL/tty8_comm_ic/actions/runs/10725971739",
+  "sort_id": 1725561642786,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}
