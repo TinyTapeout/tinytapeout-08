@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/JAC-EE/tt08-SegDecode-ASIC",
+  "commit": "bed9acd8c25d498ae7ec944b3b9f7556c20760d9",
+  "workflow_url": "https://github.com/JAC-EE/tt08-SegDecode-ASIC/actions/runs/10722784923",
+  "sort_id": 1725550042786,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}

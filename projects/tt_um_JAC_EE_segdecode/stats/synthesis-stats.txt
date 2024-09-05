@@ -1,0 +1,35 @@
+61. Printing statistics.
+
+=== tt_um_JAC_EE_segdecode ===
+
+   Number of wires:                 56
+   Number of wire bits:             91
+   Number of public wires:          25
+   Number of public wire bits:      60
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 72
+     sky130_fd_sc_hd__a211o_2        2
+     sky130_fd_sc_hd__a21oi_2        1
+     sky130_fd_sc_hd__a31o_2         1
+     sky130_fd_sc_hd__and2_2         2
+     sky130_fd_sc_hd__and2b_2        1
+     sky130_fd_sc_hd__buf_2         12
+     sky130_fd_sc_hd__dfxtp_2       16
+     sky130_fd_sc_hd__inv_2         12
+     sky130_fd_sc_hd__mux2_1         8
+     sky130_fd_sc_hd__mux4_2         1
+     sky130_fd_sc_hd__nand2_2        2
+     sky130_fd_sc_hd__nand2b_2       2
+     sky130_fd_sc_hd__nor2_2         2
+     sky130_fd_sc_hd__nor3_2         1
+     sky130_fd_sc_hd__o21a_2         1
+     sky130_fd_sc_hd__o21ai_2        3
+     sky130_fd_sc_hd__or2_2          1
+     sky130_fd_sc_hd__or3_2          2
+     sky130_fd_sc_hd__or3b_2         1
+     sky130_fd_sc_hd__or4b_2         1
+
+   Chip area for module '\tt_um_JAC_EE_segdecode': 746.966400
+
