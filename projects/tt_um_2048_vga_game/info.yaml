@@ -17,6 +17,8 @@ project:
   # Source files must be in ./src and you must list each source file separately, one per line.
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
+    - "button_debounce.v"
+    - "debug_controller.v"
     - "draw_game.v"
     - "draw_numbers.v"
     - "galois_lfsr.v"
@@ -37,7 +39,7 @@ pinout:
   ui[4]: ""
   ui[5]: ""
   ui[6]: ""
-  ui[7]: ""
+  ui[7]: "debug_mode"
 
   # Outputs
   uo[0]: "R1"
@@ -50,14 +52,14 @@ pinout:
   uo[7]: "HSync"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
-  uio[7]: ""
+  uio[0]: "debug_cmd"
+  uio[1]: "debug_cmd"
+  uio[2]: "debug_cmd"
+  uio[3]: "debug_cmd"
+  uio[4]: "debug_data"
+  uio[5]: "debug_data"
+  uio[6]: "debug_data"
+  uio[7]: "debug_data"
 
 # Do not change!
 yaml_version: 6
