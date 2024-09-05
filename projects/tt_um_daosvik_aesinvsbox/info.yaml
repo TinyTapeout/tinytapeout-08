@@ -1,0 +1,57 @@
+# Tiny Tapeout project information
+project:
+  title:        "AES Inverse S-box"
+  author:       "Dag Arne Osvik"
+  discord:      "_osvik"
+  description:  "Advanced Encryption Standard (AES) Inverse S-box"
+  language:     "Verilog"
+  clock_hz:     125000000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_daosvik_aesinvsbox"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "sky130.v"
+    - "sbox_aesinv.v"
+    - "tt_um_daosvik_aesinvsbox.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "x[0]"
+  ui[1]: "x[1]"
+  ui[2]: "x[2]"
+  ui[3]: "x[3]"
+  ui[4]: "x[4]"
+  ui[5]: "x[5]"
+  ui[6]: "x[6]"
+  ui[7]: "x[7]"
+
+  # Outputs
+  uo[0]: "y[0]"
+  uo[1]: "y[1]"
+  uo[2]: "y[2]"
+  uo[3]: "y[3]"
+  uo[4]: "y[4]"
+  uo[5]: "y[5]"
+  uo[6]: "y[6]"
+  uo[7]: "y[7]"
+
+  # Bidirectional pins
+  uio[0]: ""
+  uio[1]: ""
+  uio[2]: ""
+  uio[3]: ""
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
+
+# Do not change!
+yaml_version: 6
