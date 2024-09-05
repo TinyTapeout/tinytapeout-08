@@ -26,6 +26,8 @@ Use the `ui_in` pins to move the tiles on the board:
 
 After resetting the game, you will see a jumping "2048" animation on the screen. Press any of the `ui_in[3:0]` pins to start the game. The game will start with two tiles with the number 2 on the board. Use the `ui_in` pins to move the tiles in the desired direction. The game will end when the board is full and no more moves can be made.
 
+Setting `ui_in[7]` to 1 will enter unit test mode. In this mode, the game displays a colorful rectangle on the top of the screen, and accepts debug commands on the `uio` pins. Check out the test bench for more information.
+
 ## External hardware
 
 [TinyVGA PMOD](https://github.com/mole99/tiny-vga)
