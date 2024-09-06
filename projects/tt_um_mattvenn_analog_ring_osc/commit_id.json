@@ -1,8 +1,8 @@
 {
   "app": "custom_gds action",
   "repo": "https://github.com/mattvenn/tt08-analog-ring-osc",
-  "commit": "5ce8743147bef9872e0131211e492d59509a82da",
-  "workflow_url": "https://github.com/mattvenn/tt08-analog-ring-osc/actions/runs/10737026859",
+  "commit": "b675a4c6376357cf4a3751d3c592d3fbb2ced4cb",
+  "workflow_url": "https://github.com/mattvenn/tt08-analog-ring-osc/actions/runs/10737554020",
   "sort_id": 1725619890349,
   "analog": true
 }
