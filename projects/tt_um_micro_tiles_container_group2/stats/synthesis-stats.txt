@@ -18,15 +18,15 @@
      sky130_fd_sc_hd__nor2_2         1
      sky130_fd_sc_hd__o41a_2         8
      sky130_fd_sc_hd__or3_2          8
-     tt_um_micro_stub_3              1
-     tt_um_micro_stub_4              1
+     tt_um_htfab_micro_maze          1
+     tt_um_micro_gfg_development_nco      1
      tt_um_micro_test                1
      tt_um_wokwi_408272151035187201      1
 
    Area for cell type \tt_um_micro_test is unknown!
    Area for cell type \tt_um_wokwi_408272151035187201 is unknown!
-   Area for cell type \tt_um_micro_stub_3 is unknown!
-   Area for cell type \tt_um_micro_stub_4 is unknown!
+   Area for cell type \tt_um_micro_gfg_development_nco is unknown!
+   Area for cell type \tt_um_htfab_micro_maze is unknown!
 
    Chip area for module '\tt_um_micro_tiles_container_group2': 773.241600
 
