@@ -1,0 +1,64 @@
+# Tiny Tapeout project information
+project:
+  title:        "TT08 Differential Receiver test"
+  author:       "Sylvain Munaut"
+  discord:      "246tnt"
+  description:  "Small test module to test functionality of a differential input receiver"
+  language:     "Analog"
+  clock_hz:     0
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x2"
+
+  # How many analog pins does your project use?
+  analog_pins: 5
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_tnt_diff_rx"
+  
+  # List your project's source files here. Source files must be in ./src and you must list each source file separately, one per line:
+  source_files:        
+    - "tt_um_tnt_diff_rx.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "debug"
+  ui[1]: "bias_sel"
+  ui[2]: ""
+  ui[3]: ""
+  ui[4]: ""
+  ui[5]: ""
+  ui[6]: ""
+  ui[7]: ""
+
+  # Outputs
+  uo[0]: "q[0]"
+  uo[1]: "q[1]"
+  uo[2]: "q[2]"
+  uo[3]: "q[3]"
+  uo[4]: "q[4]"
+  uo[5]: "q[5]"
+  uo[6]: "q[6]"
+  uo[7]: "q[7]"
+
+  # Bidirectional pins
+  uio[0]: "q[8]"
+  uio[1]: "q[9]"
+  uio[2]: "q[10]"
+  uio[3]: "q[11]"
+  uio[4]: "q[12]"
+  uio[5]: "q[13]"
+  uio[6]: "q[14]"
+  uio[7]: "q[15]"
+
+  # Analog pins
+  ua[0]: "clk_n"
+  ua[1]: "clk_p"
+  ua[2]: "data_n"
+  ua[3]: "data_p"
+  ua[4]: "ibias"
+  ua[5]: "out"
+
+# Do not change!
+yaml_version: 6
