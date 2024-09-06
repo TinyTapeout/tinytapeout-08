@@ -20,11 +20,12 @@ Typical use of the styler chip follows these steps:
 10. Pulse `clk`.
 11. Set the address (inputs 0-2) to 3.
 12. Set the bidirectional pins to the left half of the row of the character bitmap corresponding to the logical scanline number.
-13. Set output enable (input 6) LOW and write enable (input 7) HIGH.
-13. Set the address (inputs 0-2) to 2.
-14. Read the right half of the final character bitmap from the bidirectional pins.
-15. Set the address (inputs 0-2) to 3.
-16. Read the left half of the final character bitmap from the bidirectional pins.
+13. Pulse `clk`.
+14. Set output enable (input 6) LOW and write enable (input 7) HIGH.
+15. Set the address (inputs 0-2) to 2.
+16. Read the right half of the final character bitmap from the bidirectional pins.
+17. Set the address (inputs 0-2) to 3.
+18. Read the left half of the final character bitmap from the bidirectional pins.
 
 You can also read from the dedicated output pins without changing output enable or write enable.
 
