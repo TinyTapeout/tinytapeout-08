@@ -3,7 +3,7 @@ project:
   title:        "Dickson Charge Pump"      # Project title
   author:       "Uri Shaked"      # Your name
   discord:      "urish"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Pumps the input voltage up to ~5.4V"      # One line description of what your project does
+  description:  "Pumps the input voltage up to ~3.65V"      # One line description of what your project does
   language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc
   clock_hz:     2000000       # Clock frequency in Hz (or 0 if not applicable)
 
