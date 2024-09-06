@@ -9,7 +9,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Generates VGA output for displaying [Ishihara](https://en.wikipedia.org/wiki/Ishihara_test) plates used for conducting a color blindness test. 
+Generates VGA output for displaying pattern similar to [Ishihara](https://en.wikipedia.org/wiki/Ishihara_test) plates used for conducting a color blindness test. (Disclaimer: Note that this is not an approved medical test and test setup. The pattern generated is for purely experimental purpose.) 
 
 ## How to test
 
