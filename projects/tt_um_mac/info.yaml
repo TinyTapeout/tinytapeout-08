@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:
   title:        "MAC"      # Project title
-  author:       "Mahaa Santeep G, Shylashree N, Ravish Aradhya H V, RV College Of Engineering, Sneha R V, PES Unoversity"      # Your name
+  author:       "Mahaa Santeep G, Shylashree N, Ravish Aradhya H V, RV College Of Engineering, Sneha R V, PES University"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Design and Implementation of MAC Unit Using Dadda Multiplier and Kogge-Stone Adder"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
