@@ -3,7 +3,7 @@ project:
   title:        "Sprite Bouncer with Looping Background Options"      # Project title
   author:       "Jacob Mack"      # Your name
   discord:      "Silicon Psycho"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Sprite bouncer hardware that supports multiple background options."      # One line description of what your project does
+  description:  "Sprite bouncer hardware that supports multiple background options and sprites."      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:      25000000      # Clock frequency in Hz (or 0 if not applicable)
 
@@ -23,19 +23,21 @@ project:
     - "hvsync_generator.v"
     - "pixel_color.v"
     - "sprite_rom0.v"
-    - "sprite_rom1.v"
+    # - "sprite_rom1.v"
+    # - "sprite_rom2.v"
+    # - "sprite_rom3.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "vga_control[0]"
+  ui[1]: "vga_control[1]"
+  ui[2]: "vga_control[2]"
+  ui[3]: "vga_control[3]"
+  ui[4]: "vga_control[4]"
+  ui[5]: "vga_control[5]"
+  ui[6]: "vga_control[6]"
+  ui[7]: "vga_control[7]"
 
   # Outputs
   uo[0]: "R1"
