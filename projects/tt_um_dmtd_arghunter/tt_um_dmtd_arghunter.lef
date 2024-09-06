@@ -66,7 +66,7 @@ MACRO tt_um_dmtd_arghunter
   PIN rst_n
     DIRECTION INPUT ;
     USE SIGNAL ;
-    ANTENNAGATEAREA 0.213000 ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 141.070 110.520 141.370 111.520 ;
@@ -142,6 +142,7 @@ MACRO tt_um_dmtd_arghunter
   PIN uio_in[0]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 116.230 110.520 116.530 111.520 ;
@@ -150,6 +151,7 @@ MACRO tt_um_dmtd_arghunter
   PIN uio_in[1]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.126000 ;
     PORT
       LAYER met4 ;
         RECT 113.470 110.520 113.770 111.520 ;
@@ -158,6 +160,7 @@ MACRO tt_um_dmtd_arghunter
   PIN uio_in[2]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 110.710 110.520 111.010 111.520 ;
@@ -166,6 +169,7 @@ MACRO tt_um_dmtd_arghunter
   PIN uio_in[3]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 107.950 110.520 108.250 111.520 ;
@@ -174,6 +178,7 @@ MACRO tt_um_dmtd_arghunter
   PIN uio_in[4]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 105.190 110.520 105.490 111.520 ;
@@ -182,6 +187,7 @@ MACRO tt_um_dmtd_arghunter
   PIN uio_in[5]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.159000 ;
     PORT
       LAYER met4 ;
         RECT 102.430 110.520 102.730 111.520 ;
@@ -190,6 +196,7 @@ MACRO tt_um_dmtd_arghunter
   PIN uio_in[6]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 99.670 110.520 99.970 111.520 ;
@@ -198,6 +205,7 @@ MACRO tt_um_dmtd_arghunter
   PIN uio_in[7]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.196500 ;
     PORT
       LAYER met4 ;
         RECT 96.910 110.520 97.210 111.520 ;
@@ -350,7 +358,7 @@ MACRO tt_um_dmtd_arghunter
   PIN uo_out[0]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 0.795200 ;
+    ANTENNADIFFAREA 0.445500 ;
     PORT
       LAYER met4 ;
         RECT 94.150 110.520 94.450 111.520 ;
@@ -444,11 +452,11 @@ MACRO tt_um_dmtd_arghunter
       LAYER li1 ;
         RECT 2.760 2.635 158.240 108.885 ;
       LAYER met1 ;
-        RECT 2.760 2.480 158.240 109.040 ;
+        RECT 2.760 2.480 158.240 109.780 ;
       LAYER met2 ;
-        RECT 18.310 2.535 155.390 110.005 ;
+        RECT 18.310 2.535 156.310 110.685 ;
       LAYER met3 ;
-        RECT 18.290 2.555 155.415 109.985 ;
+        RECT 18.290 2.555 156.335 110.665 ;
       LAYER met4 ;
         RECT 31.370 110.120 33.030 111.170 ;
         RECT 34.130 110.120 35.790 111.170 ;
@@ -491,13 +499,13 @@ MACRO tt_um_dmtd_arghunter
         RECT 136.250 110.120 137.910 111.170 ;
         RECT 139.010 110.120 140.670 111.170 ;
         RECT 30.655 109.440 141.385 110.120 ;
-        RECT 30.655 96.055 56.750 109.440 ;
-        RECT 59.150 96.055 60.050 109.440 ;
-        RECT 62.450 96.055 95.620 109.440 ;
-        RECT 98.020 96.055 98.920 109.440 ;
-        RECT 101.320 96.055 134.490 109.440 ;
-        RECT 136.890 96.055 137.790 109.440 ;
-        RECT 140.190 96.055 141.385 109.440 ;
+        RECT 30.655 95.375 56.750 109.440 ;
+        RECT 59.150 95.375 60.050 109.440 ;
+        RECT 62.450 95.375 95.620 109.440 ;
+        RECT 98.020 95.375 98.920 109.440 ;
+        RECT 101.320 95.375 134.490 109.440 ;
+        RECT 136.890 95.375 137.790 109.440 ;
+        RECT 140.190 95.375 141.385 109.440 ;
   END
 END tt_um_dmtd_arghunter
 END LIBRARY
