@@ -69,6 +69,7 @@ jobs:
             klayout_pin_label_purposes_overlapping_drawing
             klayout_zeroarea
             oeb
+            illegal_cellname_check
           # Skipped checks: magic_drc (it's very slow)
           PDK_PATH: ${{ env.PDK_ROOT }}/sky130A
           INPUT_DIRECTORY: ${{ github.workspace }}/tinytapeout-submission
