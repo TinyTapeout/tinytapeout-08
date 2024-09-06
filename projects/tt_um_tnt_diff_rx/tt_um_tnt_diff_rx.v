@@ -17,8 +17,13 @@ module tt_um_tnt_diff_rx (
 	wire ibias_data;
 	wire ibias_clk;
 
+	wire clk_p;
+	wire clk_n;
+
 	wire rx_data;
 	wire rx_clk;
+
+	wire data_out;
 
 	bias_gen bias_gen_I (
 		.VGND     (VGND),
@@ -29,12 +34,26 @@ module tt_um_tnt_diff_rx (
 		.bias1    (ibias_clk)
 	);
 
+	io_protect clamp_clk_p_I (
+		.VDPWR    (VDPWR),
+		.VGND     (VGND),
+		.in       (ua[1]),
+		.out      (clk_p)
+	);
+
+	io_protect clamp_clk_n_I (
+		.VDPWR    (VDPWR),
+		.VGND     (VGND),
+		.in       (ua[0]),
+		.out      (clk_n)
+	);
+
 	diff_rx rx_clk_I (
 		.VPWR     (VDPWR),
 		.VGND     (VGND),
 		.out      (rx_clk),
-		.in_p     (ua[1]),
-		.in_n     (ua[0]),
+		.in_p     (clk_p),
+		.in_n     (clk_n),
 		.ibias    (ibias_clk)
 	);
 
@@ -70,7 +89,15 @@ module tt_um_tnt_diff_rx (
 			uo_out[4],
 			uo_out[2],
 			uo_out[0]
-		})
+		}),
+		.data_out (data_out)
+	);
+
+	out_drive out_drive_I (
+		.VGND     (VGND),
+		.VPWR     (VDPWR),
+		.in       (data_out),
+		.out      (ua[5])
 	);
 
 	assign uio_oe = {8{VDPWR}};
