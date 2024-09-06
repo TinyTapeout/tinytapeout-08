@@ -17,8 +17,8 @@ project:
     - "vgademo.v"
     - "rom.v"
     - "audiotrack.v"
-    - "songrom.v"
     - "recip16.v"
+    - "songrom.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
