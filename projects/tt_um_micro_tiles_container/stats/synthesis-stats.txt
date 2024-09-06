@@ -19,14 +19,14 @@
      sky130_fd_sc_hd__o41a_2         8
      sky130_fd_sc_hd__or3_2          8
      tt_um_MichaelBell_shift_compute      1
-     tt_um_micro_proj3               1
-     tt_um_micro_proj4               1
+     tt_um_micro_gfg_development_cic      1
      tt_um_micro_test                1
+     tt_um_watbulb_sync_fifo         1
 
    Area for cell type \tt_um_micro_test is unknown!
    Area for cell type \tt_um_MichaelBell_shift_compute is unknown!
-   Area for cell type \tt_um_micro_proj3 is unknown!
-   Area for cell type \tt_um_micro_proj4 is unknown!
+   Area for cell type \tt_um_micro_gfg_development_cic is unknown!
+   Area for cell type \tt_um_watbulb_sync_fifo is unknown!
 
    Chip area for module '\tt_um_micro_tiles_container': 773.241600
 
