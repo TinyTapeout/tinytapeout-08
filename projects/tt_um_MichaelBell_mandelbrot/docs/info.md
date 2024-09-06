@@ -31,7 +31,7 @@ These values should only be updated during vsync.
 
 | Ctrl | Value |
 | ---- | ----- |
-| 0    | Enable demo mode (TBD) |
+| 0    | Enable demo mode (Zooms in and out repeatedly) |
 | 1    | Set X coordinate for top-left of screen to value / 2^10 |
 | 2    | Set Y coordinate for top-left of screen to value / 2^11 |
 | 3    | No action |
