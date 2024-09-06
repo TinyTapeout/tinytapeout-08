@@ -20,7 +20,7 @@ project:
     - "project.v"
     - "demo.sv"
     - "sine_table_generated.v"
-    - "logo_table_generated.v"
+    - "logo_table_generated2.v"
     - "graphics.sv"
     - "raster_scan2.sv"
     - "tinysynth.sv"
