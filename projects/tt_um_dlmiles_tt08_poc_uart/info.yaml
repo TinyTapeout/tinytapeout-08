@@ -1,0 +1,63 @@
+# Tiny Tapeout project information
+project:
+  title:        "UART"      # Project title
+  author:       "Darryl Miles"      # Your name
+  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "UART"      # One line description of what your project does
+  language:     "SpinalHDL" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_dlmiles_tt08_poc_uart"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "tt_um.vh"
+    - "config.vh"
+    - "top_tt_um_dlmiles_tt08_poc_uart.v"
+    - "sky130_toolbox/async_reset_ctrl__dff_async_set.v"
+    - "sky130_toolbox/dff_async_set.v"
+    - "sky130_toolbox/dff.v"
+    - "pdk_generic/generic_maj3.v"
+    - "pdk_sky130/sky130_fd_sc_hd__maj3.v"
+    - "UartTop.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "altclk"
+  ui[1]: "busMode0"
+  ui[2]: "busMode1"
+  ui[3]: "rxd"
+  ui[4]: "dsr"
+  ui[5]: "dcd"
+  ui[6]: "cts"
+  ui[7]: "ri"
+
+  # Outputs
+  uo[0]: ""
+  uo[1]: ""
+  uo[2]: ""
+  uo[3]: "dtr"
+  uo[4]: "txd"
+  uo[5]: "rts"
+  uo[6]: "intTx"
+  uo[7]: "intRx"
+
+  # Bidirectional pins
+  uio[0]: "busData0"
+  uio[1]: "busData1"
+  uio[2]: "busData2"
+  uio[3]: "busData3"
+  uio[4]: "busData4"
+  uio[5]: "busData5"
+  uio[6]: "busData6"
+  uio[7]: "busData7"
+
+# Do not change!
+yaml_version: 6
