@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/ROSHAN0120/tt08-verilog-resfuzzy",
+  "commit": "8f09e58f65c021f73005e12280ab0e5460616953",
+  "workflow_url": "https://github.com/ROSHAN0120/tt08-verilog-resfuzzy/actions/runs/10721398171",
+  "sort_id": 1725599254116,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}
