@@ -9,7 +9,10 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-How ? Unsure yet :)
+This is a single tile 'demo' hacked on the very last day, basically during
+coffee breaks. It's using an old rotozoom trick, and is otherwise pretty simple.
+
+Music is ... well it is an attempt ;)
 
 ## How to test
 
@@ -17,5 +20,4 @@ Plug VGA pmod,  power up, enjoy.
 
 ## External hardware
 
-VGA PMOD.
-
+VGA PMOD, Audio PMOD
