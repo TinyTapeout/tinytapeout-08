@@ -1,0 +1,63 @@
+# Tiny Tapeout project information
+project:
+  title:        "Zoom Zoom"      # Project title
+  author:       "Justin T, Andrew H, Simon Y, Kellen Y, Vallabh A, Nicole C"      # Your name
+  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Custom Cpu with custome external memory bus and sha-3 and CORDIC accelerators"      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     60000000       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "4x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_zoom_zoom"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "keccakf1600_statepermutate.v"
+    - "tt_um_zoom_zoom.v"
+    - "ram_16bit.v"
+    - "x3q16.v"
+    - "x3q16alu.v"
+    - "uart_tx.v"
+    - "uart_rx.v"
+    - "memory_controller_arduino.v"
+
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "lower_byte_in"
+  ui[1]: "upper_byte_in"
+  ui[2]: "rx"
+  ui[3]: "IN3"
+  ui[4]: "IN4"
+  ui[5]: "IN5"
+  ui[6]: "IN6"
+  ui[7]: "IN7"
+
+  # Outputs
+  uo[0]: "write_enable"
+  uo[1]: "register_enable"
+  uo[2]: "read_enable"
+  uo[3]: "lower_bit"
+  uo[4]: "tx"
+  uo[5]: "upper_bit"
+  uo[6]: "OUT6"
+  uo[7]: "OUT7"
+
+  # Bidirectional pins
+  uio[0]: "DATA0"
+  uio[1]: "DATA1"
+  uio[2]: "DATA2"
+  uio[3]: "DATA3"
+  uio[4]: "DATA4"
+  uio[5]: "DATA5"
+  uio[6]: "DATA6"
+  uio[7]: "DATA7"
+
+# Do not change!
+yaml_version: 6
