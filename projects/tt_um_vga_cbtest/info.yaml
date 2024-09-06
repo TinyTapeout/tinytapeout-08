@@ -3,7 +3,7 @@ project:
   title:        "Generate VGA output for Color Blindness Test"      # Project title
   author:       "[Krushnasis Pradhan](https://www.linkedin.com/in/krushnasis-pradhan-35881518b/), [Aniruddha Ranade](https://www.linkedin.com/in/aniruddha-ranade/)"      # Your name
   discord:      "31arr_10684"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Generate VGA output which shall display the Ishihara Plates"      # One line description of what your project does
+  description:  "Generate VGA output which shall display the pattern similar to Ishihara Plates"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
