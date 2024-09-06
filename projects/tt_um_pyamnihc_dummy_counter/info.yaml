@@ -1,0 +1,54 @@
+# Tiny Tapeout project information
+project:
+  title:        "Dummy Counter"      # Project title
+  author:       "Chinmay"      # Your name
+  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "A 16-bit counter"      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_pyamnihc_dummy_counter"
+  
+  # List your project's source files here. Source files must be in ./src and you must list each source file separately, one per line:
+  source_files:        
+    - "project.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "count_en"
+  ui[1]: "mult_en"
+  ui[2]: "m_a0"
+  ui[3]: "m_a1"
+  ui[4]: "m_a2"
+  ui[5]: "m_b0"
+  ui[6]: "m_b1"
+  ui[7]: "m_b2"
+
+  # Outputs
+  uo[0]: "b0"
+  uo[1]: "b1"
+  uo[2]: "b2"
+  uo[3]: "b3"
+  uo[4]: "b4"
+  uo[5]: "b5"
+  uo[6]: "b6"
+  uo[7]: "b7"
+
+  # Bidirectional pins
+  uio[0]: "b8"
+  uio[1]: "b9"
+  uio[2]: "b10"
+  uio[3]: "b11"
+  uio[4]: "b12"
+  uio[5]: "b13"
+  uio[6]: "b14"
+  uio[7]: "b15"
+
+# Do not change!
+yaml_version: 6
+
