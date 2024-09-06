@@ -50,9 +50,9 @@ pinout:
   uio[2]: ""
   uio[3]: ""
   uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
-  uio[7]: ""
+  uio[5]: "bias1_in"
+  uio[6]: "bias2_in"
+  uio[7]: "bias3_in"
 
   # Analog pins - make sure to also set "analog_pins" above, else the pins won't be connected
   ua[0]: "VbiasR"
