@@ -1,11 +1,12 @@
 ## How it works
 
-Video of the Nyan Cat
+The Nyan Cat animation and music on infinite repeat
 
 ## How to test
 
-Connect the TinyVGA PMOD to the `Out` PMod and enable the chip
+Connect the TinyVGA PMOD to the `Out` PMOD and Mike' Audio PMOD to `Bidir` PMOD.
 
 ## External hardware
 
-TinyVGA PMOD connected to `uo_out[7:0]`
+* TinyVGA PMOD
+* Mike's audio PMOD
