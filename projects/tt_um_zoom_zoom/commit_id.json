@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/ringedSquid/BWSI-ASICS-24-Zoom-Zoom",
+  "commit": "0e5654aa1e428432a9c5e632ddcdbe02aa33bd21",
+  "workflow_url": "https://github.com/ringedSquid/BWSI-ASICS-24-Zoom-Zoom/actions/runs/10742468682",
+  "sort_id": 1725644673627,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}
