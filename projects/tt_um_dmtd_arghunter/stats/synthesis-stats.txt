@@ -2,17 +2,37 @@
 
 === tt_um_dmtd_arghunter ===
 
-   Number of wires:                 15
-   Number of wire bits:             50
-   Number of public wires:          15
-   Number of public wire bits:      50
+   Number of wires:                233
+   Number of wire bits:            268
+   Number of public wires:         144
+   Number of public wire bits:     179
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:                 31
+   Number of cells:                249
+     sky130_fd_sc_hd__a21o_2        11
+     sky130_fd_sc_hd__a21oi_2        5
+     sky130_fd_sc_hd__a221o_2        2
+     sky130_fd_sc_hd__a221oi_2       2
+     sky130_fd_sc_hd__a311o_2        3
+     sky130_fd_sc_hd__a311oi_2       1
+     sky130_fd_sc_hd__a32o_2         1
+     sky130_fd_sc_hd__and2_2         3
+     sky130_fd_sc_hd__and3b_2        1
      sky130_fd_sc_hd__buf_2         24
-     sky130_fd_sc_hd__dfrtp_2        6
+     sky130_fd_sc_hd__dfrtp_2      134
+     sky130_fd_sc_hd__inv_2          3
+     sky130_fd_sc_hd__mux2_1        10
+     sky130_fd_sc_hd__mux4_2        28
+     sky130_fd_sc_hd__nand2_2        7
+     sky130_fd_sc_hd__nand3b_2       1
+     sky130_fd_sc_hd__nor2_2         2
+     sky130_fd_sc_hd__o211a_2        1
+     sky130_fd_sc_hd__o21a_2         3
+     sky130_fd_sc_hd__o21ai_2        3
+     sky130_fd_sc_hd__o221a_2        1
+     sky130_fd_sc_hd__or2_2          2
      sky130_fd_sc_hd__xor2_2         1
 
-   Chip area for module '\tt_um_dmtd_arghunter': 294.032000
+   Chip area for module '\tt_um_dmtd_arghunter': 4850.902400
 
