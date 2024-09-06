@@ -14,10 +14,6 @@ To test the user input functionality, connect the `ui_io[7:0]` pins.  The idea
 is that this would be a possibly useful graphical extension to the dozens of
 existing projects that utilize the 7-segment LED display to show results.
 
-### Advanced Configuration
-
-TBD. (to configure LED colors/background)
-
 ## External hardware
 
 Requires the [TinyVGA PMOD](https://github.com/mole99/tiny-vga)
