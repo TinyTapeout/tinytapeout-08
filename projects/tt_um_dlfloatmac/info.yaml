@@ -1,11 +1,11 @@
 # Tiny Tapeout project information
 project:
   title:        "DL float MAC"      # Project title 
-  author:       "Ananya P, Nidhi M D"      # Your name
+  author:       "Ananya P & Nidhi M D"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "MAC unit for 16 bit DL float data type"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     50000000       # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:     40000000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
   tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
@@ -22,34 +22,34 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: "data_in[0]"
-  ui[1]: "data_in[1]"
-  ui[2]: "data_in[2]"
-  ui[3]: "data_in[3]"
-  ui[4]: "data_in[4]"
-  ui[5]: "data_in[5]"
-  ui[6]: "data_in[6]"
-  ui[7]: "data_in[7]"
+  ui[0]: "FP16 in[0]"
+  ui[1]: "FP16 in[1]"
+  ui[2]: "FP16 in[2]"
+  ui[3]: "FP16 in[3]"
+  ui[4]: "FP16 in[4]"
+  ui[5]: "FP16 in[5]"
+  ui[6]: "FP16 in[6]"
+  ui[7]: "FP16 in[7]"
 
   # Outputs
-  uo[0]: "c_byte[0]"
-  uo[1]: "c_byte[1]"
-  uo[2]: "c_byte[2]"
-  uo[3]: "c_byte[3]"
-  uo[4]: "c_byte[4]"
-  uo[5]: "c_byte[5]"
-  uo[6]: "c_byte[6]"
-  uo[7]: "c_byte[7]"
+  uo[0]: "FP16 out[0]/FP16 out[8]"
+  uo[1]: "FP16 out[1]/FP16 out[9]"
+  uo[2]: "FP16 out[2]/FP16 out[10]"
+  uo[3]: "FP16 out[3]/FP16 out[11]"
+  uo[4]: "FP16 out[4]/FP16 out[12]"
+  uo[5]: "FP16 out[5]/FP16 out[13]"
+  uo[6]: "FP16 out[6]/FP16 out[14]"
+  uo[7]: "FP16 out[7]/FP16 out[15]"
 
   # Bidirectional pins
-  uio[0]: "data_in[8]"
-  uio[1]: "data_in[9]"
-  uio[2]: "data_in[10]"
-  uio[3]: "data_in[11]"
-  uio[4]: "data_in[12]"
-  uio[5]: "data_in[13]"
-  uio[6]: "data_in[14]"
-  uio[7]: "data_in[15]"
+  uio[0]: "FP16 in[8]"
+  uio[1]: "FP16 in[9]"
+  uio[2]: "FP16 in[10]"
+  uio[3]: "FP16 in[11]"
+  uio[4]: "FP16 in[12]"
+  uio[5]: "FP16 in[13]"
+  uio[6]: "FP16 in[14]"
+  uio[7]: "FP16 in[15]"
 
 # Do not change!
 yaml_version: 6
