@@ -1,0 +1,39 @@
+61. Printing statistics.
+
+=== tt_um_emilian_muxpga ===
+
+   Number of wires:               1065
+   Number of wire bits:           1100
+   Number of public wires:         261
+   Number of public wire bits:     296
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               1081
+     sky130_fd_sc_hd__a21bo_2       36
+     sky130_fd_sc_hd__a21o_2         8
+     sky130_fd_sc_hd__a21oi_2       69
+     sky130_fd_sc_hd__a221o_2        8
+     sky130_fd_sc_hd__and2_2       144
+     sky130_fd_sc_hd__and2b_2        2
+     sky130_fd_sc_hd__and3_2         2
+     sky130_fd_sc_hd__buf_2         92
+     sky130_fd_sc_hd__dfxtp_2      145
+     sky130_fd_sc_hd__inv_2         50
+     sky130_fd_sc_hd__mux2_1       277
+     sky130_fd_sc_hd__nand2_2       31
+     sky130_fd_sc_hd__nor2_2        28
+     sky130_fd_sc_hd__o2111a_2      28
+     sky130_fd_sc_hd__o211a_2        1
+     sky130_fd_sc_hd__o211ai_2       2
+     sky130_fd_sc_hd__o21a_2        14
+     sky130_fd_sc_hd__o21ai_2       72
+     sky130_fd_sc_hd__o21ba_2        1
+     sky130_fd_sc_hd__o21bai_2       1
+     sky130_fd_sc_hd__o221a_2       28
+     sky130_fd_sc_hd__o311a_2        7
+     sky130_fd_sc_hd__or2_2          1
+     sky130_fd_sc_hd__or3b_2        34
+
+   Chip area for module '\tt_um_emilian_muxpga': 11317.104000
+
