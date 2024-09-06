@@ -1,0 +1,68 @@
+# Tiny Tapeout project information
+project:
+  title:        "Bouncy Capsule"  # Project title
+  author:       "htfab"           # Your name
+  discord:      "h.tamas"         # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Demoscene project featuring... well, a bouncy capsule"     # One line description of what your project does
+  language:     "Verilog"         # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     25000000          # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_htfab_bouncy_capsule"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "arc_table.v"
+    - "sine_table.v"
+    - "coll_table.v"
+    - "bitmap_table.v"
+    - "capsule.v"
+    - "colors.v"
+    - "transform.v"
+    - "kinematics.v"
+    - "collision.v"
+    - "resonator.v"
+    - "orchestrator.v"
+    - "vga_beam.v"
+    - "delta_sigma.v"
+    - "project.v"
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "Pause kinematics"
+  ui[1]: "Reset kinematics"
+  ui[2]: "Mute sound"
+  ui[3]: "Kill sound"
+  ui[4]: "Hide background"
+  ui[5]: "Hide text"
+  ui[6]: "Lock colors"
+  ui[7]: "No re-orientation"
+
+  # Outputs
+  uo[0]: "Tiny VGA R1"
+  uo[1]: "Tiny VGA G1"
+  uo[2]: "Tiny VGA B1"
+  uo[3]: "Tiny VGA VSync"
+  uo[4]: "Ting VGA R0"
+  uo[5]: "Tiny VGA G0"
+  uo[6]: "Tiny VGA B0"
+  uo[7]: "Tiny VGA HSync"
+
+  # Bidirectional pins
+  uio[0]: "PDM audio out"
+  uio[1]: "PDM audio out"
+  uio[2]: "PDM audio out"
+  uio[3]: "PDM audio out"
+  uio[4]: "PDM audio out"
+  uio[5]: "PDM audio out"
+  uio[6]: "PDM audio out"
+  uio[7]: "PDM audio out"
+
+# Do not change!
+yaml_version: 6
