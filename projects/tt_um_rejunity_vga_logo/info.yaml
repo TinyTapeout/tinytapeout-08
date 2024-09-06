@@ -1,10 +1,10 @@
 
 # Tiny Tapeout project information
 project:
-  title:        "480x480 Tiny Tapeout logo in 1 tile"      # Project title
+  title:        "VGA Tiny Logo (1 tile)"      # Project title
   author:       "Renaldas Zioma"
   discord:      "rzioma"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Large 480x480 pixels Tiny Tapeout logo crammed into 1 tile"
+  description:  "Large 480x480 pixels Tiny Tapeout logo with bling and dithered colors crammed into 1 tile!"
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     25175000       # Clock frequency in Hz (or 0 if not applicable)
 
