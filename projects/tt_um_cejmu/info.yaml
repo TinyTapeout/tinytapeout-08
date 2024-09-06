@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:
-  title:        "TODO"      # Project title
-  author:       "TODO"      # Your name
-  discord:      "TODO"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "TODO"      # One line description of what your project does
+  title:        "CEJMU Beers and Adders"      # Project title
+  author:       "Prof. Dr.-Ing. Matthias Jung, Philipp Wetzstein, Derek Christ, Jonathan Hager"      # Your name
+  discord:      "myzinsky"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Several projects to show in lectures. Includes a simple state-machine, a decoder and two 24 bit adders. Refer to documentation for details"      # One line description of what your project does
   language:     "SystemVerilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -22,34 +22,34 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: "TODO"
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "Multiplexed to all designs (refer to documentation for details)"
+  ui[1]: "..."
+  ui[2]: "..."
+  ui[3]: "..."
+  ui[4]: "..."
+  ui[5]: "..."
+  ui[6]: "..."
+  ui[7]: "..."
 
   # Outputs
-  uo[0]: "TODO"
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "Multiplexed from all designs (refer to documentation for details)"
+  uo[1]: "..."
+  uo[2]: "..."
+  uo[3]: "..."
+  uo[4]: "..."
+  uo[5]: "..."
+  uo[6]: "..."
+  uo[7]: "..."
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
-  uio[7]: ""
+  uio[0]: "Select design (input)"
+  uio[1]: "Select design (input)"
+  uio[2]: "start_calc"
+  uio[3]: "output_result"
+  uio[4]: "unused"
+  uio[5]: "unused"
+  uio[6]: "overflow bit of RCA (output)"
+  uio[7]: "overflow bit of CLA (output)"
 
 # Do not change!
 yaml_version: 6
