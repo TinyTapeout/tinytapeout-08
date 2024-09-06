@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/piboi/tt08-nn",
+  "commit": "64c3b3ba55093b06d14084689caf6334e73bceba",
+  "workflow_url": "https://github.com/piboi/tt08-nn/actions/runs/10730964609",
+  "sort_id": 1725588353862,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}

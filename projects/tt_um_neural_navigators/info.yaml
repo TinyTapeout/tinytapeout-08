@@ -1,0 +1,68 @@
+# Tiny Tapeout project information
+project:
+  title:        "Neural Net ASIC"      # Project title
+  author:       "Neural Navigators: Linyang Lee, Harsha Ganta, Stephanie Shen, William Li, Kiana Dai"      # Your name
+  discord:      "crewrower, uchiramen, willbill1, nabipancakes, akkosani, "      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "MNIST Handwriting prediction on a neural network"      # One line description of what your project does
+  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  clock_hz:     10000000      # Clock frequency in Hz (or 0 if not applicable)
+
+  # How many tiles your design occupies? A single tile is about 167x108 uM.
+  tiles: "4x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+
+  # Your top module name must start with "tt_um_". Make it unique by including your github username:
+  top_module:  "tt_um_neural_navigators"
+
+  # List your project's source files here.
+  # Source files must be in ./src and you must list each source file separately, one per line.
+  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
+  source_files:
+    - "project.v"
+    - "fsm_16_states.v"
+    - "fsm_38_states.v"
+    - "fsm_260_states.v"
+    - "layer1.v"
+    - "layer2.v"
+    - "layer3.v"
+    - "neuron.v"
+    - "neuron_out.v"
+    - "neuron_hidden.v"
+    - "outlayer.v"
+    - "relu.v"
+    - "top_layer.v"
+    
+
+# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
+pinout:
+  # Inputs
+  ui[0]: "ui[0]"
+  ui[1]: "ui[1]"
+  ui[2]: "ui[2]"
+  ui[3]: "ui[3]"
+  ui[4]: "ui[4]"
+  ui[5]: "ui[5]"
+  ui[6]: "ui[6]"
+  ui[7]: "ui[7]"
+
+  # Outputs
+  uo[0]: "uo[0]"
+  uo[1]: "uo[1]"
+  uo[2]: "uo[2]"
+  uo[3]: "uo[3]"
+  uo[4]: "uo[4]"
+  uo[5]: "uo[5]"
+  uo[6]: "uo[6]"
+  uo[7]: "uo[7]"
+
+  # Bidirectional pins
+  uio[0]: "uio[0]"
+  uio[1]: "uio[1]"
+  uio[2]: "uio[2]"
+  uio[3]: "uio[3]"
+  uio[4]: "uio[4]"
+  uio[5]: "uio[5]"
+  uio[6]: "uio[6]"
+  uio[7]: "uio[7]"
+
+# Do not change!
+yaml_version: 6
