@@ -943,7 +943,7 @@ module tt_um_micro_tiles_container (clk,
     \uo_out_proj[1][2] ,
     \uo_out_proj[1][1] ,
     \uo_out_proj[1][0] }));
- tt_um_micro_proj3 proj3 (.VGND(VGND),
+ tt_um_micro_gfg_development_cic proj3 (.VGND(VGND),
     .VPWR(VPWR),
     .clk(_002_),
     .rst_n(_006_),

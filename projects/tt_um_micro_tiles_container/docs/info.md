@@ -66,3 +66,22 @@ ui_in[2:1] select the output, as follows
 | 3          | Latched AND result          |
 
 Finally, if rst_n is high the outputs mirror the inputs.  Reset is otherwise unused.
+
+## Project 2 - PDM CIC Filter
+* Repo: https://github.com/gfg-development/tt-micro-tiles-cic
+* Author: Gerrit Grutzeck
+* Description: Micro tiles CIC filter for PDM signals with a 2 stage filter and a downsampling of 4
+
+### How it works 
+On ui_in[0] the input PDM datastream is received. Then it is processed in a CIC filter with 2 stages and a downsampling factor of 4. 
+The resulting filtered samples are outputted on `uo_out[7:2]` and the downsampled clock on `uo_out[0]`. Furthermore on `uo_out[1]` the normal clock is available. 
+
+### How to test
+Connect a PDM microphone as follows:
+* Clock: `uo_out[1]`
+* Data: `ui_in[0]`
+
+Then configure the clock generator of the RP2040 to generate a clock, as needed by the microphone (typically around 2 MHz) and reset the design via `rst_n`. 
+After the reset is removed again, the design is up and running, filtering the incoming datastream.
+With a connected logic analyzer or the RP2040 the filtered data can now be received on `uo_out[7:2]`, as well as the downsampled clock on `uo_out[0]`.
+The downsampled clock can be used to latch the filtered data. 
