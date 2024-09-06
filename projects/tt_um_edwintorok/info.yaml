@@ -2,9 +2,9 @@
 project:
   title:        "Rounding error"      # Project title
   author:       "Edwin Török"      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  discord:      "edwintorok_12160"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Competition entry"      # One line description of what your project does
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  language:     "HardCaml" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     25250000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
