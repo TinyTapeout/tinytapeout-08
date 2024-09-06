@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/arghunter/CIC-Filter-Verilog",
+  "commit": "dbdd7c07f17e7abcd619f34b3c8fa26e3e5d2ef4",
+  "workflow_url": "https://github.com/arghunter/CIC-Filter-Verilog/actions/runs/10694611479",
+  "sort_id": 1725610404876,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}
