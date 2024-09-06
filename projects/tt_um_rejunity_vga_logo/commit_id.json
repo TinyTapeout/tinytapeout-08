@@ -1,8 +1,8 @@
 {
-  "app": "Tiny Tapeout tt08 ed61fd7c",
-  "repo": "https://github.com/rejunity/tt08-large-266x266-tiny-tapeout-logo-in-1-tile",
-  "commit": "e1e3282c1003f440fb7fa3b051c3dfacbd8518d1",
-  "workflow_url": "https://github.com/rejunity/tt08-large-266x266-tiny-tapeout-logo-in-1-tile/actions/runs/9489702463",
+  "app": "Tiny Tapeout tt08 58dc0db1",
+  "repo": "https://github.com/rejunity/tt08-huge-480x480-tiny-tapeout-logo-in-1-tile",
+  "commit": "ab0dd33ffa24cefe7ab91fbbc83ccf33657b2e48",
+  "workflow_url": "https://github.com/rejunity/tt08-huge-480x480-tiny-tapeout-logo-in-1-tile/actions/runs/9545869232",
   "sort_id": 1718227691885,
   "openlane_version": "OpenLane 337ffbf4749b8bc6e8d8742ed9a595934142198b",
   "pdk_version": "open_pdks cd1748bb197f9b7af62a54507de6624e30363943"
