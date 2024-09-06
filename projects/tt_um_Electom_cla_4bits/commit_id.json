@@ -1,0 +1,9 @@
+{
+  "app": "Tiny Tapeout tt08 587b6cb0",
+  "repo": "https://github.com/Electom/tt08_CSA_4bits",
+  "commit": "213ea903e947a2fbc5415d67e893da5d43385ffe",
+  "workflow_url": "https://github.com/Electom/tt08_CSA_4bits/actions/runs/10740352538",
+  "sort_id": 1725635551545,
+  "openlane_version": "OpenLane2 2.0.8",
+  "pdk_version": "open_pdks bdc9412b3e468c102d01b7cf6337be06ec6e9c9a"
+}
