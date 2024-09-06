@@ -463,7 +463,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
       LAYER met1 ;
         RECT 138.800 4.550 154.100 59.470 ;
       LAYER met2 ;
-        RECT 19.900 3.550 153.400 129.950 ;
+        RECT 19.900 3.550 153.400 124.950 ;
       LAYER met3 ;
         RECT 1.000 2.050 153.425 59.440 ;
       LAYER met4 ;
