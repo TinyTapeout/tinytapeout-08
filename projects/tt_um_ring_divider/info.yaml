@@ -5,7 +5,7 @@ project:
   discord:      "commander_crisis"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Ring Oscillator"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:     10000000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
@@ -27,7 +27,7 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: ""
+  ui[0]: "tst_clk"
   ui[1]: ""
   ui[2]: ""
   ui[3]: ""
@@ -38,17 +38,17 @@ pinout:
 
   # Outputs
   uo[0]: "final_out"
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
+  uo[1]: "osc_out"
+  uo[2]: "ena"
+  uo[3]: "clk"
+  uo[4]: "rst_n"
+  uo[5]: "n2_buf"
+  uo[6]: "n4_buf"
   uo[7]: ""
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
+  uio[0]: "n1"
+  uio[1]: "n3"
   uio[2]: ""
   uio[3]: ""
   uio[4]: ""
