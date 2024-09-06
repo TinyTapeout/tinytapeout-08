@@ -1,10 +1,10 @@
 # Tiny Tapeout project information
 project:
-  title:        "VGA test"      # Project title
-  author:       "rejunity"      # Your name
-  discord:      "ReJ"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "We are learning VGA here and sky130"
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
+  title:        "VGA Drop (audio/visual demo)"      # Project title
+  author:       "ReJ aka Renaldas Zioma, eriQue aka Erik Hemming, Matthias Kampa"
+  discord:      "rzioma"        # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Tiny 8 part Megademo! TBL^Nesnausk^SonikClique"
+  language:     "Verilog"
   clock_hz:     25200000       # Clock frequency in Hz for VGA timing
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
@@ -42,13 +42,13 @@ pinout:
   uo[7]: "HSYNC"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
+  uio[0]: "Audio (PWM)"
+  uio[1]: "Audio (PWM)"
+  uio[2]: "Audio (PWM)"
+  uio[3]: "Audio (PWM)"
+  uio[4]: "Audio (PWM)"
+  uio[5]: "Audio (PWM)"
+  uio[6]: "Audio (PWM)"
   uio[7]: "Audio (PWM)"
 
 # Do not change!
