@@ -1,7 +1,3 @@
-VERSION 5.7 ;
-  NOWIREEXTENSIONATPIN ON ;
-  DIVIDERCHAR "/" ;
-  BUSBITCHARS "[]" ;
 MACRO tt_um_mattvenn_analog_ring_osc
   CLASS BLOCK ;
   FOREIGN tt_um_mattvenn_analog_ring_osc ;
@@ -43,6 +39,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN ua[1]
     DIRECTION INOUT ;
     USE SIGNAL ;
+    ANTENNADIFFAREA 15.839999 ;
     PORT
       LAYER met4 ;
         RECT 132.490 0.000 133.390 1.000 ;
@@ -108,6 +105,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN ui_in[1]
     DIRECTION INPUT ;
     USE SIGNAL ;
+    ANTENNAGATEAREA 0.495000 ;
     PORT
       LAYER met4 ;
         RECT 135.550 224.760 135.850 225.760 ;
@@ -228,7 +226,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_oe[0]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 49.990 224.760 50.290 225.760 ;
@@ -237,7 +235,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_oe[1]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 47.230 224.760 47.530 225.760 ;
@@ -246,7 +244,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_oe[2]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 44.470 224.760 44.770 225.760 ;
@@ -255,7 +253,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_oe[3]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 41.710 224.760 42.010 225.760 ;
@@ -264,7 +262,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_oe[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 38.950 224.760 39.250 225.760 ;
@@ -273,7 +271,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_oe[5]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 36.190 224.760 36.490 225.760 ;
@@ -282,7 +280,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_oe[6]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 33.430 224.760 33.730 225.760 ;
@@ -291,7 +289,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_oe[7]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 30.670 224.760 30.970 225.760 ;
@@ -300,7 +298,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_out[0]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 72.070 224.760 72.370 225.760 ;
@@ -309,7 +307,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_out[1]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 69.310 224.760 69.610 225.760 ;
@@ -318,7 +316,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_out[2]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 66.550 224.760 66.850 225.760 ;
@@ -327,7 +325,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_out[3]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 63.790 224.760 64.090 225.760 ;
@@ -336,7 +334,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_out[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 61.030 224.760 61.330 225.760 ;
@@ -345,7 +343,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_out[5]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 58.270 224.760 58.570 225.760 ;
@@ -354,7 +352,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_out[6]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 55.510 224.760 55.810 225.760 ;
@@ -363,7 +361,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uio_out[7]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 52.750 224.760 53.050 225.760 ;
@@ -372,7 +370,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uo_out[0]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 94.150 224.760 94.450 225.760 ;
@@ -381,7 +379,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uo_out[1]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 91.390 224.760 91.690 225.760 ;
@@ -390,7 +388,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uo_out[2]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 88.630 224.760 88.930 225.760 ;
@@ -399,7 +397,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uo_out[3]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 85.870 224.760 86.170 225.760 ;
@@ -408,7 +406,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uo_out[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 83.110 224.760 83.410 225.760 ;
@@ -417,7 +415,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uo_out[5]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 80.350 224.760 80.650 225.760 ;
@@ -426,7 +424,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uo_out[6]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 77.590 224.760 77.890 225.760 ;
@@ -435,7 +433,7 @@ MACRO tt_um_mattvenn_analog_ring_osc
   PIN uo_out[7]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 17.922249 ;
+    ANTENNADIFFAREA 41.928497 ;
     PORT
       LAYER met4 ;
         RECT 74.830 224.760 75.130 225.760 ;
@@ -459,13 +457,13 @@ MACRO tt_um_mattvenn_analog_ring_osc
   END VGND
   OBS
       LAYER li1 ;
-        RECT 143.730 10.300 152.380 53.670 ;
+        RECT 122.730 10.300 152.380 66.090 ;
       LAYER met1 ;
-        RECT 138.800 4.550 154.100 59.470 ;
+        RECT 117.925 4.550 154.100 72.530 ;
       LAYER met2 ;
         RECT 19.900 3.550 153.400 124.950 ;
       LAYER met3 ;
-        RECT 1.000 2.050 153.425 59.440 ;
+        RECT 1.000 2.050 153.425 72.525 ;
       LAYER met4 ;
         RECT 6.000 224.360 30.270 224.760 ;
         RECT 31.370 224.360 33.030 224.760 ;

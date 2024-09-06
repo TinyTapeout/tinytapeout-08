@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:
-  title:        "Ring oscillator"      # Project title
+  title:        "Ring Oscillators"      # Project title
   author:       "Matt Venn"      # Your name
   discord:      "mattvenn"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Ring Oscillator using analog output pins"      # One line description of what your project does
+  description:  "Ring Oscillators using analog output pins"      # One line description of what your project does
   language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -24,8 +24,8 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
+  ui[0]: "Enable ring 1"
+  ui[1]: "Enable ring 2"
   ui[2]: ""
   ui[3]: ""
   ui[4]: ""
