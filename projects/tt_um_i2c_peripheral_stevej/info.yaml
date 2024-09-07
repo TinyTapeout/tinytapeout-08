@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:
-  title:        "i2c peripherals: leading zero count and fnv-1a hash"      # Project title
+  title:        "i2c peripherals demonstrating address decoding and i2c reads"      # Project title
   author:       "Steve Jenson <stevej@gmail.com>"      # Your name
   discord:      "shorts_weather"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "An implementation of HyperLogLog in Verilog for sky130"      # One line description of what your project does
+  description:  "An i2c peripheral demonstrating address decoding and i2c reads."      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
