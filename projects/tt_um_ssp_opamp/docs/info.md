@@ -43,7 +43,6 @@ Power-on reset (POR) circuit ensures that electronic systems start up in a known
 ![POR Testbench](pic_por_testbench.png)
 ![POR Layout](pic_por_lay.png)
 
-
 ## How to test
 ### (1) Testing Opamp Circuit
 #### Non-Inverting Configuration
