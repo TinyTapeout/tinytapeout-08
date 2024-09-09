@@ -24,14 +24,12 @@ Miller Compensation involves using a capacitor between the output of the first s
 In the op-amp design submissions, **Amr Abdelrahman** and **Majid Sami** each presented their designs. The details of their submissions are as follows.
 
 #### (1) Design by Amr Abdelrahman
-
 ![Opamp Schematic](pic_opamp_sch.png)
 ![Opamp Testbench](pic_opamp_testbench.png)
 ![Opamp Layout](pic_opamp_layout.png)
 ![Opamp Simulation Specifications](pic_opamp_Specs.png)
 
 #### (2) Design by Majid Sami
-
 ![Opamp Schematic](pic1_opamp_sch.png)
 ![Opamp Testbench](pic1_opamp_testbench.png)
 ![Opamp Layout](pic1_opamp_layout.png)
@@ -46,13 +44,9 @@ Power-on reset (POR) circuit ensures that electronic systems start up in a known
 ![POR Layout](pic_por_lay.png)
 
 
-
 ## How to test
-
 ### (1) Testing Opamp Circuit
-
 #### Non-Inverting Configuration
-
 1. **Set Up the Circuit:** Connect the op-amp with the input signal to the non-inverting input (+) and a feedback resistor network to the inverting input (−).
 2. **Power the Op-Amp:** Apply the required positive and negative supply voltages.
 3. **Apply Input Signal:** Feed a known input signal to the non-inverting input.
@@ -61,7 +55,6 @@ Power-on reset (POR) circuit ensures that electronic systems start up in a known
 6. **Evaluate Stability and Linearity:** Look for any oscillations or instability and confirm the output accurately represents the input signal.
 
 #### Buffer (Voltage Follower) Configuration
-
 1. **Set Up the Circuit:** Connect the op-amp with output to the inverting input (−) and the input signal to the non-inverting input (+).
 2. **Power the Op-Amp:** Apply the necessary supply voltages.
 3. **Apply Input Signal:** Feed a known input signal to the non-inverting input.
@@ -69,31 +62,19 @@ Power-on reset (POR) circuit ensures that electronic systems start up in a known
 5. **Check Frequency Response and Stability:** Confirm fidelity of output across different frequencies and ensure stable output without oscillations.
 6. **Assess Load Driving Capability:** Test with various loads to verify effective driving.
 
-
 ### (2) Testing POR Circuit
-
 1. Power up the circuit such that VDD voltage reaches final 1.8V value from 0V in 1us to 10us seep time.
-
 2. Check the reset signal with an oscilloscope to confirm proper activation and deactivation.
-
 3. Verify that the voltage reaches the threshold and that the reset signal duration is sufficient, especially for rise times of 1µs to 10µs.
-
 4. Test the POR circuit under varying power conditions and ensure correct system initialization post-reset.
-
 5. Power down and repeat the test to ensure consistent performance.
 
 ## External hardware
-
 Digilent Analog Discovery can be used for various measurements of opamp circuits. 
 
 1. **Signal Generation**: Use the Analog Discovery's waveform generator to create test signals for the op-amp and power-on-reset circuits.
-
 2. **Measurement**: Connect the oscilloscope probes to monitor the input and output signals of the op-amp and observe the behavior of the power-on-reset circuit.
-
 3. **Frequency Response**: Analyze the frequency response of the op-amp by sweeping through various frequencies and recording the output using the Analog Discovery's built-in tools.
-
 4. **Transient Analysis**: Measure how the op-amp and power-on-reset circuits respond to transient signals or sudden changes, such as power-up events.
-
 5. **Voltage Levels**: Check the stability and correct operation of the power-on-reset circuit by measuring the voltage levels and timing of the reset pulse.
-
 ![Sample Measurement Setup using Analog Discovery 3](pic_analog_discovery.jpeg)
