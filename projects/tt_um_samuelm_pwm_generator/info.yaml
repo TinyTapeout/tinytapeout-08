@@ -47,7 +47,7 @@ pinout:
   uio[2]: "in[10]"
   uio[3]: "in[11]"
   uio[4]: ""
-  uio[5]: ""
+  uio[5]: "out_en"
   uio[6]: "sel"
   uio[7]: "wr_en"
 
