@@ -8,11 +8,9 @@ You can also include images in this folder and reference them in the markdown. E
 -->
 
 ## How it works
-
 This project contains in total 3 circuits: 2 nos. of 2-stage opamp and 1 POR (Power on reset) circuit. These circuits are  designed by participants of analog IC design training conducted by SSP (Saudi Semiconductor Program). 
 
 ### 2-stage Opamp
-
 A 2-stage Miller operational amplifier (op-amp) circuit comprises two amplification stages, with a Miller capacitor connected between the output of the first stage and the input of the second stage. This arrangement improves stability and bandwidth, making it ideal for high-gain, high-frequency applications. The 2-stage Miller op-amp is frequently utilized in precision analog signal processing, active filters, and high-impedance buffer circuits.
 
 **First Stage:** An NMOS differential input pair, selected for its high transconductance and speed, amplifies the difference between the input signals.
