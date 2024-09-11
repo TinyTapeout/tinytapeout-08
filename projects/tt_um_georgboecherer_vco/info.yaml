@@ -3,7 +3,7 @@ project:
   title:        "Analog Voltage Controlled Oscillator"      # Project title
   author:       "Georg Boecherer"      # Your name
   discord:      "georgboecherer"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "A voltage controlled oscillator"      # One line description of what your project does
+  description:  "A voltage controlled oscillator with 4 differential stages."      # One line description of what your project does
   language:     "Analog" # other examples include Verilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -24,24 +24,24 @@ project:
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
   # Inputs
-  ui[0]: "bit in 0"
-  ui[1]: "bit in 1"
-  ui[2]: "bit in 2"
-  ui[3]: "bit in 3"
+  ui[0]: ""
+  ui[1]: ""
+  ui[2]: ""
+  ui[3]: ""
   ui[4]: ""
   ui[5]: ""
   ui[6]: ""
   ui[7]: ""
 
   # Outputs
-  uo[0]: "bit out 0"
-  uo[1]: "bit out 1"
-  uo[2]: "bit out 2"
-  uo[3]: "bit out 3"
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "tap 0 signal"
+  uo[1]: "tap 1 signal"
+  uo[2]: "tap 2 signal"
+  uo[3]: "tap 3 signal"
+  uo[4]: "tap 4 signal"
+  uo[5]: "tap 5 signal"
+  uo[6]: "tap 6 signal"
+  uo[7]: "tap 7 signal"
 
   # Bidirectional pins
   uio[0]: ""
@@ -54,8 +54,8 @@ pinout:
   uio[7]: ""
 
   # Analog pins - make sure to also set "analog_pins" above, else the pins won't be connected
-  ua[0]: "control signal"
-  ua[1]: "optional control signal"
+  ua[0]: "bias control signal"
+  ua[1]: "optional bias control signal"
   ua[2]: ""
   ua[3]: ""
   ua[4]: ""
