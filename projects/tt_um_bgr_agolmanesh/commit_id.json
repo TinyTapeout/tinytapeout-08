@@ -1,8 +1,8 @@
 {
   "app": "custom_gds action",
   "repo": "https://github.com/AsalGolmanesh/tt08-bgr",
-  "commit": "649b1597884b0fdb2e0cf979833fb23245441b4c",
-  "workflow_url": "https://github.com/AsalGolmanesh/tt08-bgr/actions/runs/10730531024",
+  "commit": "232fc4d2ddb2331bcfaae091cbc3abde3ca17d70",
+  "workflow_url": "https://github.com/AsalGolmanesh/tt08-bgr/actions/runs/10824989385",
   "sort_id": 1725652887547,
   "analog": true
 }
