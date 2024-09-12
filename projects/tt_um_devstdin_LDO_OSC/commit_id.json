@@ -1,8 +1,8 @@
 {
   "app": "custom_gds action",
   "repo": "https://github.com/devstdin/tt08-ldo-bg-ref-osc",
-  "commit": "b0af14e2dfc7f1f358d7c684fa234ef10d7308ea",
-  "workflow_url": "https://github.com/devstdin/tt08-ldo-bg-ref-osc/actions/runs/10705950362",
+  "commit": "b5914a17ac11bd1e49c7fe20ac2cf7b602c53126",
+  "workflow_url": "https://github.com/devstdin/tt08-ldo-bg-ref-osc/actions/runs/10833568152",
   "sort_id": 1725468478928,
   "analog": true
 }
