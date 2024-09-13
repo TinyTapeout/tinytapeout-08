@@ -23,32 +23,34 @@ In the op-amp design submissions, **Amr Abdelrahman** and **Majid Sami** each pr
 
 #### (1) Design by Amr Abdelrahman
 
-<img src="pic_opamp_sch.png" alt="Opamp Schematic" width="600" height="400">
+![Opamp Schematic](pic_opamp_sch.png "Opamp Schematic")
 
-<img src="pic_opamp_testbench.png" alt="Opamp Testbench" width="600" height="400">
+![Opamp Testbench](pic_opamp_testbench.png "Opamp Testbench")
 
-<img src="pic_opamp_layout.png" alt="Opamp Layout" width="600" height="400">
+![Opamp Layout](pic_opamp_layout.png "Opamp Layout")
 
-<img src="pic_opamp_Specs.png" alt="Opamp Simulation Specifications" width="400" height="200">
+![Opamp Simulation Specifications](pic_opamp_Specs.png "Opamp Simulation Specifications")
 
 #### (2) Design by Majid Sami
 
-<img src="pic1_opamp_sch.png" alt="Opamp Schematic" width="600" height="400">
+![Opamp Schematic](pic1_opamp_sch.png "Opamp Schematic")
 
-<img src="pic1_opamp_testbench.png" alt="Opamp Testbench" width="600" height="500">
+![Opamp Testbench](pic1_opamp_testbench.png "Opamp Testbench")
 
-<img src="pic1_opamp_layout.png" alt="Opamp Layout" width="600" height="400">
+![Opamp Layout](pic1_opamp_layout.png "Opamp Layout")
 
-<img src="pic1_opamp_specs.png" alt="Opamp Simulation Specifications" width="400" height="200">
+![Opamp Simulation Specifications](pic1_opamp_specs.png "Opamp Simulation Specifications")
 
 
 ### POR (Power On Reset) Circuit
 Power-on reset (POR) circuit ensures that electronic systems start up in a known, stable state by generating a reset signal when power is initially applied. This circuit detects when the power supply reaches a sufficient voltage level and holds the reset line active until the voltage stabilizes, preventing erratic behavior and data corruption. POR circuits are crucial in microcontrollers, consumer electronics, and industrial systems, as they guarantee reliable initialization and consistent performance, thereby enhancing system stability and functionality during power-up.The circuit designed without capacitor which yields 30% reduction of chip’s area compared to the conventional designs
 
 #### (1) Design by Khalid Alorayir
-<img src="pic_por_sch.png" alt="POR Schematic" width="600" height="400">
-<img src="pic_por_testbench.png" alt="POR Testbench" width="600" height="400">
-<img src="pic_por_lay.png" alt="POR Layout" width="600" height="400">
+![POR Schematic](pic_por_sch.png "POR Schematic")
+
+![POR Testbench](pic_por_testbench.png "POR Testbench")
+
+![POR Layout](pic_por_lay.png "POR Layout")
 
 ## How to test
 ### (1) Testing Opamp Circuit
