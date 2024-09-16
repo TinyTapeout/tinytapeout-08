@@ -22,34 +22,23 @@ Miller Compensation involves using a capacitor between the output of the first s
 In the op-amp design submissions, **Amr Abdelrahman** and **Majid Sami** each presented their designs. The details of their submissions are as follows.
 
 #### (1) Design by Amr Abdelrahman
-
 ![Opamp Schematic](pic_opamp_sch.png "Opamp Schematic")
-
 ![Opamp Testbench](pic_opamp_testbench.png "Opamp Testbench")
-
 ![Opamp Layout](pic_opamp_layout.png "Opamp Layout")
-
 ![Opamp Simulation Specifications](pic_opamp_Specs.png "Opamp Simulation Specifications")
 
 #### (2) Design by Majid Sami
-
 ![Opamp Schematic](pic1_opamp_sch.png "Opamp Schematic")
-
 ![Opamp Testbench](pic1_opamp_testbench.png "Opamp Testbench")
-
 ![Opamp Layout](pic1_opamp_layout.png "Opamp Layout")
-
 ![Opamp Simulation Specifications](pic1_opamp_specs.png "Opamp Simulation Specifications")
-
 
 ### POR (Power On Reset) Circuit
 Power-on reset (POR) circuit ensures that electronic systems start up in a known, stable state by generating a reset signal when power is initially applied. This circuit detects when the power supply reaches a sufficient voltage level and holds the reset line active until the voltage stabilizes, preventing erratic behavior and data corruption. POR circuits are crucial in microcontrollers, consumer electronics, and industrial systems, as they guarantee reliable initialization and consistent performance, thereby enhancing system stability and functionality during power-up.The circuit designed without capacitor which yields 30% reduction of chip’s area compared to the conventional designs
 
-#### (1) Design by Khalid Alorayir
+#### (3) Design by Khalid Alorayir
 ![POR Schematic](pic_por_sch.png "POR Schematic")
-
 ![POR Testbench](pic_por_testbench.png "POR Testbench")
-
 ![POR Layout](pic_por_lay.png "POR Layout")
 
 ## How to test
@@ -87,4 +76,3 @@ Digilent Analog Discovery can be used for various measurements of opamp circuits
 5. **Voltage Levels**: Check the stability and correct operation of the power-on-reset circuit by measuring the voltage levels and timing of the reset pulse.
 
 ![Sample Measurement Setup using Analog Discovery 3](pic_analog_discovery.jpeg "Sample Measurement Setup using Analog Discovery 3")
-
