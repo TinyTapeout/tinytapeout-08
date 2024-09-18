@@ -86,5 +86,4 @@ Digilent Analog Discovery can be used for various measurements of opamp circuits
 4. **Transient Analysis**: Measure how the op-amp and power-on-reset circuits respond to transient signals or sudden changes, such as power-up events.
 5. **Voltage Levels**: Check the stability and correct operation of the power-on-reset circuit by measuring the voltage levels and timing of the reset pulse.
 
-
 ![Sample Measurement Setup using Analog Discovery 3](pic_analog_discovery.jpeg "Sample Measurement Setup using Analog Discovery 3")
