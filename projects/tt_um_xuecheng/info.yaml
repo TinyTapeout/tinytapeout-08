@@ -3,7 +3,7 @@ project:
   author: "Xuecheng Wang"
   description: "Minimal VGA and 4-bit audio demo for Tiny Tapeout 08"
   language: "verilog"
-  top_module: "demo_top"
+  top_module: "Demo_top"
   clock_hz: 25000000
   variant: "tt08"
   tags: ["vga", "audio", "demo"]
