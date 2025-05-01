@@ -1,0 +1,16 @@
+F80  // 0
+FC7  // 1
+FFF  // 2
+FBE  // 3
+F6D  // 4
+000  // 5
+06B  // 6 - transparent
+000  // 7 - unused
+000  // 8 - unused
+000  // 9 - unused
+000  // A - unused
+000  // B - unused
+000  // C - unused
+000  // D - unused
+000  // E - unused
+000  // F - unused
