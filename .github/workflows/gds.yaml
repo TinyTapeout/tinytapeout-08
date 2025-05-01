@@ -3,11 +3,9 @@ name: gds
 on:
   workflow_dispatch:
   push:
-    # Don't run on project submissions:
     branches-ignore:
       - projects/tt_um_*
   pull_request:
-    # Don't run on project submissions:
     paths-ignore:
       - projects/tt_um_*/**
 
@@ -44,6 +42,7 @@ jobs:
         with:
           python-version: '3.11'
           cache: 'pip'
+
       - run: pip install -r tt-multiplexer/py/requirements.txt -r tt/requirements.txt
 
       - name: Update caravel configuration
@@ -86,6 +85,14 @@ jobs:
         run: |
           echo "🔍 Looking for final_summary_report.csv..."
           find tt-multiplexer/ol2/tt_top/runs -name "final_summary_report.csv" | while read rpt; do
+            echo "=== $rpt ==="
+            cat "$rpt"
+          done
+
+      - name: Show OpenLane resource usage (.rpt)
+        run: |
+          echo "📊 Looking for final_summary_report.rpt..."
+          find tt-multiplexer/ol2/tt_top/runs -name "final_summary_report.rpt" | while read rpt; do
             echo "=== $rpt ==="
             cat "$rpt"
           done
@@ -141,4 +148,5 @@ jobs:
         run: |
           make clean test_mux_gl
           ! grep failure results.xml
+
 
