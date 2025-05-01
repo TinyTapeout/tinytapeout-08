@@ -17,8 +17,6 @@ jobs:
       PYTHONIOENCODING: utf-8
       PDK_ROOT: ${{ github.workspace }}/pdk
       TT_CONFIG: sky130.yaml
-      # Uncomment the following line to build only the specified projects:
-      #TT_ONLY_PROJECTS: tt_um_chip_rom,tt_um_factory_test
 
     runs-on: ubuntu-latest
     steps:
@@ -39,8 +37,7 @@ jobs:
 
       - name: Patch OpenLane 2 repo
         working-directory: openlane2
-        run:
-          git apply --allow-empty ../patches/openlane2.patch
+        run: git apply --allow-empty ../patches/openlane2.patch
 
       - name: setup python
         uses: actions/setup-python@v5
@@ -67,7 +64,6 @@ jobs:
           pdk_version: ${{ env.SKY130_PDK_VERSION }}
           pdk_root: ${{ env.PDK_ROOT }}
 
-      # run OpenLane to build the GDS
       - name: Harden Chip ROM
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python -m openlane tt/rom/config.json"
 
@@ -85,6 +81,14 @@ jobs:
       - name: Harden tt_top
         working-directory: tt-multiplexer/ol2/tt_top
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py --skip-xor-checks"
+
+      - name: Show final summary report (.csv)
+        run: |
+          echo "🔍 Looking for final_summary_report.csv..."
+          find tt-multiplexer/ol2/tt_top/runs -name "final_summary_report.csv" | while read rpt; do
+            echo "=== $rpt ==="
+            cat "$rpt"
+          done
 
       - name: Copy final results
         run: python ./tt/configure.py --copy-final-results
@@ -124,7 +128,6 @@ jobs:
           name: efabless_submission
           path: efabless
 
-      # Install iverilog, cocotb (required for GL test)
       - name: install oss-cad-suite
         uses: YosysHQ/setup-oss-cad-suite@v3
         with:
@@ -137,5 +140,5 @@ jobs:
           EXPECTED_REPO: ${{ github.repository }}
         run: |
           make clean test_mux_gl
-          # make will return success even if the test fails, so check for failure in the results.xml
           ! grep failure results.xml
+
