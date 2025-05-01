@@ -1,0 +1,9 @@
+project:
+  name: "twilight_cat"
+  author: "ZixiaLiii"
+  description: "Twilight-themed VGA demo with pixel cat sprite and music (Tiny Tapeout 08)"
+  language: "verilog"
+  top_module: "top_twilight_cat"
+  clock_hz: 25000000
+  variant: "tt08"
+  tags: ["vga", "sprite", "music", "demo"]
