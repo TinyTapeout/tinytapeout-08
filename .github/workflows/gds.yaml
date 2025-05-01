@@ -81,18 +81,10 @@ jobs:
         working-directory: tt-multiplexer/ol2/tt_top
         run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py --skip-xor-checks"
 
-      - name: Show final summary report (.csv)
+      - name: 🔍 Show all final CSV reports
         run: |
-          echo "🔍 Looking for final_summary_report.csv..."
-          find tt-multiplexer/ol2/tt_top/runs -name "final_summary_report.csv" | while read rpt; do
-            echo "=== $rpt ==="
-            cat "$rpt"
-          done
-
-      - name: Show OpenLane resource usage (.rpt)
-        run: |
-          echo "📊 Looking for final_summary_report.rpt..."
-          find tt-multiplexer/ol2/tt_top/runs -name "final_summary_report.rpt" | while read rpt; do
+          echo "🔍 Looking for *.csv files..."
+          find . -name "*.csv" | while read rpt; do
             echo "=== $rpt ==="
             cat "$rpt"
           done
@@ -148,5 +140,3 @@ jobs:
         run: |
           make clean test_mux_gl
           ! grep failure results.xml
-
-
