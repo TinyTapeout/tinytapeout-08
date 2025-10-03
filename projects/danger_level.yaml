@@ -13,3 +13,10 @@
 #    level: medium
 #    reason: 'The project shorts the power rails when the "addi x0, x0, 0xdeadbeef" instruction is executed.'
 # ```
+tt_um_08_sws:
+    level: medium
+    reason: 'The project shorts the inputs to GND.'
+
+tt_um_noritsuna_Vctrl_LC_oscillator:
+    level: medium
+    reason: 'The project shorts the inputs to GND.'
