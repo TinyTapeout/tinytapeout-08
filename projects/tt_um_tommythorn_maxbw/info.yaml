@@ -1,11 +1,11 @@
 # Tiny Tapeout project information
 project:
-  title:        "Asynchronous Multiplier"
+  title:        "Asynchronous Self-Timed Multiplier"
   author:       "Tommy Thorn"
   discord:      "tommythorn"
-  description:  "An asynchronous multiplier"
+  description:  "An asynchronous self-timed bundled-data multiplier"
   language:     "Verilog"
-  clock_hz:     50000000       # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
