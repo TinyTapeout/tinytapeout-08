@@ -14,6 +14,7 @@ The digital design is a 5 stage pipelined architecture implementation of MAC Ope
 
 
 Details of DLFloats:
+
 DLFloat is a 16-bit floating-point format designed for deep learning training and inference, where speed is prioritized over precision.
 
 <img width="508" height="107" alt="image" src="https://github.com/user-attachments/assets/ba09d1b8-f1ba-46ce-93af-587509ff0f7f" />
@@ -28,12 +29,12 @@ Significand precision: 9 bits
 Bias exponent: 31
 
 
-| Value                  | Binary format             |
-|------------------------|---------------------------|
-| Max normal             | S. 111110.111111111        |
-| Min normal             | S. 000001.000000000        |
-| Zero                   | S. 000000.000000000        |
-| Infinity-Nan (combined) | S. 111111.111111111        |
+| Value                  | Binary format             |  Decimal Value   |
+|------------------------|---------------------------|------------------|
+| Max normal             | S. 111110.111111111        | 4.29077299e+09  |
+| Min normal             | S. 000001.000000000        | 9.31322575e−10  |
+| Zero                   | S. 000000.000000000        | 0.0             |
+| Infinity-Nan (combined) | S. 111111.111111111        | infinity       |
 
 
  Work Flow Details:
