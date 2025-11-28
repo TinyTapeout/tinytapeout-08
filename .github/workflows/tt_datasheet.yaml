@@ -29,13 +29,23 @@ jobs:
           cache: 'pip'
       - run: pip install -r tt/requirements.txt -r tt-multiplexer/py/requirements.txt
 
-      - name: Pandoc deps
+      - name: Install Pandoc
         run: |
           sudo apt-get update -y
-          sudo apt-get install -y pandoc texlive-xetex librsvg2-bin
+          sudo apt-get install -y pandoc
 
-      - name: Generate datasheet
-        run: python ./tt/configure.py --dump-markdown datasheet.md --dump-pdf datasheet.pdf
+      - name: Download assets
+        run: |
+          git clone https://github.com/TinyTapeout/tt-datasheet-artwork tt/docs/typst/resources/external
+          wget -P tt/docs/typst/resources/fonts https://github.com/google/fonts/raw/refs/heads/main/ofl/notocoloremoji/NotoColorEmoji-Regular.ttf
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+        with:
+          typst-version: '0.13.1'
+
+      - name: Generate datasheet files
+        run: python ./tt/configure.py --build-datasheet
 
       - name: Check file existence and content
         run: |
