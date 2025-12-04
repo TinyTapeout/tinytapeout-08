@@ -26,3 +26,4 @@ datasheet_config:
 
   include:
     - docs/chip_map.typ
+    - docs/funding.typ
