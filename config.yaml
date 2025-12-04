@@ -23,3 +23,6 @@ datasheet_config:
     - tt_um_stochastic_addmultiply_CL123abc
     - tt_um_dlfloatmac
     - tt_um_wokwi_407306064811090945
+
+  include:
+    - docs/chip_map.typ
