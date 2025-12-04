@@ -3,3 +3,11 @@ name: 'Tiny Tapeout 8'
 end_date: '2024-09-06'
 project_dir: 'projects'
 openframe: true
+
+datasheet_config:
+  disabled:
+    - tt_um_kapilan_alarm
+    - tt_um_betz_morse_keyer
+    - tt_um_stochastic_addmultiply_CL123abc
+    - tt_um_dlfloatmac
+    - tt_um_wokwi_407306064811090945
