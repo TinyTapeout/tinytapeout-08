@@ -35,6 +35,7 @@ The Customizable PDM Pitch Filter can filter a specific pitch and its harmonics 
   - Connect the `MOSI` wire to `spi_mosi`(`ui_in[1]`)
   - Connect the `CS_N` (Chip Select) wire to `spi_cs_n`(`ui_in[2]`)
   - Conect the other side of the SPI port to a microcontroller, Raspberry Pi or something  similar
+
 ### Configure Settings
 - **Procedure**
   -  Set `CS_N` to low
@@ -44,6 +45,7 @@ The Customizable PDM Pitch Filter can filter a specific pitch and its harmonics 
   - Wait at leaset 1 clock cycle and set `CS_N` to low
   - Set filter length
     -  Pass in `8h01` then pass in the filter length as 8 bits. Ex: `8h80` This should be a 16 bit input in total
+
 ### Monitor Output
 - **Procedure**
   -  Enable I2S reciever
