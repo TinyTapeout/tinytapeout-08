@@ -13,8 +13,11 @@ This project was sponsored by The MITRE Corporation and  MIT/LL Beaverworks Summ
 
 ## How to test
 
-![image](https://github.com/user-attachments/assets/fe7923a4-13e1-4175-a6f4-0f34d72c7b6f)
+![](images/1.png)
+
 Use below testbench to input specific values to inputs and observe alarm asserted and output hours and minutes match with inputs. 
+
+```verilog
 module tb();
 
   reg clk, rst_n;
@@ -55,9 +58,4 @@ module tb();
   
   
 endmodule
-
-
-
-## External hardware
-
-
+```
