@@ -38,6 +38,7 @@ Supermic performes variable delay and sum beamforming on 8 mcirophones and outpu
   - Use pins `uio[4:0]` to confiure delays from the table below. A delay of 1 represents a delay of 1 sample at a sample rate of `lr_clk`
 - **(Optional) Connect I2S recievers for passthrough**
   - Connect I2S recievers of your choice like a configured Raspberry Pi or supported speaker to the pins `uo[0:7]`
+
 ### Monitor Output
 - **Procedure**
   -  Enable I2S reciever
@@ -49,7 +50,7 @@ You need 8 digital microphones, a clock generator (can be a raspberry pi, microc
 
 
 ## Delay Configuration
-| `delay_select` | mic_delays[0] | mic_delays[1] | mic_delays[2] | mic_delays[3] | mic_delays[4] | mic_delays[5] | mic_delays[6] | mic_delays[7] |
+| `delay_​select` | mic_​delays​[0] | mic_​delays​[1] | mic_​delays​[2] | mic_​delays​[3] | mic_​delays​[4] | mic_​delays​[5] | mic_​delays​[6] | mic_​delays​[7] |
 |----------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------|---------------|
 | 0              | 0             | 0             | 4             | 4             | 8             | 8             | 12            | 12            |
 | 1              | 0             | 0             | 4             | 4             | 10            | 10            | 12            | 12            |
