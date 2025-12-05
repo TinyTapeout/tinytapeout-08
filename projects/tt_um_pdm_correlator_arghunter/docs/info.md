@@ -29,6 +29,7 @@ Explain how your project works
   - Connect the `MOSI` wire to `spi_mosi`(`ui_in[1]`)
   - Connect the `CS_N` (Chip Select) wire to `spi_cs_n`(`ui_in[2]`)
   - Conect the other side of the SPI port to a microcontroller, Raspberry Pi or something  similar
+
 ### Configure Settings
 - **Procedure**
   -  Set `CS_N` to low
@@ -38,6 +39,7 @@ Explain how your project works
   - Wait at leaset 1 clock cycle and set `CS_N` to low
   - Set filter length
     -  Pass in `8h01` then pass in the filter length as 8 bits. Ex: `8h80` This should be a 16 bit input in total
+
 ### Monitor Output
 - **Procedure**
   -  Pins `uo_out` carries the correlation value (lower is bette, from 0 to filter_length)
@@ -45,5 +47,4 @@ Explain how your project works
   -  `uio_out[2]` is high if a negative delay improves correlation
 
 ## External hardware
-Micrrophones,clockgenerator, spi port
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+Microphones, clock generator, spi port
