@@ -8,19 +8,19 @@ You can also include images in this folder and reference them in the markdown. E
 -->
 
 ## How it works
-![image](https://github.com/user-attachments/assets/571bae1e-6f5d-4b4e-9777-e8c605c9ca7c)
 
-![image](https://github.com/user-attachments/assets/6e3752d7-a5d7-4eb7-84ed-525289fe7e87)
+![](images/1.png)
 
-![image](https://github.com/user-attachments/assets/fcab6fb1-10ba-4726-8425-0483b531dcbb)
+![](images/2.png)
 
-![image](https://github.com/user-attachments/assets/efc9ba6b-c90a-40f7-8d51-2793fe7630d8)
+![](images/3.png)
 
-![image](https://github.com/user-attachments/assets/44a38e96-9751-43b5-a7a7-c04c945208de)
+![](images/4.png)
 
-REFERENCES USED
+![](images/5.png)
+
+## References
 ​
-
 General Stochastic Computing Design:​
 
 A. Alaghi, W. Qian, and J. P. Hayes, “The Promise and Challenge of Stochastic Computing,” IEEE Trans. Comput. Aided Des. Integr. Circuits Syst., vol. 37, no. 8, pp. 1515–1531, Aug. 2018, doi: 10.1109/TCAD.2017.2778107.​
@@ -37,9 +37,7 @@ Jason H. Anderson, Yuko Hara-Azumi, and Shigeru Yamashita. 2016. Effect of LFSR 
 
 Digital QIF neuron:​
 
-E. J. Basham and D. W. Parent, "Compact digital implementation of a quadratic integrate-and-fire neuron," 2012 Annual International Conference of the IEEE Engineering in Medicine and Biology Society, San Diego, CA, USA, 2012, pp. 3543-3548, doi: 10.1109/EMBC.2012.6346731.​
-
- keywords: {Mathematical model;Clocks;Equations;Vectors;Computational modeling;Field programmable gate arrays;Neurons}, ​
+E. J. Basham and D. W. Parent, "Compact digital implementation of a quadratic integrate-and-fire neuron," 2012 Annual International Conference of the IEEE Engineering in Medicine and Biology Society, San Diego, CA, USA, 2012, pp. 3543-3548, doi: 10.1109/EMBC.2012.6346731
 
 
 
