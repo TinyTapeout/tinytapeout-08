@@ -59,4 +59,4 @@ A /pcb/ directory accompanies the standard Tiny Tapeout directories with the KiC
 
 Please see the schematic below for a screenshot of the recommended application schematic:
 
-![KiCad Application Schematic - 2024 Sep 02](https://github.com/b-etz/tt08-morse-keyer/blob/main/docs/application_schematic.jpg?raw=true)
+![KiCad Application Schematic - 2024 Sep 02](images/1.jpg)
