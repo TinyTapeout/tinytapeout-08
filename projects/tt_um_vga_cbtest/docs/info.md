@@ -7,6 +7,10 @@ You can also include images in this folder and reference them in the markdown. E
 512 kb in size, and the combined size of all images must be less than 1 MB.
 -->
 
+## Authors
+- Krushnasis Pradhan ([linkedin.com/in/krushnasis-pradhan-35881518b/](https://www.linkedin.com/in/krushnasis-pradhan-35881518b/))
+- Aniruddha Ranade ([linkedin.com/in/aniruddha-ranade/](https://www.linkedin.com/in/aniruddha-ranade/))
+
 ## How it works
 
 Generates VGA output for displaying pattern similar to [Ishihara](https://en.wikipedia.org/wiki/Ishihara_test) plates used for conducting a color blindness test. (Disclaimer: Note that this is not an approved medical test and test setup. The pattern generated is for purely experimental purpose.) 
