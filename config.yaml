@@ -17,13 +17,6 @@ datasheet_config:
     - {id: TT_POCA_01_H, rotate: -90deg}
     - {id: TT_POCA_01_I, rotate: 90deg}
 
-  disabled:
-    - tt_um_kapilan_alarm
-    - tt_um_betz_morse_keyer
-    - tt_um_stochastic_addmultiply_CL123abc
-    - tt_um_dlfloatmac
-    - tt_um_wokwi_407306064811090945
-
   include:
     - docs/chip_map.typ
     - docs/funding.typ
