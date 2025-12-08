@@ -27,6 +27,23 @@ The following plot illustrates how the LDO output voltage changes with load curr
 
 ![LDO_OUvsLOAD](LDO-Output-Voltage-vs-Output-Current.png)
 
+The plot below shows the PSD at the LDO output under no-load conditions. The measured output noise density at 10 Hz is 15 µV/√Hz, and the integrated noise from 10 Hz to 1 MHz becomes 484 µVrms. The spectrum is generally clean, with a single spur at 21.3 kHz and its harmonic at 42.6 kHz. The source of this spur is unknown; the evaluation board was powered from a battery, and there shouldn't be any switching regulators active during the measurement.
+
+Two noise simulations were performed for the circuit:
+- [LDO output-referred noise with an ideal (noiseless) reference source](https://devstdin.github.io/sky130artefacts_tt08/ldo/ldo/#ldo-voltage-noise-specification-pexbr): 1.8...1.9 µV/√Hz at 10 Hz
+- [Output-referred noise of the bandgap reference](https://devstdin.github.io/sky130artefacts_tt08/bmbg/bmbg/#reference-voltage-noise-specification-pexbr): 13...19 µV/√Hz at 10 Hz
+
+Both simulations use an ideal (noiseless) bias current source. The real bias source has a (simulated) [current noise](https://devstdin.github.io/sky130artefacts_tt08/vthref/vthref/#ac-noisebr) of approximately 10 pA/√Hz at 10 Hz. For this analysis, the bias current noise is assumed to be negligible.
+
+The total expected output noise should be the quadratic sum of the LDO’s intrinsic noise and the bandgap’s noise multiplied by the LDO gain 
+G = Vout/Vbg = 1.84/1.21 = 1.5:
+
+Vn,total​ = √(Vn_ldo^2 ​+ (Vn_bg​*G)^2) ​≈ 20...29 μV/√Hz [at 10 Hz]
+
+This 20...29 µV/√Hz span is slightly higher than the measured noise density of 15 µV/√Hz at 10 Hz.
+
+![LDO_NOISE](LDO-noise-oref.png)
+
 ### Ring Oscillator
 Frequency and duty cycle were measured across a 50 °C temperature range. As shown in the two plots below, the oscillation frequency changes by approximately 6 kHz/°C, while the duty cycle remains nearly constant.
 
