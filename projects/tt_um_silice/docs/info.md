@@ -10,7 +10,7 @@ You can also include images in this folder and reference them in the markdown. E
 # Warp
 
 
-### Preface
+## Preface
 
 This demo is running on hardware (ASIC, an actual chip!) in ~3400 gates. There's no cpu/gpu/ram, and it fits on 161x225 μm (130nm fab): [3D view of the chip](https://legacy-gltf.gds-viewer.tinytapeout.com/?model=https://sylefeb.github.io/tt08-compo-entry/tinytapeout.gds.gltf). Below is a simulation of the video and audio output showing the entire demo loop. This is all made possible thanks to [TinyTapeout](https://tinytapeout.com/).
 
@@ -39,9 +39,7 @@ racing the beam! Plus, I really [like this effect](https://htmlpreview.github.io
 
 > Note: *racing the beam* means producing the pixel colors as the video signal is being generated. The demo runs VGA at 640x480, with a pixel clock at 25MHz, so one RGB triple has to be produced every clock cycle in 40 nanoseconds. The video output is 2 bits per pixel, but internally the demo uses a higher pixel depth, then turned into 'shades' by [dithering](https://en.wikipedia.org/wiki/Ordered_dithering). To make the design smaller I made the tunnel internally gray-scale, and RGB effects are applied as a 'post-process' (details below).
 
-### Graphics
-
-#### The tunnel
+### The tunnel
 
 As a rule of thumb, at 640x480 -- the resolution of the demo -- a pre-computed table would require at least 256KB (262144 bytes) of pre-computed data. We have roughly ~4000 logic cells, so ... well, it's not gonna fit :-)
 
@@ -107,7 +105,7 @@ The tunnel viewpoint change is obtained simply by shifting the tunnel center. I 
 
 The 'blue-orange' tunnel effect is obtained through temporal dithering, one frame being the standard tunnel, the other the rotated tunnel. This gets combined with the RGB lens distortion, achieving the final look.
 
-#### The logo
+### The logo
 
 Since the start I knew the demo would be called 'Warp', I got this 'mind picture' of an uncontrolled space warp unfolding after a computer crashed.
 
@@ -161,7 +159,7 @@ You might have noticed the audio unit outputs both `audio1` (the actual 1-bit au
 </div>
 
 
-## ASIC
+### ASIC
 
 The design reached a very high density, **95.62%** utilization. This may be due to the pipelined nature of its core computations? In any case it's pretty cool as it means it uses almost every bit of available space!
 
@@ -187,7 +185,7 @@ Simulation of both audio and video can run on an ECPIX5, with the Diligent VGA
 PMOD on ports 0,1 and an I2S audio PMOD on port 2 (upper row).
 The audio also runs on an ULX3S using its DAC (but no video in this case).
 
-## External hardware
+### External hardware
 
 - [VGA PMOD](https://github.com/mole99/tiny-vga)
 - [Audio PMOD](https://github.com/MichaelBell/tt-audio-pmod)
