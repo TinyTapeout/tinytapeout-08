@@ -61,7 +61,28 @@ Normally computing all of these quantities would take ~20 iterations per pixel. 
 
 First, let's get rid of the division. The top right image shows the distance to the center -- *$length$* -- and the bottom right shows *$1/length$* -- distance from viewer -- which we want for the perspective effect. Now, instead of computing an actual general division we can use an old trick: we know the range of values if we cutout a small ring near the center, where $length$ goes to zero (and $1/length$ to infinity). That's fine, we'll just mask that out in 'the darkness of space'. We can then setup interpolation rings as shown bottom left. At the border of each ring the $length$ values are fixed and we pre-compute $1/length$ for each. In between the values are linearly interpolated. There's a tradeoff: fewer rings use less space but reveal distortion, many rings are accurate but use a ton of space. Guess what, I spent a lot of time playing with the number of rings :) (fortunately Silice pre-processor makes this kind of parameter exploration easy).
 
-Second, the most important part, the pipeline! Even without division we are left with (at least) 5 iterations of CORDIC for a good effect. The idea is that at every clock, we compute all required 5 steps, but in parallel for different pixels, in a pipeline. At a cycle $i$ pixel at screen coordinate $x$ enters the pipeline and we compute iteration $0$ on it. But at the same time we have $x-1$ at iteration $1$, $x-2$ at iteration $2$, $x-3$ at iteration $3$, and so on. If the pipeline has five stages, the pixel at $x-5$ is fully computed when the pixel at $x$ enters. This implies that the pipeline has to start ahead of the video signal, so the first pixel is available in time (latency). The great thing is that at full peak the pipeline outputs one pixel every iteration, while applying all five iterations to *different* pixels at once. In ASIC we don't have to do super-deep pipelines because the signal propagates very fast (compared to e.g. an FPGA) so the actual pipeline of Warp is 'only' two stages for CORDIC and five stages in total, because of course a lot happens after CORDIC to make all the tunnel variants!
+Second, the most important part, the pipeline! Even without division we are left with (at least) 6 iterations of CORDIC for a good effect. The idea is that at every clock, we compute all required 6 steps, but in parallel for different pixels, in a pipeline. At a cycle $i$ pixel at screen coordinate $x$ enters the pipeline and we compute iteration $0$ on it. But at the same time we have $x-1$ at iteration $1$, $x-2$ at iteration $2$, $x-3$ at iteration $3$, and so on. If the pipeline has six stages, the pixel at $x-6$ is fully computed when the pixel at $x$ enters. This implies that the pipeline has to start ahead of the video signal, so the first pixel is available in time (latency). The great thing is that at full peak the pipeline outputs one pixel every iteration, while applying all six iterations to *different* pixels at once. In ASIC we don't have to do super-deep pipelines because the signal propagates very fast (compared to e.g. an FPGA) so the actual pipeline of Warp is 'only' two stages of three CORDIC steps, and five stages in total, because of course a lot happens after CORDIC to make all the tunnel variants!
+
+Pipelines in Silice are very easy to create with the `->` operator. Here is the code structure in terms of pipeline (stages code is replaced by `/* ... */`):
+
+<div align="center">
+<img src="pipeline.png" alt="Pipeline structure" width="400px">
+</div>
+
+The lines starting with `$$` are pre-processor lines (L10, L15), here the `for` loop (L10) repeats the code L11-14, including the `->` operator, so it creates two pipeline stages. The pipeline is contained within the braces, it is fed by its first stage (L5-8) where pixel coordinates are generated, a different pixel at every clock cycle. The overall `always` block contains the logic performed at every cycle, for as long as the chip is powered.
+
+Let's take a look at a single CORDIC step:
+
+<div align="center">
+<img src="cordic.png" alt="CORDIC step" width="500px">
+</div>
+
+The interesting detail here is L179, where the pre-processor is used to compute
+`a_inc`, which then becomes a constant when used with `$a_inc$` in the code (L183, L187). This increment is very important in computing the $atan$ value correctly,
+and is different at every iteration. The CORDIC iteration is given by `i+2` in
+the `a_inc` expression.
+
+> `i` increments by 3 each pipeline stage, each stage unrolls 3 CORDIC steps, this is showing the last one, hence `i+2`.
 
 ### Register combiners
 
@@ -117,15 +138,21 @@ at how compact this can be made, the soundtrack using perhaps around 10% of the 
 
 I tried to make a track that matches the spirit and rhythm of the graphics. It is what is is, but I'm happy that there's sound at all!
 
-The audio unit [is here](https://github.com/sylefeb/tt08-compo-entry/blob/1a64b6fefaaef9963322092fc917bb73be507f7d/src/silice/vga_demo.si#L370).
-
-In Silice code, this is what the music track looks like:
+In Silice code, this is what the *entire* music track and audio logic looks like ([source code](https://github.com/sylefeb/tt08-compo-entry/blob/1a64b6fefaaef9963322092fc917bb73be507f7d/src/silice/vga_demo.si#L370)):
 
 <div align="center">
     <img src="music.jpg" alt="Music track" width="700px">
 </div>
 
-The arrays here are the entire track, and the code that follows implements bass, drums and keys.
+The arrays at the top here are the music track, the code that follows implements bass, drums and keys (or that was the plan, anyway ;) ). The sound itself is a sum (L400) of a triangular (L392) and square wave (L395).
+
+> Triangular is softer than square, [try a sound generator](https://onlinetonegenerator.com/) to hear the difference.
+
+The square wave generates the keys, it has an envelope that decreases down to zero (L411-412) starting at 63.
+
+> `{6{|keys[idx]}}` produces `6b111111` as soon as any bit in `keys[idx]` is `1`, the `|x` operator returns a *or* between all bits of `x` (reduction).
+
+The wave frequency is driven by the value in the `keys` table which is added to the wave position `qpos` (L403). The triangular wave which is responsible for the bassline, it has no envelope and its frequency is controlled by the `bass` table. Now there's a drum of sort, which is impacting the frequency of the bassline to accelerate it by adding `drum_inc` to it (L402). `drum_inc` starts at the value given in `drum` and decreases away (L408-L410). Looking at the `drum` table, you can see it is always doing `2,1` with different spacings of `0`. This produces the accelerating heartbeat effect in the sound track (1 produces low-pitched and 2 high-pitched drums) . And that's it! Again making no claims this is any good, but it does the job of accompanying the graphics, I think (hope :) ).
 
 You might have noticed the audio unit outputs both `audio1` (the actual 1-bit audio signal for tt08!) and `audio8`. The 8-bit version is used on FPGA to test with an audio DAC, it is ignored otherwise. But how do we go from 8-bits to only one? The usual PWM (pulse-width-modulation) trick: audio is low frequency from a hardware point of view (even 44kHz is very slow compared to our 25MHz) so we can generate a high frequency 1-bit signal that will average itself when going through the audio hardware backend (the speaker itself is a huge dampener). This works like magic!
 
@@ -148,7 +175,7 @@ The chip is shown below but also check out the [3D view](https://legacy-gltf.gds
 
 Thanks for reading so far! If you enjoy this type of hardware-oriented Graphics adventures here's some more links you will likely enjoy, starting by a video all the amazing other demo entries in tt08!:
 - [bitluni live-stream recording showing all demos in tt08](https://www.youtube.com/watch?v=A9BhSaqL7jg).
-- [a1k0n's detailed write up on his  demos](https://www.a1k0n.net/2025/12/19/tiny-tapeout-demo.html) and [3d torus](https://www.a1k0n.net/2025/01/10/tiny-tapeout-donut.html) (also with CORDIC fun), all in tt08.
+- [a1k0n's detailed write up on his demos](https://www.a1k0n.net/2025/12/19/tiny-tapeout-demo.html) and [3d torus](https://www.a1k0n.net/2025/01/10/tiny-tapeout-donut.html) (also with CORDIC fun), all in tt08.
 - [My tt07 terrain explorer](https://mastodon.online/@sylefeb/113924385249401994), also in [tt07 bring-up party](https://www.youtube.com/watch?v=NoGewMTtAjQ). (It's trully an incredible moment when your first ASIC turns up!).
 - Of course the [TinyTapeout website](https://tinytapeout.com/)! A lot more designs to discover and enjoy.
 
