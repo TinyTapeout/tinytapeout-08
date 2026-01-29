@@ -4,6 +4,10 @@ AICD Playground is a mixed-signal test project for the analog IC design course a
 
 It integrates a digital 8-bit controller with several analog IPs such as up/down-levelshifters, an R2R-DAC and a comparator. The IPs are connected in a way that a simple SAR-ADC is formed.
 
+The layout also includes the logo of TU Graz, which can be seen here:
+
+![logo.png](images/logo.png)
+
 ## How to test
 
 To initialize the memory, you need to set the `mode` pin to high. Now data can be send via the SPI interface, which is then written into the memory. After a rising edge of `mode`, the address points to zero and is incremented with each SPI transaction. Send 64 bytes to initialize the whole memory.
