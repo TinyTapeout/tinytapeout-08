@@ -12,7 +12,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## Preface
 
-This demo is running on hardware (ASIC, an actual chip!) in ~3400 gates. There's no cpu/gpu/ram, and it fits on 161x225 μm (130nm fab): [3D view of the chip](https://legacy-gltf.gds-viewer.tinytapeout.com/?model=https://sylefeb.github.io/tt08-compo-entry/tinytapeout.gds.gltf). Below is a simulation of the video and audio output showing the entire demo loop. This is all made possible thanks to [TinyTapeout](https://tinytapeout.com/).
+This demo is running on hardware -- ASIC, an actual chip! -- in ~3400 gates. There's no cpu/gpu/ram, and it fits on 161x225 μm (130nm fab): [3d view of the chip](https://legacy-gltf.gds-viewer.tinytapeout.com/?model=https://sylefeb.github.io/tt08-compo-entry/tinytapeout.gds.gltf). Below is a simulation of the video and audio output showing the entire demo loop. This is all made possible thanks to [TinyTapeout](https://tinytapeout.com/).
 
 > Please make sure to watch the demo for a few minutes as various effects play
 > out before it loops. At start it waits for a few seconds to ensure VGA sync is
@@ -20,7 +20,7 @@ This demo is running on hardware (ASIC, an actual chip!) in ~3400 gates. There's
 
 [![Watch the video](warp.jpg)](https://youtu.be/ELOYGwZgHnw)
 
-This demo is written in [Silice](https://github.com/sylefeb/Silice/), my HDL.
+The demo is written in [Silice](https://github.com/sylefeb/Silice/), my HDL.
 Here is the [actual source](../src/silice/vga_demo.si). Silice now fully supports TinyTapeout as a build target.
 
 > Warp is [2-tiles](https://app.tinytapeout.com/shuttles/tt08) design, I also have a [1-tile demo](https://github.com/sylefeb/tt08-fun/blob/main/docs/info.md) in tt08 ;)
@@ -41,7 +41,7 @@ racing the beam! Plus, I really [like this effect](https://htmlpreview.github.io
 
 ### The tunnel
 
-As a rule of thumb, at 640x480 -- the resolution of the demo -- a pre-computed table would require at least 256KB (262144 bytes) of pre-computed data. We have roughly ~4000 logic cells, so ... well, it's not gonna fit :-)
+As a rule of thumb, at 640x480 -- the resolution of the demo -- a pre-computed table would require at least 256KB (262,144 bytes or 2,097,152 bits) of pre-computed data. We have somewhere between 3000 - 4000 logic cells, so ... well, it's not gonna fit :-)
 
 There are several tricks at play: a shallow
 [CORDIC](https://en.wikipedia.org/wiki/CORDIC) pipeline to compute an *atan* and *length*, and a few precomputed *1/x* distances to interpolate between -- these form keypoint rings along the tunnel. All the effects are then obtained by combining multiple layers in various ways (like a *tunnel effect processor* which registers can be configured for various effects).
@@ -57,9 +57,9 @@ Ok let's decompose this paragraph! Below you see the *atan* and *length* compute
 
 Normally computing all of these quantities would take ~20 iterations per pixel. So of course that's not possible, because we are targeting a 25 MHz clock matching the video signal generator and one pixel has to go out *every cycle*. We could maybe run the clock 2x or 4x, but certainly not 20x (0.5GHz). So what can we do? First, a precomputed division, and second -- most importantly -- a pipeline.
 
-First, let's get rid of the division. The top right image shows the distance to the center -- *$length$* -- and the bottom right shows *$1/length$* -- distance from viewer -- which we want for the perspective effect. Now, instead of computing an actual general division we can use an old trick: we know the range of values if we cutout a small ring near the center, where $length$ goes to zero (and $1/length$ to infinity). That's fine, we'll just mask that out in 'the darkness of space'. We can then setup interpolation rings as shown bottom left. At the border of each ring the $length$ values are fixed and we pre-compute $1/length$ for each. In between the values are linearly interpolated. There's a tradeoff: fewer rings use less space but reveal distortion, many rings are accurate but use a ton of space. Guess what, I spent a lot of time playing with the number of rings :) (fortunately Silice pre-processor makes this kind of parameter exploration easy).
+First, let's get rid of the division. The top right image shows the distance to the center -- $length$ -- and the bottom right shows $1/length$ -- distance from viewer -- which we want for the perspective effect. Now, instead of computing an actual general division we can use an old trick: we know the range of values if we cutout a small ring near the center, where $length$ goes to zero (and $1/length$ to infinity). That's fine, we'll just mask that out in 'the darkness of space'. We can then setup interpolation rings as shown bottom left. At the border of each ring the $length$ values are fixed and we pre-compute $1/length$ for each. In between the values are linearly interpolated. There's a tradeoff: fewer rings use less space but reveal distortion, many rings are accurate but use a ton of space. So, I spent a lot of time playing with the number of rings :) (fortunately the Silice pre-processor makes this kind of parameter exploration easy).
 
-Second, the most important part, the pipeline! Even without division we are left with (at least) 6 iterations of CORDIC for a good effect. The idea is that at every clock, we compute all required 6 steps, but in parallel for different pixels, in a pipeline. At a cycle $i$ pixel at screen coordinate $x$ enters the pipeline and we compute iteration $0$ on it. But at the same time we have $x-1$ at iteration $1$, $x-2$ at iteration $2$, $x-3$ at iteration $3$, and so on. If the pipeline has six stages, the pixel at $x-6$ is fully computed when the pixel at $x$ enters. This implies that the pipeline has to start ahead of the video signal, so the first pixel is available in time (latency). The great thing is that at full peak the pipeline outputs one pixel every iteration, while applying all six iterations to *different* pixels at once. In ASIC we don't have to do super-deep pipelines because the signal propagates very fast (compared to e.g. an FPGA) so the actual pipeline of Warp is 'only' two stages of three CORDIC steps, and five stages in total, because of course a lot happens after CORDIC to make all the tunnel variants!
+Second, the most important part, the pipeline! Even without division we are left with (at least) 6 iterations of CORDIC for a good effect. The idea is that at every clock, we compute all required 6 steps, but in parallel for different pixels, in a pipeline. At a cycle $i$, the pixel at screen coordinate $x$ enters the pipeline and we compute iteration $0$ on it. But at the same time we have $x-1$ at iteration $1$, $x-2$ at iteration $2$, $x-3$ at iteration $3$, and so on. If the pipeline has six stages, the pixel at $x-6$ is fully computed when the pixel at $x$ enters. This implies that the pipeline has to start ahead of the video signal (latency), so the first pixel is available in time when the frame display starts. The great thing is that at full peak the pipeline outputs one pixel every iteration, while applying all six iterations to *different* pixels at once. In ASIC we don't have to do super-deep pipelines because the signal propagates very fast (compared to e.g. an FPGA) so the actual pipeline of Warp is 'only' two stages of three CORDIC steps, and five stages in total. The additional stages are taking care of all that happens after CORDIC to make all the tunnel variants and graphic effects!
 
 Pipelines in Silice are very easy to create with the `->` operator. Here is the code structure in terms of pipeline (stages code is replaced by `/* ... */`):
 
@@ -150,9 +150,11 @@ The square wave generates the keys, it has an envelope that decreases down to ze
 
 > `{6{|keys[idx]}}` produces `6b111111` as soon as any bit in `keys[idx]` is `1`, the `|x` operator returns a *or* between all bits of `x` (reduction).
 
-The wave frequency is driven by the value in the `keys` table which is added to the wave position `qpos` (L403). The triangular wave which is responsible for the bassline, it has no envelope and its frequency is controlled by the `bass` table. Now there's a drum of sort, which is impacting the frequency of the bassline to accelerate it by adding `drum_inc` to it (L402). `drum_inc` starts at the value given in `drum` and decreases away (L408-L410). Looking at the `drum` table, you can see it is always doing `2,1` with different spacings of `0`. This produces the accelerating heartbeat effect in the sound track (1 produces low-pitched and 2 high-pitched drums) . And that's it! Again making no claims this is any good, but it does the job of accompanying the graphics, I think (hope :) ).
+The square wave frequency is driven by the value in the `keys` table which is added to the wave position `qpos` (L403).
 
-You might have noticed the audio unit outputs both `audio1` (the actual 1-bit audio signal for tt08!) and `audio8`. The 8-bit version is used on FPGA to test with an audio DAC, it is ignored otherwise. But how do we go from 8-bits to only one? The usual PWM (pulse-width-modulation) trick: audio is low frequency from a hardware point of view (even 44kHz is very slow compared to our 25MHz) so we can generate a high frequency 1-bit signal that will average itself when going through the audio hardware backend (the speaker itself is a huge dampener). This works like magic!
+The triangular wave is responsible for the bassline. It has no envelope and its frequency is controlled by the `bass` table. In addition there's a drum of sorts, which is impacting the frequency of the bassline to accelerate it by adding `drum_inc` to it (L402). `drum_inc` starts at the value given in `drum` and decreases away (L408-L410). Looking at the `drum` table, you can see it is always doing `2,1` with different spacings of `0`. This produces the accelerating heartbeat effect in the sound track (1 produces a low-pitched drum and 2 a higher pitched one) . And that's it! Making no claims this is any good, but it does the job of accompanying the graphics, I think (hope :) ).
+
+Final note: You might have noticed the audio unit outputs both `audio1` (the actual 1-bit audio signal for tt08!) and `audio8`. The 8-bit version is used on FPGA to test with an audio DAC, it is ignored otherwise. But how do we go from 8-bits to only one? The usual PWM (pulse-width-modulation) trick: audio is low frequency from a hardware point of view (even 44kHz is very slow compared to our 25MHz) so we can generate a high frequency 1-bit signal that will average itself when going through the audio hardware backend (the speaker itself is a huge dampener). This works like magic!
 
 <div align="center">
     <img src="pwm.jpg" alt="1-bit PWM code" width="500px">
@@ -175,7 +177,7 @@ Thanks for reading so far! If you enjoy this type of hardware-oriented Graphics 
 - [bitluni live-stream recording showing all demos in tt08](https://www.youtube.com/watch?v=A9BhSaqL7jg).
 - [a1k0n's detailed write up on his demos](https://www.a1k0n.net/2025/12/19/tiny-tapeout-demo.html) and [3d torus](https://www.a1k0n.net/2025/01/10/tiny-tapeout-donut.html) (also with CORDIC fun), all in tt08.
 - [My tt07 terrain explorer](https://mastodon.online/@sylefeb/113924385249401994), also in [tt07 bring-up party](https://www.youtube.com/watch?v=NoGewMTtAjQ). (It's trully an incredible moment when your first ASIC turns up!).
-- Of course the [TinyTapeout website](https://tinytapeout.com/)! A lot more designs to discover and enjoy.
+- Of course the [TinyTapeout website](https://tinytapeout.com/)! A lot more designs to discover and learn from.
 
 ## How to test
 
